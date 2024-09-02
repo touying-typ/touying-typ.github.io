@@ -2,13 +2,16 @@
 sidebar_position: 6
 ---
 
-# Stargazer Theme
+# Stargazer 主题
 
-The Stargazer theme, originally created by [Coekjan](https://github.com/Coekjan/) for the [touying-buaa](https://github.com/Coekjan/touying-buaa) project, is an aesthetically pleasing and versatile theme suitable for everyday use.
+![image](https://github.com/user-attachments/assets/4950008f-ac64-47ab-a7ca-cdf15361ba0f)
 
-## Initialization
+这个主题原本来自 [Coekjan](https://github.com/Coekjan/) 创作的 [touying-buaa](https://github.com/Coekjan/touying-buaa) 主题，美观大方，很适合日常使用。
 
-You can initialize the theme with the following code:
+
+## 初始化
+
+你可以通过下面的代码来初始化：
 
 ```typst
 #import "@preview/touying:0.5.0": *
@@ -35,22 +38,22 @@ You can initialize the theme with the following code:
 #outline-slide()
 ```
 
-The `stargazer-theme` accepts the following parameters:
+其中 `stargazer-theme` 接收参数:
 
-- `aspect-ratio`: The aspect ratio of the slides, either "16-9" or "4-3", with a default of "16-9".
-- `align`: The alignment of the slides, with a default of `horizon`.
-- `alpha`: The transparency of the slides, with a default of `20%`.
-- `title`: The content displayed in the header, with a default of `utils.display-current-heading()`, or you can pass a function like `self => self.info.title`.
-- `progress-bar`: Whether to display a progress bar at the bottom of the slide, with a default of `true`.
-- `footer-columns`: The widths of the three footer columns, with a default of `(25%, 25%, 1fr, 5em)`.
-- `footer-a`: The first column, with a default of `self => self.info.author`.
-- `footer-b`: The second column, with a default of `self => utils.display-info-date(self)`.
-- `footer-c`: The third column, with a default of `self => if self.info.short-title == auto { self.info.title } else { self.info.short-title }`.
-- `footer-d`: The fourth column, with a default of `context utils.slide-counter.display() + " / " + utils.last-slide-number`.
+- `aspect-ratio`: 幻灯片的长宽比为 "16-9" 或 "4-3"，默认为 "16-9"。
+- `align`: 幻灯片的对齐方式，默认为 `horizon`。
+- `alpha`: 幻灯片的透明度，默认为 `20%`。
+- `title`: 显示在页眉的内容，默认为 `utils.display-current-heading()`，也可以传入形如 `self => self.info.title` 的函数。
+- `progress-bar`: 是否显示 slide 底部的进度条，默认为 `true`。
+- `footer-columns`: 底部三栏 Footer 的宽度，默认为 `(25%, 25%, 1fr, 5em)`。
+- `footer-a`: 第一栏，默认为 `self => self.info.author`。
+- `footer-b`: 第二栏，默认为 `self => utils.display-info-date(self)`。
+- `footer-c`: 第三栏，默认为 `self => if self.info.short-title == auto { self.info.title } else { self.info.short-title }`。
+- `footer-d`: 第四栏，默认为 `context utils.slide-counter.display() + " / " + utils.last-slide-number`。
 
-## Color Theme
+## 颜色主题
 
-The Stargazer theme uses the following color scheme by default:
+Stargazer 默认使用了
 
 ```typc
 config-colors(
@@ -63,17 +66,17 @@ config-colors(
 )
 ```
 
-You can modify this color scheme using `config-colors()`.
+颜色主题，你可以通过 `config-colors()` 对其进行修改。
 
-## Slide Function Family
+## slide 函数族
 
-The Stargazer theme offers a variety of custom slide functions:
+Stargazer 主题提供了一系列自定义 slide 函数：
 
 ```typst
 #title-slide(extra: none, ..args)
 ```
 
-`title-slide` reads information from `self.info` for display, and you can also pass an `extra` parameter for additional information.
+`title-slide` 会读取 `self.info` 里的信息用于显示，你也可以为其传入 `extra` 参数，显示额外的信息。
 
 ---
 
@@ -87,42 +90,39 @@ The Stargazer theme offers a variety of custom slide functions:
   title: auto,
   footer: auto,
   align: horizon,
-)[  
+)[
   ...
 ]
 ```
-
-A standard slide function with a title and footer by default, where `title` defaults to the current section title, and the footer is the one you set.
+默认拥有标题和页脚的普通 slide 函数，其中 `title` 默认为当前 section title，页脚为您设置的页脚。
 
 ---
 
 ```typst
-#outline-slide[  
+#outline-slide[
   ...
 ]
 ```
-
-Used to add a table of contents slide.
+用于加入大纲页。
 
 ---
 
 ```typst
-#focus-slide[  
+#focus-slide[
   ...
 ]
 ```
-
-Used to draw the audience's attention. The background color is `self.colors.primary-dark`.
+用于引起观众的注意力。背景色为 `self.colors.primary-dark`。
 
 ---
 
 ```typst
 #new-section-slide(short-title: auto, title)
 ```
+用给定标题开启一个新的 section。
 
-Start a new section with the given title.
 
-## Example
+## 示例
 
 ```typst
 #import "@preview/touying:0.5.0": *
