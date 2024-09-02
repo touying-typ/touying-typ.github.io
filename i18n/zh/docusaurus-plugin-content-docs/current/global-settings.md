@@ -39,9 +39,8 @@ config-methods(
 
 你可以通过
 
-```typst
-#let s = (s.methods.info)(
-  self: s,
+```typc
+config-info(
   title: [Title],
   subtitle: [Subtitle],
   author: [Authors],

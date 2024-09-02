@@ -38,9 +38,8 @@ Like Beamer, Touying helps you better maintain global information through a unif
 
 You can set the title, subtitle, author, date, and institution information of your slides with:
 
-```typst
-#let s = (s.methods.info)(
-  self: s,
+```typc
+config-info(
   title: [Title],
   subtitle: [Subtitle],
   author: [Authors],
