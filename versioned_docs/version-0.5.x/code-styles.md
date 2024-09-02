@@ -52,7 +52,7 @@ Hello, Typst!
 
 ## Block Style
 
-Many times, using only the simple style cannot achieve all the functions we need. For more powerful functions and clearer structure, we can also use the block style in the form of `#slide[...]`, where the `#slide` function needs to be unpacked using the syntax `#let (slide, empty-slide) = utils.slides(s)` to be used normally after `#show: slides`.
+Many times, using only the simple style cannot achieve all the functions we need. For more powerful functions and clearer structure, we can also use the block style in the form of `#slide[...]`.
 
 For example, the above example can be transformed into
 
