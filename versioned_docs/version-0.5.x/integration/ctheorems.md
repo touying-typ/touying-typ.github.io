@@ -6,7 +6,7 @@ sidebar_position: 5
 
 Touying can work seamlessly with the `ctheorems` package, allowing you to directly use the `ctheorems` package.
 
-Moreover, you can utilize `#let s = (s.methods.numbering)(self: s, section: "1.", "1.1")` to set numbering for sections and subsections.
+Moreover, you can utilize `#set heading(numbering: "1.1")` to set numbering for sections and subsections.
 
 ```typst
 #import "@preview/touying:0.5.0": *
