@@ -16,25 +16,24 @@ sidebar_position: 1
 你可以通过下面的代码来初始化：
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.simple: *
 
-#let s = themes.simple.register(aspect-ratio: "16-9", footer: [Simple slides])
-#let s = (s.methods.enable-transparent-cover)(self: s)
-#let (init, slides) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide, title-slide, centered-slide, focus-slide) = utils.slides(s)
-#show: slides
+#show: simple-theme.with(
+  aspect-ratio: "16-9",
+  footer: [Simple slides],
+)
 ```
 
 其中 `register` 接收参数:
 
 - `aspect-ratio`: 幻灯片的长宽比为 "16-9" 或 "4-3"，默认为 "16-9"。
+- `header`: 显示在页眉的内容，默认为 `utils.display-current-heading(setting: utils.fit-to-width.with(grow: false, 100%))`，也可以传入形如 `self => self.info.title` 的函数。
+- `header-right`: 展示在页眉右侧的内容，默认为 `self => self.info.logo`。
 - `footer`: 展示在页脚的内容，默认为 `[]`，也可以传入形如 `self => self.info.author` 的函数。
-- `footer-right`: 展示在页脚右侧的内容，默认为 `states.slide-counter.display() + " / " + states.last-slide-number`。
-- `background`: 背景颜色，默认为白色。
-- `foreground`: 文本颜色，默认为黑色。
+- `footer-right`: 展示在页脚右侧的内容，默认为 `context utils.slide-counter.display() + " / " + utils.last-slide-number`。
 - `primary`: 主题颜色，默认为 `aqua.darken(50%)`。
+- `subslide-preamble`: 默认往当前 slide 加入 subsection 的标题。
 
 
 ## slide 函数族
@@ -62,13 +61,10 @@ simple 主题提供了一系列自定义 slide 函数：
 
 ```typst
 #slide(
+  config: (:),
   repeat: auto,
   setting: body => body,
-  composer: utils.side-by-side,
-  section: none,
-  subsection: none,
-  // simple theme args
-  footer: auto,
+  composer: components.side-by-side,
 )[
   ...
 ]
@@ -85,52 +81,16 @@ simple 主题提供了一系列自定义 slide 函数：
 用于引起观众的注意力。可选接受一个前景色 (默认为 `white`) 和一个背景色 (默认为 `auto`，即 `self.colors.primary`)。
 
 
-## `slides` 函数
-
-`slides` 函数拥有参数
-
-- `slide-level`: 默认为 `1`。
-
-可以通过 `#show: slides.with(..)` 的方式设置。
-
-以及可以通过 `#(s.methods.touying-new-section-slide = none)` 的方式关闭自动加入 `new-section-slide` 的功能。
-
-```typst
-#import "@preview/touying:0.4.2": *
-
-#let s = themes.simple.register(aspect-ratio: "16-9", footer: [Simple slides])
-#let s = (s.methods.enable-transparent-cover)(self: s)
-#let (init, slides) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide, title-slide, centered-slide, focus-slide) = utils.slides(s)
-#show: slides
-
-= Title
-
-== First Slide
-
-Hello, Touying!
-
-#pause
-
-Hello, Typst!
-```
-
-![image](https://github.com/touying-typ/touying/assets/34951714/2c599bd1-6250-497f-a65b-f19ae02a16cb)
-
-
 ## 示例
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.simple: *
 
-#let s = themes.simple.register(aspect-ratio: "16-9", footer: [Simple slides])
-#let (init, slides) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide, title-slide, centered-slide, focus-slide) = utils.slides(s)
-#show: slides
+#show: simple-theme.with(
+  aspect-ratio: "16-9",
+  footer: [Simple slides],
+)
 
 #title-slide[
   = Keep it simple!
@@ -145,9 +105,7 @@ Hello, Typst!
 
 == First slide
 
-#slide[
-  #lorem(20)
-]
+#lorem(20)
 
 #focus-slide[
   _Focus!_
@@ -159,12 +117,10 @@ Hello, Typst!
 
 == Dynamic slide
 
-#slide[
-  Did you know that...
+Did you know that...
 
-  #pause
+#pause
 
-  ...you can see the current section at the top of the slide?
-]
+...you can see the current section at the top of the slide?
 ```
 

@@ -10,98 +10,94 @@ This aesthetically pleasing theme is courtesy of [Pol Dellaiera](https://github.
 
 ## Initialization
 
-You can initialize the University theme using the following code:
+You can initialize the theme with the following code:
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.university: *
 
-#let s = themes.university.register(aspect-ratio: "16-9")
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
+#import "@preview/numbly:0.1.0": numbly
+
+#show: university-theme.with(
+  aspect-ratio: "16-9",
+  config-info(
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
+    date: datetime.today(),
+    institution: [Institution],
+    logo: emoji.school,
+  ),
 )
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
 
-#show strong: alert
+#set heading(numbering: numbly("{1}.", default: "1.1"))
 
-#let (slide, empty-slide, title-slide, focus-slide, matrix-slide) = utils.slides(s)
-#show: slides
+#title-slide()
 ```
 
 The `register` function accepts the following parameters:
 
-- `aspect-ratio`: Sets the aspect ratio of the slides to "16-9" or "4-3," with the default being "16-9."
-- `progress-bar`: Controls whether the progress bar at the top of each slide is displayed, with the default being `true`.
-- `display-current-section`: Whether to display the current section.
-- `footer-columns`: The width of the footer in the bottom three columns, the default is `(25%, 1fr, 25%)`.
-- `footer-a`: The first column, default is `self => self.info.author`.
-- `footer-b`: Second column, default is `self => if self.info.short-title == auto { self.info.title } else { self.info.short-title }`.
-- `footer-c`: third column, default is
+- `aspect-ratio`: The aspect ratio of the slides, either "16-9" or "4-3", with a default of "16-9".
+- `progress-bar`: Whether to display a progress bar at the top of the slide, with a default of `true`.
+- `header`: The content displayed in the header, with a default of `utils.display-current-heading(level: 2)`, or you can pass a function like `self => self.info.title`.
+- `header-right`: The content displayed on the right side of the header, with a default of `self => self.info.logo`.
+- `footer-columns`: The widths of the three columns in the footer, with a default of `(25%, 1fr, 25%)`.
+- `footer-a`: The first column, with a default of `self => self.info.author`.
+- `footer-b`: The second column, with a default of `self => if self.info.short-title == auto { self.info.title } else { self.info.short-title }`.
+- `footer-c`: The third column, with a default of
 
 ```typst
 self => {
   h(1fr)
-  utils.info-date(self)
+  utils.display-info-date(self)
   h(1fr)
-  states.slide-counter.display() + " / " + states.last-slide-number
+  context utils.slide-counter.display() + " / " + utils.last-slide-number
   h(1fr)
 }
 ```
 
-Additionally, the University theme provides an `#alert[..]` function, which you can use with the `#show strong: alert` syntax for emphasizing text with `*alert text*`.
-
 ## Color Theme
 
-The University theme defaults to the following color theme:
+The University theme uses the following color scheme by default:
 
-```typst
-#let s = (s.methods.colors)(
-  self: s,
+```typc
+config-colors(
   primary: rgb("#04364A"),
   secondary: rgb("#176B87"),
   tertiary: rgb("#448C95"),
+  neutral-lightest: rgb("#ffffff"),
+  neutral-darkest: rgb("#000000"),
 )
 ```
 
-You can modify this color theme using `#let s = (s.methods.colors)(self: s, ..)`.
+You can modify this color scheme using `config-colors()`.
 
 ## Slide Function Family
 
 The University theme provides a series of custom slide functions:
 
-### Title Slide
-
 ```typst
 #title-slide(logo: none, authors: none, ..args)
 ```
 
-The `title-slide` function reads information from `self.info` for display. You can also pass the `logo` parameter and an array-type `authors` parameter.
+The `title-slide` function reads information from `self.info` for display, and you can also pass a `logo` parameter and an array-type `authors` parameter.
 
-### Regular Slide
+---
 
 ```typst
 #slide(
+  config: (:),
   repeat: auto,
   setting: body => body,
-  composer: utils.side-by-side,
-  section: none,
-  subsection: none,
+  composer: components.side-by-side,
   // university theme
   title: none,
-  subtitle: none,
-  header: none,
-  footer: auto,
 )[
   ...
 ]
 ```
 
-The default slide function with a title and footer. The `title` defaults to the current section title, and the footer is set as per your configuration.
+A standard slide function with a title and footer by default, where `title` defaults to the current section title, and the footer is the one you set.
 
 ### Focus Slide
 
@@ -125,72 +121,27 @@ Used to capture the audience's attention. The default background color is `self.
 
 Refer to the [documentation](https://polylux.dev/book/themes/gallery/university.html).
 
-## `slides` Function
-
-The `slides` function has parameters:
-
-- `title-slide`: Defaults to `true`.
-- `slide-level`: Defaults to `1`.
-
-You can set these parameters using `#show: slides.with(..)`.
-
-And the function of automatically adding `new-section-slide` can be turned off by `#(s.methods.touying-new-section-slide = none)`.
-
-```typst
-#import "@preview/touying:0.4.2": *
-
-#let s = themes.university.register(aspect-ratio: "16-9")
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
-)
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
-
-#show strong: alert
-
-#let (slide, empty-slide, title-slide, focus-slide, matrix-slide) = utils.slides(s)
-#show: slides
-
-= Title
-
-== First Slide
-
-Hello, Touying!
-
-#pause
-
-Hello, Typst!
-```
-
-![image](https://github.com/touying-typ/touying/assets/34951714/58971045-0b0d-46cb-acc2-caf766c2432d)
-
-
 ## Example
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.university: *
 
-#let s = themes.university.register(aspect-ratio: "16-9")
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
+#import "@preview/numbly:0.1.0": numbly
+
+#show: university-theme.with(
+  aspect-ratio: "16-9",
+  config-info(
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
+    date: datetime.today(),
+    institution: [Institution],
+    logo: emoji.school,
+  ),
 )
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
 
-#show strong: alert
-
-#let (slide, empty-slide, title-slide, focus-slide, matrix-slide) = utils.slides(s)
-#show: slides.with(title-slide: false)
+#set heading(numbering: numbly("{1}.", default: "1.1"))
 
 #title-slide(authors: ([Author A], [Author B]))
 
@@ -198,13 +149,7 @@ Hello, Typst!
 
 == Slide Title
 
-#slide[
-  #lorem(40)
-]
-
-#slide(subtitle: emph[What is the problem?])[
-  #lorem(40)
-]
+#lorem(40)
 
 #focus-slide[
   Another variant with primary color in background...

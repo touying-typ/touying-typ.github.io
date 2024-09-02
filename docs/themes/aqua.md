@@ -13,47 +13,48 @@ This theme is created by [@pride7](https://github.com/pride7), featuring beautif
 You can initialize it with the following code:
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.aqua: *
 
-#let s = themes.aqua.register(aspect-ratio: "16-9", lang: "en")
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
+#show: aqua-theme.with(
+  aspect-ratio: "16-9",
+  config-info(
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
+    date: datetime.today(),
+    institution: [Institution],
+  ),
 )
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
 
-#show strong: alert
+#title-slide()
 
-#let (slide, empty-slide, title-slide, outline-slide, focus-slide) = utils.slides(s)
-#show: slides
+#outline-slide()
 ```
 
-Where `register` takes parameters:
+The `register` function in the Aqua theme accepts the following parameters:
 
-- `aspect-ratio`: The aspect ratio of slides, either "16-9" or "4-3", default is "16-9".
-- `footer`: Content shown on the right side of the footer, default is `states.slide-counter.display()`.
-- `lang`: Language configuration, currently supports `"en"` and `"zh"`, default is `"en"`.
+- `aspect-ratio`: The aspect ratio of the slides, which can be "16-9" or "4-3", with a default of "16-9".
+- `header`: The content displayed in the header of the slides, with a default of `utils.display-current-heading()`. You can also provide a function like `self => self.info.title` to customize the header content.
+- `footer`: The content displayed on the right side of the footer, with a default of `context utils.slide-counter.display()`.
 
-Aqua theme also provides an `#alert[..]` function, which you can utilize with `#show strong: alert` using `*alert text*` syntax.
+Additionally, the Aqua theme provides a `#alert[..]` function, which you can use with the `#show strong: alert` syntax to emphasize text within your slides.
 
-## Color Themes
+## Color Theme
 
-Aqua by default uses:
+The Aqua theme uses the following color scheme by default:
 
 ```typst
-#let s = (s.methods.colors)(
-  self: s,
+config-colors(
   primary: rgb("#003F88"),
   primary-light: rgb("#2159A5"),
   primary-lightest: rgb("#F2F4F8"),
+  neutral-lightest: rgb("#FFFFFF"),
+)
 ```
 
-color themes, which you can modify by `#let s = (s.methods.colors)(self: s, ..)`.
+You can modify this color scheme using the `config-colors()` function to suit your preferences or to match the branding of your presentation.
+
 
 ## Slide Function Family
 
@@ -79,9 +80,7 @@ Display an outline slide.
 #slide(
   repeat: auto,
   setting: body => body,
-  composer: utils.side-by-side,
-  section: none,
-  subsection: none,
+  composer: components.side-by-side,
   // Aqua theme
   title: auto,
 )[
@@ -109,82 +108,33 @@ Used to draw the audience's attention. The background color is `self.colors.prim
 
 Start a new section with the given title.
 
-## `slides` Function
-
-The `slides` function has parameters:
-
-- `title-slide`: Default is `true`.
-- `outline-slide`: Default is `true`.
-- `slide-level`: Default is `1`.
-
-They can be set via `#show: slides.with(..)`.
-
-PS: The outline title can be modified via `#(s.outline-title = [Outline])`.
-
-Additionally, you can disable the automatic inclusion of `new-section-slide` functionality by `#(s.methods.touying-new-section-slide = none)`.
-
-```typst
-#import "@preview/touying:0.4.2": *
-
-#let s = themes.aqua.register(aspect-ratio: "16-9", lang: "en")
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
-)
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
-
-#show strong: alert
-
-#let (slide, empty-slide, title-slide, outline-slide, focus-slide) = utils.slides(s)
-#show: slides
-
-= Title
-
-== First Slide
-
-Hello, Touying!
-
-#pause
-
-Hello, Typst!
-```
-
-![image](https://github.com/touying-typ/touying/assets/34951714/eea4df8d-d9fd-43ac-aaf7-bb459864a9ac)
 
 ## Example
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.aqua: *
 
-#let s = themes.aqua.register(aspect-ratio: "16-9", lang: "en")
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
+#show: aqua-theme.with(
+  aspect-ratio: "16-9",
+  config-info(
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
+    date: datetime.today(),
+    institution: [Institution],
+  ),
 )
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
 
-#show strong: alert
+#title-slide()
 
-#let (slide, empty-slide, title-slide, outline-slide, focus-slide) = utils.slides(s)
-#show: slides
+#outline-slide()
 
 = The Section
 
 == Slide Title
 
-#slide[
-  #lorem(40)
-]
+#lorem(40)
 
 #focus-slide[
   Another variant with primary color in background...
@@ -192,8 +142,10 @@ Hello, Typst!
 
 == Summary
 
-#align(center + horizon)[
-  #set text(size: 3em, weight: "bold", s.colors.primary)
-  THANKS FOR ALL
-]
+#slide(self => [
+  #align(center + horizon)[
+    #set text(size: 3em, weight: "bold", fill: self.colors.primary)
+    THANKS FOR ALL
+  ]
+])
 ```

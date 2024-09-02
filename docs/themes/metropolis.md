@@ -15,51 +15,57 @@ The Metropolis theme is elegant and suitable for everyday use. It is recommended
 You can initialize it using the following code:
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.metropolis: *
 
-#let s = themes.metropolis.register(aspect-ratio: "16-9", footer: self => self.info.institution)
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
+#import "@preview/numbly:0.1.0": numbly
+
+#show: metropolis-theme.with(
+  aspect-ratio: "16-9",
+  footer: self => self.info.institution,
+  config-info(
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
+    date: datetime.today(),
+    institution: [Institution],
+    logo: emoji.city,
+  ),
 )
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
 
-#show strong: alert
+#set heading(numbering: numbly("{1}.", default: "1.1"))
 
-#let (slide, empty-slide, title-slide, new-section-slide, focus-slide) = utils.slides(s)
-#show: slides
+#title-slide()
 ```
 
-The `register` function takes the following parameters:
+The `metropolis-theme` in the theme accepts the following parameters:
 
-- `aspect-ratio`: The aspect ratio of the slides, either "16-9" or "4-3," defaulting to "16-9."
-- `header`: Content displayed in the header, defaulting to `states.current-section-title`, or it can be passed as a function like `self => self.info.title`.
-- `footer`: Content displayed in the footer, defaulting to `[]`, or it can be passed as a function like `self => self.info.author`.
-- `footer-right`: Content displayed on the right side of the footer, defaulting to `states.slide-counter.display() + " / " + states.last-slide-number`.
-- `footer-progress`: Whether to show the progress bar at the bottom of the slide, defaulting to `true`.
+- `aspect-ratio`: The aspect ratio of the slides, which can be "16-9" or "4-3", with a default of "16-9".
+- `align`: The alignment of the content within the slides, with a default of `horizon` (horizontal alignment).
+- `header`: The content displayed in the header of the slides, with a default that displays the current heading adjusted to fit the width (`utils.display-current-heading(setting: utils.fit-to-width.with(grow: false, 100%))`). Alternatively, you can provide a function like `self => self.info.title` to customize the header content.
+- `header-right`: The content displayed on the right side of the header, with a default that shows the logo specified in `self.info.logo`.
+- `footer`: The content displayed in the footer of the slides, with a default of an empty array `[]`. You can customize it with a function, for example, to display the author's information: `self => self.info.author`.
+- `footer-right`: The content displayed on the right side of the footer, with a default that shows the slide number and the total number of slides (`context utils.slide-counter.display() + " / " + utils.last-slide-number`).
+- `footer-progress`: A boolean value indicating whether to display a progress bar at the bottom of the slides, with a default of `true`.
 
-The Metropolis theme also provides an `#alert[..]` function, which you can use with `#show strong: alert` using the `*alert text*` syntax.
+
 
 ## Color Theme
 
 Metropolis uses the following default color theme:
 
-```typst
-#let s = (s.methods.colors)(
-  self: s,
+```typc
+config-colors(
+  primary: rgb("#eb811b"),
+  primary-light: rgb("#d6c6b7"),
+  secondary: rgb("#23373b"),
   neutral-lightest: rgb("#fafafa"),
-  primary-dark: rgb("#23373b"),
-  secondary-light: rgb("#eb811b"),
-  secondary-lighter: rgb("#d6c6b7"),
+  neutral-dark: rgb("#23373b"),
+  neutral-darkest: rgb("#23373b"),
 )
 ```
 
-You can modify this color theme using `#let s = (s.methods.colors)(self: s, ..)`.
+You can modify this color theme using `config-colors()`.
 
 ## Slide Function Family
 
@@ -75,11 +81,10 @@ The Metropolis theme provides a variety of custom slide functions:
 
 ```typst
 #slide(
+  config: (:),
   repeat: auto,
   setting: body => body,
-  composer: utils.side-by-side,
-  section: none,
-  subsection: none,
+  composer: components.side-by-side,
   // metropolis theme
   title: auto,
   footer: auto,
@@ -160,44 +165,43 @@ Hello, Typst!
 ## Example
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.metropolis: *
 
-#let s = themes.metropolis.register(aspect-ratio: "16-9", footer: self => self.info.institution)
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
+#import "@preview/numbly:0.1.0": numbly
+
+#show: metropolis-theme.with(
+  aspect-ratio: "16-9",
+  footer: self => self.info.institution,
+  config-info(
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
+    date: datetime.today(),
+    institution: [Institution],
+    logo: emoji.city,
+  ),
 )
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
 
-#set text(font: "Fira Sans", weight: "light", size: 20pt)
-#show math.equation: set text(font: "Fira Math")
-#set strong(delta: 100)
-#set par(justify: true)
-#show strong: alert
+#set heading(numbering: numbly("{1}.", default: "1.1"))
 
-#let (slide, empty-slide, title-slide, new-section-slide, focus-slide) = utils.slides(s)
-#show: slides
+#title-slide()
+
+= Outline <touying:hidden>
+
+#outline(title: none, indent: 1em, depth: 1)
 
 = First Section
 
-#slide[
-  A slide without a title but with some *important* information.
-]
+A slide without a title but with some *important* information.
 
 == A long long long long long long long long long long long long long long long long long long long long long long long long Title
 
-#slide[
-  A slide with equation:
+A slide with equation:
 
-  $ x_(n+1) = (x_n + a/x_n) / 2 $
+$ x_(n+1) = (x_n + a/x_n) / 2 $
 
-  #lorem(200)
-]
+#lorem(200)
 
 = Second Section
 
@@ -207,22 +211,21 @@ Hello, Typst!
 
 == Simple Animation
 
-#slide[
-  A simple #pause dynamic slide with #alert[alert]
+We can use `#pause` to #pause display something later.
 
-  #pause
-  
-  text.
+#meanwhile
+
+Meanwhile, #pause we can also use `#meanwhile` to display other content synchronously.
+
+#speaker-note[
+  + This is a speaker note.
+  + You won't see it unless you use `#let s = (s.math.show-notes-on-second-screen)(self: s, right)`
 ]
 
-// appendix by freezing last-slide-number
-#let s = (s.methods.appendix)(self: s)
-#let (slide, empty-slide) = utils.slides(s)
+#show: appendix
 
 = Appendix
 
-#slide[
-  Appendix.
-]
+Please pay attention to the current slide number.
 ```
 
