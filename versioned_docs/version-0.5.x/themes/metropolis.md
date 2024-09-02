@@ -114,54 +114,6 @@ Used to draw attention, with the background color set to `self.colors.primary-da
 
 Creates a new section with the given title.
 
-## `slides` Function
-
-The `slides` function has the following parameters:
-
-- `title-slide`: Defaults to `true`.
-- `outline-slide`: Defaults to `true`.
-- `slide-level`: Defaults to `1`.
-
-You can set these using `#show: slides.with(..)`.
-
-PS: You can modify the outline title using `#(s.outline-title = [Outline])`.
-
-And the function of automatically adding `new-section-slide` can be turned off by `#(s.methods.touying-new-section-slide = none)`.
-
-```typst
-#import "@preview/touying:0.4.2": *
-
-#let s = themes.metropolis.register(aspect-ratio: "16-9", footer: self => self.info.institution)
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
-)
-#let s = (s.methods.enable-transparent-cover)(self: s)
-#let (init, slide, slides, title-slide, new-section-slide, focus-slide, touying-outline, alert) = utils.methods(s)
-#show: init
-
-#show strong: alert
-
-#show: slides
-
-= Title
-
-== First Slide
-
-Hello, Touying!
-
-#pause
-
-Hello, Typst!
-```
-
-![image](https://github.com/touying-typ/touying/assets/34951714/4ab45ee6-09f7-498b-b349-e889d6e42e3e)
-
-
 ## Example
 
 ```typst
