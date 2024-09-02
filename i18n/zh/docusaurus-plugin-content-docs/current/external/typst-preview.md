@@ -2,9 +2,9 @@
 sidebar_position: 3
 ---
 
-# Typst Preview
+# Typst Preview in Tinymist
 
-VS Code 的 Typst Preview 插件提供了优秀的 slide mode，我们可以用其预览和放映 slides。
+VS Code 的 Tinymist 插件提供了优秀的 slide mode，我们可以用其预览和放映 slides。
 
 按下 `Ctrl/Cmd + Shift + P`，并输入 `Typst Preview: Preview current file in slide mode`，就可以打开 slide mode 的预览。
 

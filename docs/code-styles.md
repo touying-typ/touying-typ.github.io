@@ -6,17 +6,13 @@ sidebar_position: 4
 
 ## Simple Style
 
-If we only need simplicity, we can directly input content under the heading, just like writing a normal Typst document. The heading here serves to divide the pages, and we can use commands like `#pause` to achieve animation effects.
+If we just need to use it simply, we can directly input content under the title, just like writing a normal Typst document. The titles here serve to separate pages, and we can also normally use commands like `#pause` to achieve animation effects.
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.simple: *
 
-#let s = themes.simple.register()
-#let (init, slides) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#show: simple-theme.with(aspect-ratio: "16-9")
 
 = Title
 
@@ -31,25 +27,40 @@ Hello, Typst!
 
 ![image](https://github.com/touying-typ/touying/assets/34951714/f5bdbf8f-7bf9-45fd-9923-0fa5d66450b2)
 
-You can use an empty heading `==` to create a new page. This skill also helps clear the continuation of the previous title.
+And you can use an empty title `== <touying:hidden>` to create a new page, which is also helpful to clear the continued application of the previous title.
 
-PS: We can use the `#slides-end` marker to signify the end of `#show: slides`.
+If we need to maintain the current title and just want to add a new page, we can use `#pagebreak()`, or directly use `---` to split the page, the latter is parsed as `#pagebreak()` in Touying.
+
+```typst
+#import "@preview/touying:0.5.0": *
+#import themes.simple: *
+
+#show: simple-theme.with(aspect-ratio: "16-9")
+
+= Title
+
+== First Slide
+
+Hello, Touying!
+
+---
+
+Hello, Typst!
+```
+
+![image](https://github.com/user-attachments/assets/42f4de99-3be4-4764-a2b6-f26201295ed1)
 
 ## Block Style
 
-Many times, using simple style alone cannot achieve all the functions we need. For more powerful features and clearer structure, we can also use block style in the form of `#slide[...]`. The `#slide` function needs to be unpacked using the syntax `#let (slide, empty-slide) = utils.slides(s)` to be used correctly after `#show: slides`.
+Many times, using only the simple style cannot achieve all the functions we need. For more powerful functions and clearer structure, we can also use the block style in the form of `#slide[...]`, where the `#slide` function needs to be unpacked using the syntax `#let (slide, empty-slide) = utils.slides(s)` to be used normally after `#show: slides`.
 
-For example, the previous example can be transformed into:
+For example, the above example can be transformed into
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.simple: *
 
-#let s = themes.simple.register()
-#let (init, slides) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#show: simple-theme.with(aspect-ratio: "16-9")
 
 = Title
 
@@ -64,31 +75,29 @@ For example, the previous example can be transformed into:
 ]
 ```
 
-and `#empty-slide[]` to create an empty slide without header and footer.
+And `#empty-slide[]` can create an empty Slide without a header and footer.
 
-There are many advantages to doing this:
+There are many benefits to doing this:
 
-1. Many times, we not only need the default `#slide[...]` but also special `slide` functions like `#focus-slide[...]`.
-2. Different themes' `#slide[...]` functions may have more parameters than the default, such as the university theme's `#slide[...]` function having a `subtitle` parameter.
-3. Only `slide` functions can use the callback-style content block to achieve complex animation effects with `#only` and `#uncover` functions.
-4. It has a clearer structure. By identifying `#slide[...]` blocks, we can easily distinguish the specific pagination effects of slides.
+1. Many times, we need more than the default `#slide[...]`, we also need special `slide` functions like `#focus-slide[...]`;
+2. The `#slide[...]` function of different themes may have more parameters than the default, for example, the `#slide[...]` function of the metropolis theme will have an `align` parameter that can set the alignment;
+3. Only `slide` functions can use callback-style content blocks to use `#only` and `#uncover` functions to achieve complex animation effects.
+4. It can have a clearer structure, by identifying `#slide[...]` blocks, we can easily distinguish the specific pagination effects of slides.
 
 ## Convention Over Configuration
 
-You may have noticed that when using the simple theme, using a level-one heading automatically creates a new section slide. This is because the simple theme registers an `s.methods.touying-new-section-slide` method, so Touying will automatically call this method.
+You may have noticed that when using the simple theme, using a first-level title automatically creates a section slide. This is because the simple theme registers a `config-common(slide-fn: slide, new-section-slide-fn: new-section-slide)` function, so Touying will call this function by default.
 
-If we don't want it to automatically create such a section slide, we can delete this method:
+If we do not want it to automatically create such a section slide, we can remove this method:
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.simple: *
 
-#let s = themes.simple.register()
-#(s.methods.touying-new-section-slide = none)
-#let (init, slides) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#show: simple-theme.with(
+  aspect-ratio: "16-9",
+  config-common(new-section-slide-fn: none),
+)
 
 = Title
 
@@ -103,27 +112,29 @@ Hello, Typst!
 
 ![image](https://github.com/touying-typ/touying/assets/34951714/17a89a59-9491-4e1f-95c0-09a22105ab35)
 
-As you can see, there are only two pages left, and the default section slide is gone.
+As you can see, this will only result in two pages, and the default section slide will disappear.
 
-Similarly, we can register a new section slide:
+Similarly, we can also register a new section slide:
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.simple: *
 
-#let s = themes.simple.register()
-#(s.methods.touying-new-section-slide = (self: none, section, ..args) => {
-  self = utils.empty-page(self)
-  (s.methods.touying-slide)(self: self, section: section, {
-    set align(center + horizon)
-    set text(size: 2em, fill: s.colors.primary, style: "italic", weight: "bold")
-    section
-  }, ..args)
-})
-#let (init, slides, touying-outline) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#show: simple-theme.with(
+  aspect-ratio: "16-9",
+  config-common(new-section-slide-fn: section => {
+    touying-slide-wrapper(self => {
+      touying-slide(
+        self: self,
+        {
+          set align(center + horizon)
+          set text(size: 2em, fill: self.colors.primary, style: "italic", weight: "bold")
+          utils.display-current-heading(level: 1)
+        },
+      )
+    })
+  }),
+)
 
 = Title
 
@@ -137,33 +148,3 @@ Hello, Typst!
 ```
 
 ![image](https://github.com/touying-typ/touying/assets/34951714/5305efda-0cd4-42eb-9f2e-89abc30b6ca2)
-
-Similarly, we can modify `s.methods.touying-new-subsection-slide` to do the same for `subsection`.
-
-In fact, besides `s.methods.touying-new-section-slide`, another special `slide` function is the `s.methods.slide` function, which will be called by default in simple style when `#slide[...]` is not explicitly used.
-
-Also, since `#slide[...]` is registered in `s.slides = ("slide",)`, the `section`, `subsection`, and `title` parameters will be automatically passed, while others like `#focus-slide[...]` will not automatically receive these three parameters.
-
-:::tip[Principle]
-
-In fact, you can also not use `#show: slides` and `utils.slides(s)`, but only use `utils.methods(s)`, for example:
-
-```typst
-#import "@preview/touying:0.4.2": *
-
-#let s = themes.simple.register()
-#let (init, touying-outline, slide) = utils.methods(s)
-#show: init
-
-#slide(section: [Title], title: [First Slide])[
-  Hello, Touying!
-
-  #pause
-
-  Hello, Typst!
-]
-```
-
-Here, you need to manually pass in `section`, `subsection`, and `title`, but it will have better performance, suitable for cases where faster performance is needed, such as when there are more than dozens or hundreds of pages.
-
-:::

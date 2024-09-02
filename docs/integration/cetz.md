@@ -11,20 +11,16 @@ Touying provides the `touying-reducer`, which adds `pause` and `meanwhile` anima
 An example:
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.metropolis: *
 #import "@preview/cetz:0.2.2"
-#import "@preview/fletcher:0.4.4" as fletcher: node, edge
+#import "@preview/fletcher:0.5.1" as fletcher: node, edge
 
 // cetz and fletcher bindings for touying
 #let cetz-canvas = touying-reducer.with(reduce: cetz.canvas, cover: cetz.draw.hide.with(bounds: true))
 #let fletcher-diagram = touying-reducer.with(reduce: fletcher.diagram, cover: fletcher.hide)
 
-#let s = themes.metropolis.register(aspect-ratio: "16-9", footer: self => self.info.institution)
-#let (init, slides) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides.with(title-slide: false, outline-slide: false)
+#show: metropolis-theme.with(aspect-ratio: "16-9")
 
 // cetz animation
 #slide[

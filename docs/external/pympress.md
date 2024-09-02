@@ -10,18 +10,13 @@ sidebar_position: 2
 ## Speaker Notes
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.university: *
 
-#let s = themes.university.register(aspect-ratio: "16-9")
-
-// Set the speaker notes configuration, you can show it by pympress
-#let s = (s.methods.show-notes-on-second-screen)(self: s, right)
-
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#show: university-theme.with(
+  aspect-ratio: "16-9",
+  config-common(show-notes-on-second-screen: right),
+)
 
 = Animation
 

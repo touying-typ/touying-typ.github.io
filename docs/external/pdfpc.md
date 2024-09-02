@@ -21,7 +21,7 @@ For example, you can add notes using `#pdfpc.speaker-note("This is a note that o
 To add pdfpc configurations, you can use
 
 ```typst
-#let s = (s.methods.append-preamble)(self: s, pdfpc.config(
+#pdfpc.config(
   duration-minutes: 30,
   start-time: datetime(hour: 14, minute: 10, second: 0),
   end-time: datetime(hour: 14, minute: 40, second: 0),
@@ -35,7 +35,7 @@ To add pdfpc configurations, you can use
     alignment: "vertical",
     direction: "inward",
   ),
-))
+)
 ```
 
 Add the corresponding configurations. Refer to [Polylux](https://polylux.dev/book/external/pdfpc.html) for specific configuration details.
@@ -52,7 +52,7 @@ typst query --root . ./example.typ --field value --one "<pdfpc-file>" > ./exampl
 With the compatibility of Touying and Polylux, you can make Polylux also support direct export by adding the following code:
 
 ```typst
-#import "@preview/touying:0.4.2"
+#import "@preview/touying:0.5.0"
 
-#locate(loc => touying.pdfpc.pdfpc-file(loc))
+#context touying.pdfpc.pdfpc-file(here())
 ```

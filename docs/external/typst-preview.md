@@ -2,9 +2,9 @@
 sidebar_position: 3
 ---
 
-# Typst Preview
+# Typst Preview in Tinymist
 
-The Typst Preview extension for VS Code provides an excellent slide mode, allowing us to preview and present slides.
+The Tinymist extension for VS Code provides an excellent slide mode, allowing us to preview and present slides.
 
 Press `Ctrl/Cmd + Shift + P` and type `Typst Preview: Preview current file in slide mode` to open the preview in slide mode.
 

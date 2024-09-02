@@ -6,19 +6,15 @@ sidebar_position: 3
 
 ## Structure
 
-Similar to Beamer, Touying also has the concept of sections and subsections.
+Like Beamer, Touying also has the concept of sections and subsections.
 
-Generally, level 1, level 2, and level 3 headings correspond to section, subsection, and title, respectively, as in the dewdrop theme.
+Generally, first-level, second-level, and third-level headings correspond to sections, subsections, and subsubsections, respectively, such as in the dewdrop theme.
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.dewdrop: *
 
-#let s = themes.dewdrop.register()
-#let (init, slides) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#show: dewdrop-theme.with(aspect-ratio: "16-9")
 
 = Section
 
@@ -29,19 +25,15 @@ Generally, level 1, level 2, and level 3 headings correspond to section, subsect
 Hello, Touying!
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/1574e74d-25c1-418f-a84f-b974f42edae5)
+![image](https://github.com/user-attachments/assets/34f5e293-29e3-4aa3-bb74-c2d4914560c6) 
 
-However, often we don't need subsections, and we can use level 1 and level 2 headings to correspond to section and title, as in the university theme.
+However, there are many times when we do not need subsections, so we also use first-level and second-level headings to correspond to sections and titles, respectively, such as in the university theme.
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.university: *
 
-#let s = themes.university.register()
-#let (init, slides) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#show: university-theme.with(aspect-ratio: "16-9")
 
 = Section
 
@@ -50,67 +42,43 @@ However, often we don't need subsections, and we can use level 1 and level 2 hea
 Hello, Touying!
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/9dd77c98-9c08-4811-872e-092bbdebf394)
+![image](https://github.com/user-attachments/assets/eb38627c-58ef-4319-897e-846697576a6b) 
 
-In fact, we can control this behavior through the `slide-level` parameter of the `slides` function. `slide-level` represents the complexity of the nested structure, starting from 0. For example, `#show: slides.with(slide-level: 2)` is equivalent to the section, subsection, and title structure; while `#show: slides.with(slide-level: 1)` is equivalent to the section and title structure.
+In fact, we can control this behavior through the `slide-level` parameter of the `config-common` function. `slide-level` represents the complexity of the nesting structure, starting from 0. For example, `#show: university-theme.with(config-common(slide-level: 2))` is equivalent to both `section` and `subsection` creating new slides; while `#show: university-theme.with(config-common(slide-level: 3))` is equivalent to `section`, `subsection`, and `subsubsubsection` all creating new slides.
 
 ## Numbering
 
-To add numbering to sections and subsections, we simply use:
+To add numbering to sections and subsections, we simply use
 
 ```typst
-#let s = (s.methods.numbering)(self: s, section: "1.", "1.1")
+#set heading(numbering: "1.1")
+#show heading.where(level: 1): set heading(numbering: "1.")
 ```
 
-This sets the default numbering to `1.1`, with the section corresponding to `1.`.
+This sets the default numbering to `1.1`, and the section corresponds to the numbering `1.`.
 
 ## Table of Contents
 
 Displaying a table of contents in Touying is straightforward:
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.simple: *
+#import "@preview/numbly:0.1.0": numbly
 
-#let s = themes.simple.register()
-#let (init, slides, alert, touying-outline) = utils.methods(s)
-#show: init
+#set heading(numbering: numbly("{1}.", default: "1.1"))
 
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides.with(slide-level: 2)
+#show: simple-theme.with(aspect-ratio: "16-9")
 
 = Section
 
 == Subsection
 
-=== Title
-
-==== Table of contents
-
-#touying-outline()
+#components.adaptive-columns(outline(indent: 1em))
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/3cc09550-d3cc-40c2-a315-22ca8173798f)
+![image](https://github.com/user-attachments/assets/2674a632-e881-432f-a212-a55bcc7207c1) 
 
-Where the definition of `touying-outline()` is:
+The `outline(indent: 1em)` is a native Typst function for the table of contents. The `#components.adaptive-columns()` function ensures that the table of contents occupies only one page, adapting by setting `#columns(1, body)` or `#columns(2, body)`, and so on.
 
-```typst
-#let touying-outline(enum-args: (:), padding: 0pt) = { .. }
-```
-
-You can modify the parameters of the internal enum through `enum-args`.
-
-Of course, you can also use Typst's native outline:
-
-```typst
-#outline(title: none, indent: 2em)
-```
-
-![image](https://github.com/touying-typ/touying/assets/34951714/7b62fcaf-6342-4dba-901b-818c16682529)
-
-If you have complex custom requirements for the table of contents, you can use:
-
-```typst
-#states.touying-final-sections(sections => ..)
-```
-
-As done in the dewdrop theme.
+If you need a `outline` function that can display the current progress, you might consider using `#components.progressive-outline()` or `#components.custom-progressive-outline()`, as seen in the dewdrop theme.

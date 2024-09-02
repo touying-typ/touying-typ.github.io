@@ -85,72 +85,40 @@ sidebar_position: 5
 
 ## 页面管理
 
-由于 Typst 中使用 `set page(..)` 命令来修改页面参数，会导致创建一个新的页面，而不能修改当前页面，因此 Touying 选择维护一个 `s.page-args` 成员变量和一个 `s.padding` 成员变量，只在 Touying 自己创建新 slide 时才会自己应用这些参数，因此用户只需要关注 `s.page-args` 和 `s.padding` 即可。
+由于 Typst 中使用 `set page(..)` 命令来修改页面参数，会导致创建一个新的页面，而不能修改当前页面，因此 Touying 选择维护一个 `self.page` 成员变量。
 
 例如，上面的例子就可以改成
 
 ```typst
-#(s.page-args += (
+config-page(
   margin: (x: 4em, y: 2em),
   header: align(top)[Header],
   footer: align(bottom)[Footer],
   header-ascent: 0em,
   footer-descent: 0em,
-))
+)
 ```
 
-Touying 会自动检测 `margin.x` 的值，并且判断如果 `self.full-header == true`，就会自动为 header 加入负填充。
+Touying 会自动检测 `margin.x` 的值，并且判断如果设置 `config-common(zero-margin-header: true)` 也即 `self.zero-margin-header == true`，就会自动为 header 加入负填充。
 
 同理，如果你对某个主题的 header 或 footer 样式不满意，你也可以通过
 
 ```typst
-#(s.page-args.footer = [Custom Footer])
+config-page(footer: [Custom Footer])
 ```
-
-这样方式进行更换。不过需要注意的是，如果这样更换了页面参数，你需要将其放在 `#let (slide, empty-slide) = utils.slides(s)` 之前，否则就需要重新调用 `#let (slide, empty-slide) = utils.slides(s)`。
 
 :::warning[警告]
 
-因此，你不应该自己使用 `set page(..)` 命令，而是应该修改 `s` 内部的 `s.page-args` 成员变量。
+因此，你不应该自己使用 `set page(..)` 命令，因为会被 Touying 重置。
 
 :::
 
-借助这种方式，我们也可以通过 `s.page-args` 实时查询当前页面的参数，这对一些需要获取页边距或当前页面背景颜色的函数很有用，例如 `transparent-cover`。这里就部分等价于 context get rule，而且实际上用起来会更方便。
+借助这种方式，我们也可以通过 `self.page` 实时查询当前页面的参数，这对一些需要获取页边距或当前页面背景颜色的函数很有用，例如 `transparent-cover`。这里就部分等价于 context get rule，而且实际上用起来会更方便。
 
-## 应用：添加 Logo
-
-为 slides 添加一个 Logo 是及其普遍，但是又及其多变的一个需求。其中的难点在于，所需要的 Logo 大小和位置往往因人而异。因此，Touying 的主题大部分都不包含 Logo 的配置选项。但借助本章节提到的页面布局的概念，我们知道可以在 header 或 footer 中使用 `place` 函数来放置 Logo 图片。
-
-例如，我们决定给 metropolis 主题加入 GitHub 的图标，我们可以这样实现：
-
-```typst
-#import "@preview/touying:0.4.2": *
-#import "@preview/octique:0.1.0": *
-
-#let s = themes.metropolis.register(aspect-ratio: "16-9")
-#(s.page-args.header = self => {
-  // display the original header
-  utils.call-or-display(self, s.page-args.header)
-  // place logo to top-right
-  place(top + right, dx: -0.5em, dy: 0.3em)[
-    #octique("mark-github", color: rgb("#fafafa"), width: 1.5em, height: 1.5em)
-  ]
-})
-#let (init, slide) = utils.methods(s)
-#show: init
-
-#slide(title: [Title])[
-  Logo example.
-]
-```
-
-![image](https://github.com/touying-typ/touying/assets/34951714/055d77e7-5087-4248-b969-d8ef9d50c54b)
-
-其中 `utils.call-or-display(self, body)` 可以用于显示 `body` 为 content 或 `body` 为形如 `self => content` 形式的回调函数。
 
 ## 页面分栏
 
-如果你需要将页面分为两栏或三栏，你可以使用 Touying `slide` 函数默认提供的 `compose` 功能，最简单的示例如下：
+如果你需要将页面分为两栏或三栏，你可以使用 Touying `slide` 函数默认提供的 `composer` 功能，最简单的示例如下：
 
 ```typst
 #slide[
@@ -162,7 +130,7 @@ Touying 会自动检测 `margin.x` 的值，并且判断如果 `self.full-header
 
 ![image](https://github.com/touying-typ/touying/assets/34951714/a39f88a2-f1ba-4420-8f78-6a0fc644704e)
 
-如果你需要更改分栏的方式，可以修改 `slide` 的 `composer` 参数，其中默认的参数是 `utils.side-by-side.with(columns: auto, gutter: 1em)`，如果我们要让左边那一栏占据剩余宽度，可以使用
+如果你需要更改分栏的方式，可以修改 `slide` 的 `composer` 参数，其中默认的参数是 `components.side-by-side.with(columns: auto, gutter: 1em)`，如果我们要让左边那一栏占据剩余宽度，可以使用
 
 ```typst
 #slide(composer: (1fr, auto))[

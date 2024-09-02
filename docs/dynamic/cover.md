@@ -17,10 +17,8 @@ The default `cover` function is the [hide](https://typst.app/docs/reference/layo
 In some cases, you might want to use your own `cover` function. In that case, you can set your own `cover` function using:
 
 ```typst
-let s = (s.methods.update-cover)(self: s, is-method: true, cover-fn)
+config-methods(cover: (self: none, body) => hide(body))
 ```
-
-Here, if you set `is-method: false`, Touying will wrap `cover-fn` into a method for you.
 
 ## hack: handle enum and list
 
@@ -35,7 +33,7 @@ You will find that the existing cover function cannot hide the mark of enum and 
 Touying supports a semi-transparent cover function, which can be enabled by adding:
 
 ```typst
-#let s = (s.methods.enable-transparent-cover)(self: s)
+config-methods(cover: utils.semi-transparent-cover.with(alpha: 85%))
 ```
 
 You can adjust the transparency through the `alpha: ..` parameter.
@@ -48,25 +46,18 @@ Note that the `transparent-cover` here does not preserve text layout like `hide`
 
 :::tip[Internals]
 
-The `enable-transparent-cover` method is defined as:
+The `utils.semi-transparent-cover` method is defined as:
 
 ```typst
-#let s.methods.enable-transparent-cover = (
-  self: none,
-  constructor: rgb,
-  alpha: 85%,
-) => {
-  self.methods.cover = (self: none, body) => {
-    utils.cover-with-rect(
-      fill: utils.update-alpha(
-        constructor: constructor,
-        self.page-args.fill,
-        alpha,
-      ),
-      body
-    )
-  }
-  self
+#let semi-transparent-cover(self: none, constructor: rgb, alpha: 85%, body) = {
+  cover-with-rect(
+    fill: update-alpha(
+      constructor: constructor,
+      self.page.fill,
+      alpha,
+    ),
+    body,
+  )
 }
 ```
 

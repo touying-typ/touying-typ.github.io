@@ -9,7 +9,7 @@ sidebar_position: 1
 ## Simple Example
 
 ```typst
-#import "@preview/pinit:0.1.3": *
+#import "@preview/pinit:0.2.0": *
 
 #set text(size: 24pt)
 
@@ -34,12 +34,9 @@ Another [example](https://github.com/OrangeX4/typst-pinit/blob/main/examples/equ
 An example of shared usage with Touying:
 
 ```typst
-#import "@preview/touying:0.4.2": *
-#import "@preview/pinit:0.1.3": *
-
-#(s.page-args.paper = "presentation-4-3")
-#let (init, slides) = utils.methods(s)
-#show: init
+#import "@preview/touying:0.5.0": *
+#import themes.default: *
+#import "@preview/pinit:0.2.0": *
 
 #set text(size: 20pt, font: "Calibri", ligatures: false)
 #show heading: set text(weight: "regular")
@@ -58,12 +55,11 @@ An example of shared usage with Touying:
   body
 }
 
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#show: default-theme.with(aspect-ratio: "4-3")
 
 // Main body
-#slide(self => [
-  #let (uncover, only) = utils.methods(self)
+#slide[
+  #set heading(offset: 0)
 
   = Asymptotic Notation: $O$
 
@@ -82,8 +78,6 @@ An example of shared usage with Touying:
   #pause
 
   $f(n) = O(g(n))$: #pin(1)$f(n)$ is *asymptotically smaller* than $g(n)$.#pin(2)
-
-  // #absolute-place(dx: 550pt, dy: 320pt, image(width: 25%, "asymptotic.png"))
 
   #pause
 
@@ -111,12 +105,12 @@ An example of shared usage with Touying:
 
   #pause
 
-  #only("8-", pinit-point-to("que", fill: crimson, redbold[No.]))
-  #only("8-", pinit-point-from("ans", body-dx: -150pt)[
+  #pinit-point-to("que", fill: crimson, redbold[No.])
+  #pinit-point-from("ans", body-dx: -150pt)[
     Show that the equation $(3/2)^n >= c$ \
     has infinitely many solutions for $n$.
-  ])
-])
+  ]
+]
 ```
 
 ![image](https://github.com/touying-typ/touying/assets/34951714/f36a026f-491c-4290-90d5-0aa3c2086567)

@@ -12,7 +12,7 @@ Thanks to the syntax provided by [Polylux](https://polylux.dev/book/dynamic/synt
 We can use mark-style functions, which are very convenient to use.
 
 ```typst
-At subslide #utils.touying-wrapper((self: none) => str(self.subslide)), we can
+At subslide #touying-fn-wrapper((self: none) => str(self.subslide)), we can
 
 use #uncover("2-")[`#uncover` function] for reserving space,
 
@@ -21,7 +21,7 @@ use #only("2-")[`#only` function] for not reserving space,
 #alternatives[call `#only` multiple times \u{2717}][use `#alternatives` function #sym.checkmark] for choosing one of the alternatives.
 ```
 
-However, this does not work in all cases, for example if you put `uncover` into the layout function like `grid` function, you will get an error.
+However, this does not work in all cases, for example if you put `uncover` into the context expression, you will get an error.
 
 
 ## Callback-Style Functions

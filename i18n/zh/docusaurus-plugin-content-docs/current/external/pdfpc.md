@@ -21,7 +21,7 @@ Touying 与 [Polylux](https://polylux.dev/book/external/pdfpc.html) 保持一致
 为了加入 pdfpc 配置，你可以使用
 
 ```typst
-#let s = (s.methods.append-preamble)(self: s, pdfpc.config(
+#pdfpc.config(
   duration-minutes: 30,
   start-time: datetime(hour: 14, minute: 10, second: 0),
   end-time: datetime(hour: 14, minute: 40, second: 0),
@@ -35,7 +35,7 @@ Touying 与 [Polylux](https://polylux.dev/book/external/pdfpc.html) 保持一致
     alignment: "vertical",
     direction: "inward",
   ),
-))
+)
 ```
 
 加入对应的配置，具体配置方法可以参考 [Polylux](https://polylux.dev/book/external/pdfpc.html)。
@@ -54,7 +54,7 @@ typst query --root . ./example.typ --field value --one "<pdfpc-file>" > ./exampl
 借助 Touying 与 Polylux 的兼容性，你可以让 Polylux 也支持直接导出，只需要加入下面的代码即可。
 
 ```
-#import "@preview/touying:0.4.2"
+#import "@preview/touying:0.5.0"
 
-#locate(loc => touying.pdfpc.pdfpc-file(loc))
+#context touying.pdfpc.pdfpc-file(here())
 ```

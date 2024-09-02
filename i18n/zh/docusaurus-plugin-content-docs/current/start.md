@@ -9,14 +9,10 @@ sidebar_position: 2
 要使用 Touying，您只需要在文档里加入
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.simple: *
 
-#let s = themes.simple.register()
-#let (init, slides) = utils.methods(s)
-#show: init
-
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#show: simple-theme.with(aspect-ratio: "16-9")
 
 = Title
 
@@ -35,45 +31,25 @@ Hello, Typst!
 
 **提示:** 你可以使用 `#import "config.typ": *` 或 `#include "content.typ"` 等 Typst 语法来实现 Touying 的多文件架构。
 
-**警告:** `#let (slide, empty-slide) = utils.slides(s)` 里的逗号对于解包语法来说是必要的！
-
 ## 更复杂的例子
 
 事实上，Touying 提供了多种 slides 编写风格，实际上您也可以使用 `#slide[..]` 的写法，以获得 Touying 提供的更多更强大的功能。
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.university: *
 #import "@preview/cetz:0.2.2"
-#import "@preview/fletcher:0.4.4" as fletcher: node, edge
+#import "@preview/fletcher:0.5.1" as fletcher: node, edge
 #import "@preview/ctheorems:1.1.2": *
+#import "@preview/numbly:0.1.0": numbly
 
 // cetz and fletcher bindings for touying
 #let cetz-canvas = touying-reducer.with(reduce: cetz.canvas, cover: cetz.draw.hide.with(bounds: true))
 #let fletcher-diagram = touying-reducer.with(reduce: fletcher.diagram, cover: fletcher.hide)
 
-// Register university theme
-// You can replace it with other themes and it can still work normally
-#let s = themes.university.register(aspect-ratio: "16-9")
-
-// Set the numbering of section and subsection
-#let s = (s.methods.numbering)(self: s, section: "1.", "1.1")
-
-// Set the speaker notes configuration
-// #let s = (s.methods.show-notes-on-second-screen)(self: s, right)
-
-// Global information configuration
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
-)
-
 // Pdfpc configuration
 // typst query --root . ./example.typ --field value --one "<pdfpc-file>" > ./example.pdfpc
-#let s = (s.methods.append-preamble)(self: s, pdfpc.config(
+#pdfpc.config(
   duration-minutes: 30,
   start-time: datetime(hour: 14, minute: 10, second: 0),
   end-time: datetime(hour: 14, minute: 40, second: 0),
@@ -87,7 +63,7 @@ Hello, Typst!
     alignment: "vertical",
     direction: "inward",
   ),
-))
+)
 
 // Theorems configuration by ctheorems
 #show: thmrules.with(qed-symbol: $square$)
@@ -102,15 +78,26 @@ Hello, Typst!
 #let example = thmplain("example", "Example").with(numbering: none)
 #let proof = thmproof("proof", "Proof")
 
-// Extract methods
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
+#show: university-theme.with(
+  aspect-ratio: "16-9",
+  // config-common(handout: true),
+  config-info(
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
+    date: datetime.today(),
+    institution: [Institution],
+    logo: emoji.school,
+  ),
+)
 
-#show strong: alert
+#set heading(numbering: numbly("{1}.", default: "1.1"))
 
-// Extract slide functions
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#title-slide()
+
+== Outline <touying:hidden>
+
+#components.adaptive-columns(outline(title: none, indent: 1em))
 
 = Animation
 
@@ -132,9 +119,9 @@ Meanwhile, #pause we can also use `#meanwhile` to #pause display other content s
 ]
 
 
-== Complex Animation - Mark-Style
+== Complex Animation
 
-At subslide #utils.touying-wrapper((self: none) => str(self.subslide)), we can
+At subslide #touying-fn-wrapper((self: none) => str(self.subslide)), we can
 
 use #uncover("2-")[`#uncover` function] for reserving space,
 
@@ -143,7 +130,7 @@ use #only("2-")[`#only` function] for not reserving space,
 #alternatives[call `#only` multiple times \u{2717}][use `#alternatives` function #sym.checkmark] for choosing one of the alternatives.
 
 
-== Complex Animation - Callback-Style
+== Callback Style Animation
 
 #slide(repeat: 3, self => [
   #let (uncover, only, alternatives) = utils.methods(self)
@@ -160,12 +147,12 @@ use #only("2-")[`#only` function] for not reserving space,
 
 == Math Equation Animation
 
-Touying equation with `pause`:
+Equation with `pause`:
 
-#touying-equation(`
+$
   f(x) &= pause x^2 + 2x + 1  \
-        &= pause (x + 1)^2  \
-`)
+       &= pause (x + 1)^2  \
+$
 
 #meanwhile
 
@@ -276,23 +263,21 @@ Fletcher Animation in Touying:
 #lorem(200)
 
 
-// appendix by freezing last-slide-number
-#let s = (s.methods.appendix)(self: s)
-#let (slide, empty-slide) = utils.slides(s)
+#show: appendix
+
+= Appendix
 
 == Appendix
 
-#slide[
-  Please pay attention to the current slide number.
-]
+Please pay attention to the current slide number.
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/fcecb505-d2d1-4e36-945a-225f4661a694)
+![example](https://github.com/user-attachments/assets/3488f256-a0b3-43d0-a266-009d9d0a7bd3)
 
 Touying 提供了很多内置的主题，能够简单地编写精美的 slides，例如此处的
 
 ```
-#let s = themes.university.register(aspect-ratio: "16-9")
+#show: university-theme.with()
 ```
 
 可以使用 university 主题。关于主题更详细的教程，您可以参阅后面的章节。

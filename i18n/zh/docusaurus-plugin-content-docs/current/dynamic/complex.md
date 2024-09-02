@@ -12,7 +12,7 @@ sidebar_position: 2
 我们可以使用标记风格的函数，用起来十分方便。
 
 ```typst
-At subslide #utils.touying-wrapper((self: none) => str(self.subslide)), we can
+At subslide #touying-fn-wrapper((self: none) => str(self.subslide)), we can
 
 use #uncover("2-")[`#uncover` function] for reserving space,
 
@@ -21,7 +21,7 @@ use #only("2-")[`#only` function] for not reserving space,
 #alternatives[call `#only` multiple times \u{2717}][use `#alternatives` function #sym.checkmark] for choosing one of the alternatives.
 ```
 
-但是这种方式并非在所有情况下都能生效，例如你将 `uncover` 放入 `grid` 函数中，就会报错。
+但是这种方式并非在所有情况下都能生效，例如你将 `uncover` 放入 `context` 表达式中，就会报错。
 
 
 ## 回调风格的函数

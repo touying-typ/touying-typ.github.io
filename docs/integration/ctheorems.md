@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 # Ctheorems
@@ -9,14 +9,10 @@ Touying can work seamlessly with the `ctheorems` package, allowing you to direct
 Moreover, you can utilize `#let s = (s.methods.numbering)(self: s, section: "1.", "1.1")` to set numbering for sections and subsections.
 
 ```typst
-#import "@preview/touying:0.4.2": *
+#import "@preview/touying:0.5.0": *
+#import themes.simple: *
 #import "@preview/ctheorems:1.1.2": *
-
-// Register university theme
-#let s = themes.simple.register(aspect-ratio: "16-9")
-
-// Set the numbering of section and subsection
-#let s = (s.methods.numbering)(self: s, section: "1.", "1.1")
+#import "@preview/numbly:0.1.0": numbly
 
 // Theorems configuration by ctheorems
 #show: thmrules.with(qed-symbol: $square$)
@@ -31,15 +27,7 @@ Moreover, you can utilize `#let s = (s.methods.numbering)(self: s, section: "1."
 #let example = thmplain("example", "Example").with(numbering: none)
 #let proof = thmproof("proof", "Proof")
 
-// Extract methods
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#show: init
-
-#show strong: alert
-
-// Extract slide functions
-#let (slide, empty-slide) = utils.slides(s)
-#show: slides
+#show: simple-theme.with(aspect-ratio: "16-9")
 
 = Theorems
 

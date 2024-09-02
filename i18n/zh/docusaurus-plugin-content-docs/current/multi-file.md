@@ -19,20 +19,8 @@ Touying 有着如同原生 Typst 文档一般简洁的语法，以及繁多的�
 
 ```typst
 // globals.typ
-#import "@preview/touying:0.4.2": *
-
-#let s = themes.university.register(aspect-ratio: "16-9")
-#let s = (s.methods.numbering)(self: s, section: "1.", "1.1")
-#let s = (s.methods.info)(
-  self: s,
-  title: [Title],
-  subtitle: [Subtitle],
-  author: [Authors],
-  date: datetime.today(),
-  institution: [Institution],
-)
-#let (init, slides, touying-outline, alert, speaker-note) = utils.methods(s)
-#let (slide, empty-slide, title-slide, focus-slide, matrix-slide) = utils.slides(s)
+#import "@preview/touying:0.5.0": *
+#import themes.university: *
 
 // as well as some utility functions
 ```
@@ -43,9 +31,17 @@ Touying 有着如同原生 Typst 文档一般简洁的语法，以及繁多的�
 // main.typ
 #import "/globals.typ": *
 
-#show: init
-#show strong: alert
-#show: slides
+#show: university-theme.with(
+  aspect-ratio: "16-9",
+  config-info(
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
+    date: datetime.today(),
+    institution: [Institution],
+    logo: emoji.school,
+  ),
+)
 
 #include "content.typ"
 ```
@@ -76,9 +72,18 @@ Hello, Touying!
 // main.typ
 #import "/globals.typ": *
 
-#show: init
-#show strong: alert
-#show: slides
+#show: university-theme.with(
+  aspect-ratio: "16-9",
+  config-info(
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
+    date: datetime.today(),
+    institution: [Institution],
+    logo: emoji.school,
+  ),
+)
+
 
 #include "sections/content.typ"
 // #include "sections/another-section.typ"
