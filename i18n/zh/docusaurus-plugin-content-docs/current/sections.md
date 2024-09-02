@@ -44,7 +44,7 @@ Hello, Touying!
 
 ![image](https://github.com/user-attachments/assets/eb38627c-58ef-4319-897e-846697576a6b)
 
-实际上，我们可以通过 `config-common` 函数的 `slide-level` 参数来控制这里的行为。`slide-level` 代表着嵌套结构的复杂度，从 0 开始计算。例如 `#show: university-theme.with(config-common(slide-level: 2))` 等价于 `section` 和 `subsection` 都会创建新 slide；而 `#show: university-theme.with(config-common(slide-level: 3))` 等价于 `section`，`subsection` 和 `subsubsubsection` 都会创建新 slide。
+实际上，我们可以通过 `config-common` 函数的 `slide-level` 参数来控制这里的行为。`slide-level` 代表着嵌套结构的复杂度，从 0 开始计算。例如 `#show: university-theme.with(config-common(slide-level: 2))` 等价于 `section` 和 `subsection` 都会创建新 slide；而 `#show: university-theme.with(config-common(slide-level: 3))` 等价于 `section`，`subsection` 和 `subsubsection` 都会创建新 slide。
 
 
 ## 编号
