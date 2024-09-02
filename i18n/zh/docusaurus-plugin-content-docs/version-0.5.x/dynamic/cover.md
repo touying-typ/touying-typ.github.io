@@ -30,7 +30,7 @@ config-methods(cover: (self: none, body) => hide(body))
 你会发现现有的 cover 函数无法隐藏 enum 和 list 的 mark，参考 [这里](https://github.com/touying-typ/touying/issues/10)，因此你可以进行 hack：
 
 ```typst
-#let s = (s.methods.update-cover)(self: s, body => box(scale(x: 0%, body)))
+config-methods(cover: (self: none, body) => box(scale(x: 0%, body)))
 ```
 
 
