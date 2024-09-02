@@ -1,3 +1,9 @@
+---
+sidebar_position: 11
+---
+
+# Build Your Own Theme
+
 Creating your own theme with Touying can be a bit complex due to the many concepts we've introduced. But rest assured, if you do create a theme with Touying, you might deeply appreciate the convenience and powerful customizability that Touying offers. You can refer to the [source code of the themes](https://github.com/touying-typ/touying/tree/main/themes). The main things you need to implement are:
 
 - Customizing the `xxx-theme` function;
