@@ -4,6 +4,10 @@ sidebar_position: 15
 
 # 更新日志
 
+## v0.5.1
+
+Fix some bugs.
+
 ## v0.5.0
 
 This is a significant disruptive version update. Touying has removed many mistakes that resulted from incorrect decisions. We have redesigned numerous features. The goal of this version is to make Touying more user-friendly, more flexible, and more powerful.
@@ -22,7 +26,7 @@ This is a significant disruptive version update. Touying has removed many mistak
 A simple usage example is shown below, and more examples can be found in the `examples` directory:
 
 ```typst
-#import "@preview/touying:0.5.0": *
+#import "@preview/touying:0.5.1": *
 #import themes.university: *
 
 #show: university-theme.with(

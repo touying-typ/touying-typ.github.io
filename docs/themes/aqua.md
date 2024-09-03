@@ -13,7 +13,7 @@ This theme is created by [@pride7](https://github.com/pride7), featuring beautif
 You can initialize it with the following code:
 
 ```typst
-#import "@preview/touying:0.5.0": *
+#import "@preview/touying:0.5.1": *
 #import themes.aqua: *
 
 #show: aqua-theme.with(
@@ -112,7 +112,7 @@ Start a new section with the given title.
 ## Example
 
 ```typst
-#import "@preview/touying:0.5.0": *
+#import "@preview/touying:0.5.1": *
 #import themes.aqua: *
 
 #show: aqua-theme.with(

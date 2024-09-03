@@ -9,7 +9,7 @@ Touying provides the `touying-reducer`, which adds `pause` and `meanwhile` anima
 An example:
 
 ```typst
-#import "@preview/touying:0.5.0": *
+#import "@preview/touying:0.5.1": *
 #import themes.metropolis: *
 #import "@preview/cetz:0.2.2"
 #import "@preview/fletcher:0.5.1" as fletcher: node, edge
