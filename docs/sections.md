@@ -11,7 +11,7 @@ Like Beamer, Touying also has the concept of sections and subsections.
 Generally, first-level, second-level, and third-level headings correspond to sections, subsections, and subsubsections, respectively, such as in the dewdrop theme.
 
 ```typst
-#import "@preview/touying:0.5.1": *
+#import "@preview/touying:0.5.2": *
 #import themes.dewdrop: *
 
 #show: dewdrop-theme.with(aspect-ratio: "16-9")
@@ -30,7 +30,7 @@ Hello, Touying!
 However, there are many times when we do not need subsections, so we also use first-level and second-level headings to correspond to sections and titles, respectively, such as in the university theme.
 
 ```typst
-#import "@preview/touying:0.5.1": *
+#import "@preview/touying:0.5.2": *
 #import themes.university: *
 
 #show: university-theme.with(aspect-ratio: "16-9")
@@ -62,7 +62,7 @@ This sets the default numbering to `1.1`, and the section corresponds to the num
 Displaying a table of contents in Touying is straightforward:
 
 ```typst
-#import "@preview/touying:0.5.1": *
+#import "@preview/touying:0.5.2": *
 #import themes.simple: *
 #import "@preview/numbly:0.1.0": numbly
 

@@ -15,7 +15,7 @@ The Metropolis theme is elegant and suitable for everyday use. It is recommended
 You can initialize it using the following code:
 
 ```typst
-#import "@preview/touying:0.5.1": *
+#import "@preview/touying:0.5.2": *
 #import themes.metropolis: *
 
 #import "@preview/numbly:0.1.0": numbly
@@ -117,7 +117,7 @@ Creates a new section with the given title.
 ## Example
 
 ```typst
-#import "@preview/touying:0.5.1": *
+#import "@preview/touying:0.5.2": *
 #import themes.metropolis: *
 
 #import "@preview/numbly:0.1.0": numbly
