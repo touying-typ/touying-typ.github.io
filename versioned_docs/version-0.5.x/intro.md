@@ -39,10 +39,8 @@ Sponsor: https://afdian.com/a/orangex4
 
 QR Code:
 
-<div>
-	<img src="https://github.com/user-attachments/assets/7e43742c-659d-4c19-9b85-04bfb3659d8c" height="400">
-	<img src="https://github.com/user-attachments/assets/fa1a3091-0c54-4c11-9db0-7c568d13d637" height="400">
-</div>
+![image](https://github.com/user-attachments/assets/41adbf0b-663e-4693-8408-859cac3edaa1)
+
 
 
 ## Gallery
