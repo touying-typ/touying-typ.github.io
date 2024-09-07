@@ -37,6 +37,19 @@ npm run start -- --locale zh
 
 Touying 是免费、开源且社区驱动的。如果你感兴趣，你可以随时访问 [GitHub](https://github.com/touying-typ/touying) 并提出 issue 或 PR，我们也同样欢迎你加入 [touying-typ](https://github.com/touying-typ) 组织。
 
+## 🥤一杯咖啡
+
+如果您认为本项目对你的工作起到了帮助，可以通过以下方式捐助 Touying 的开发工作，使本项目持续发展下去。
+
+爱发电: https://afdian.com/a/orangex4
+
+二维码:
+
+<div>
+	<img src="https://github.com/user-attachments/assets/7e43742c-659d-4c19-9b85-04bfb3659d8c" height="400">
+	<img src="https://github.com/user-attachments/assets/fa1a3091-0c54-4c11-9db0-7c568d13d637" height="400">
+</div>
+
 ## 画廊
 
 Touying 通过 wiki 提供 [画廊页面](https://github.com/touying-typ/touying/wiki)，您可以在其中浏览由 Touying 用户创建的优雅幻灯片。我们也鼓励您在这里贡献自己的精美幻灯片！
