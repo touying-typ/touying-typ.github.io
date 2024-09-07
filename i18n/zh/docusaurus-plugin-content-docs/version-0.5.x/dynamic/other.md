@@ -80,7 +80,10 @@ Touying 还提供了 `touying-reducer`，它能为 cetz 与 fletcher 加入 `pau
 
   #cetz.canvas({
     import cetz.draw: *
-    let self = (self.methods.update-cover)(self: self, hide.with(bounds: true))
+    let self = utils.merge-dicts(
+      self,
+      config-methods(cover: utils.method-wrapper(hide.with(bounds: true))),
+    )
     let (uncover,) = utils.methods(self)
     
     rect((0,0), (5,5))

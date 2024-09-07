@@ -80,7 +80,10 @@ In fact, we can also use `only` and `uncover` within cetz, just requiring a bit 
 
   #cetz.canvas({
     import cetz.draw: *
-    let self = (self.methods.update-cover)(self: self, hide.with(bounds: true))
+    let self = utils.merge-dicts(
+      self,
+      config-methods(cover: utils.method-wrapper(hide.with(bounds: true))),
+    )
     let (uncover,) = utils.methods(self)
     
     rect((0,0), (5,5))
