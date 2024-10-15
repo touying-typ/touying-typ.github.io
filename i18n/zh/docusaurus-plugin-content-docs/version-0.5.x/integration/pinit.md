@@ -36,7 +36,7 @@ A simple #pin(1)highlighted text#pin(2).
 一个与 Touying 共同使用的示例：
 
 ```typst
-#import "@preview/touying:0.5.2": *
+#import "@preview/touying:0.5.3": *
 #import themes.default: *
 #import "@preview/pinit:0.2.0": *
 

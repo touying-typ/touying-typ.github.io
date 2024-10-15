@@ -9,7 +9,7 @@ sidebar_position: 2
 要使用 Touying，您只需要在文档里加入
 
 ```typst
-#import "@preview/touying:0.5.2": *
+#import "@preview/touying:0.5.3": *
 #import themes.simple: *
 
 #show: simple-theme.with(aspect-ratio: "16-9")
@@ -36,7 +36,7 @@ Hello, Typst!
 事实上，Touying 提供了多种 slides 编写风格，实际上您也可以使用 `#slide[..]` 的写法，以获得 Touying 提供的更多更强大的功能。
 
 ```typst
-#import "@preview/touying:0.5.2": *
+#import "@preview/touying:0.5.3": *
 #import themes.university: *
 #import "@preview/cetz:0.2.2"
 #import "@preview/fletcher:0.5.1" as fletcher: node, edge
