@@ -362,13 +362,13 @@ A slide with a title and an *important* information.
   touying-slide(self: self, body)
 })
 
-#let new-section-slide(self: none, section) = touying-slide-wrapper(self => {
-  let body = {
+#let new-section-slide(self: none, body) = touying-slide-wrapper(self => {
+  let main-body = {
     set align(center + horizon)
     set text(size: 2em, fill: self.colors.primary, weight: "bold", style: "italic")
-    section
+    utils.display-current-heading(level: 1)
   }
-  touying-slide(self: self, body)
+  touying-slide(self: self, main-body)
 })
 
 #let focus-slide(body) = touying-slide-wrapper(self => {
