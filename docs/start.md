@@ -258,10 +258,4 @@ Please pay attention to the current slide number.
 
 ![example](https://github.com/user-attachments/assets/3488f256-a0b3-43d0-a266-009d9d0a7bd3)
 
-Touying offers many built-in themes to easily create beautiful slides. For example, in this case:
-
-```
-#let s = themes.university.register(aspect-ratio: "16-9")
-```
-
-you can use the university theme. For more detailed tutorials on themes, you can refer to the following sections.
+For more detailed tutorials on themes, you can refer to the following sections.
