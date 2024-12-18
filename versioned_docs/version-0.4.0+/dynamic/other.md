@@ -12,7 +12,7 @@ Here's an example:
 
 ```typst
 #import "@preview/touying:0.4.0": *
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.1"
 #import "@preview/fletcher:0.4.4" as fletcher: node, edge
 
 // cetz and fletcher bindings for touying

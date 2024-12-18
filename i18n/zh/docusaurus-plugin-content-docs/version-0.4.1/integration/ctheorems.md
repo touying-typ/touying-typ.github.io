@@ -10,7 +10,7 @@ Touying 能够与 ctheorems 包一起正常工作，你可以直接使用 ctheor
 
 ```typst
 #import "@preview/touying:0.4.1": *
-#import "@preview/ctheorems:1.1.2": *
+#import "@preview/ctheorems:1.1.3": *
 
 // Register university theme
 #let s = themes.simple.register(aspect-ratio: "16-9")

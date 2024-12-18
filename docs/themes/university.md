@@ -13,7 +13,7 @@ This aesthetically pleasing theme is courtesy of [Pol Dellaiera](https://github.
 You can initialize the theme with the following code:
 
 ```typst
-#import "@preview/touying:0.5.3": *
+#import "@preview/touying:0.5.4": *
 #import themes.university: *
 
 #import "@preview/numbly:0.1.0": numbly
@@ -124,7 +124,7 @@ Refer to the [documentation](https://polylux.dev/book/themes/gallery/university.
 ## Example
 
 ```typst
-#import "@preview/touying:0.5.3": *
+#import "@preview/touying:0.5.4": *
 #import themes.university: *
 
 #import "@preview/numbly:0.1.0": numbly

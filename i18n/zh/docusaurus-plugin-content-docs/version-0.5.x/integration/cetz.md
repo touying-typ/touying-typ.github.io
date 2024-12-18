@@ -11,10 +11,10 @@ Touying 提供了 `touying-reducer`，它能为 cetz 与 fletcher 加入 `pause`
 一个例子：
 
 ```typst
-#import "@preview/touying:0.5.3": *
+#import "@preview/touying:0.5.4": *
 #import themes.metropolis: *
-#import "@preview/cetz:0.2.2"
-#import "@preview/fletcher:0.5.1" as fletcher: node, edge
+#import "@preview/cetz:0.3.1"
+#import "@preview/fletcher:0.5.3" as fletcher: node, edge
 
 // cetz and fletcher bindings for touying
 #let cetz-canvas = touying-reducer.with(reduce: cetz.canvas, cover: cetz.draw.hide.with(bounds: true))

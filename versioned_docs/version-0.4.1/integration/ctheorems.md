@@ -10,7 +10,7 @@ Moreover, you can utilize `#let s = (s.methods.numbering)(self: s, section: "1."
 
 ```typst
 #import "@preview/touying:0.4.1": *
-#import "@preview/ctheorems:1.1.2": *
+#import "@preview/ctheorems:1.1.3": *
 
 // Register university theme
 #let s = themes.simple.register(aspect-ratio: "16-9")

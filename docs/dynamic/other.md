@@ -11,10 +11,10 @@ Touying also provides `touying-reducer`, which adds `pause` and `meanwhile` anim
 Here's an example:
 
 ```typst
-#import "@preview/touying:0.5.3": *
+#import "@preview/touying:0.5.4": *
 #import themes.university: *
-#import "@preview/cetz:0.2.2"
-#import "@preview/fletcher:0.5.1" as fletcher: node, edge
+#import "@preview/cetz:0.3.1"
+#import "@preview/fletcher:0.5.3" as fletcher: node, edge
 
 // cetz and fletcher bindings for touying
 #let cetz-canvas = touying-reducer.with(reduce: cetz.canvas, cover: cetz.draw.hide.with(bounds: true))
