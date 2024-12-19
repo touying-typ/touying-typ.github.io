@@ -15,7 +15,7 @@ sidebar_position: 3
 你可以通过下面的代码来初始化：
 
 ```typst
-#import "@preview/touying:0.5.4": *
+#import "@preview/touying:0.5.5": *
 #import themes.dewdrop: *
 
 #import "@preview/numbly:0.1.0": numbly
@@ -107,7 +107,7 @@ Dewdrop 主题提供了一系列自定义 slide 函数：
 ## 示例
 
 ```typst
-#import "@preview/touying:0.5.4": *
+#import "@preview/touying:0.5.5": *
 #import themes.dewdrop: *
 
 #import "@preview/numbly:0.1.0": numbly

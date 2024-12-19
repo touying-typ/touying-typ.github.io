@@ -7,7 +7,7 @@ sidebar_position: 5
 When using Codly, we should initialize it using the `config-common(preamble: {..})` method.
 
 ```typst
-#import "@preview/touying:0.5.4": *
+#import "@preview/touying:0.5.5": *
 #import themes.simple: *
 #import "@preview/codly:1.0.0": *
 

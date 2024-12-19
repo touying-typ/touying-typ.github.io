@@ -11,7 +11,7 @@ sidebar_position: 3
 一般而言，1 级、2 级和 3 级标题分别用来对应 section、subsection 和 subsubsection，例如 dewdrop 主题。
 
 ```typst
-#import "@preview/touying:0.5.4": *
+#import "@preview/touying:0.5.5": *
 #import themes.dewdrop: *
 
 #show: dewdrop-theme.with(aspect-ratio: "16-9")
@@ -30,7 +30,7 @@ Hello, Touying!
 但是很多时候我们并不需要 subsection，因此也会使用 1 级和 2 级标题来分别对应 section 和 title，例如 university 主题。
 
 ```typst
-#import "@preview/touying:0.5.4": *
+#import "@preview/touying:0.5.5": *
 #import themes.university: *
 
 #show: university-theme.with(aspect-ratio: "16-9")
@@ -64,7 +64,7 @@ Hello, Touying!
 在 Touying 中显示目录很简单：
 
 ```typst
-#import "@preview/touying:0.5.4": *
+#import "@preview/touying:0.5.5": *
 #import themes.simple: *
 #import "@preview/numbly:0.1.0": numbly
 
