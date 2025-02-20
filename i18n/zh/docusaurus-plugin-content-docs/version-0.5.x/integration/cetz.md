@@ -11,7 +11,7 @@ Touying 提供了 `touying-reducer`，它能为 cetz 与 fletcher 加入 `pause`
 一个例子：
 
 ```typst
-#import "@preview/touying:0.5.5": *
+#import "@preview/touying:0.6.0": *
 #import themes.metropolis: *
 #import "@preview/cetz:0.3.1"
 #import "@preview/fletcher:0.5.3" as fletcher: node, edge
