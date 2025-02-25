@@ -34,7 +34,7 @@ Another [example](https://github.com/OrangeX4/typst-pinit/blob/main/examples/equ
 An example of shared usage with Touying:
 
 ```typst
-#import "@preview/touying:0.6.0": *
+#import "@preview/touying:0.6.1": *
 #import themes.default: *
 #import "@preview/pinit:0.2.0": *
 
