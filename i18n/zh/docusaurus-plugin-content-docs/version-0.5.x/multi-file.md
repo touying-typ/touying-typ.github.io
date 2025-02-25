@@ -19,7 +19,7 @@ Touying 有着如同原生 Typst 文档一般简洁的语法，以及繁多的�
 
 ```typst
 // globals.typ
-#import "@preview/touying:0.6.0": *
+#import "@preview/touying:0.5.5": *
 #import themes.university: *
 
 // as well as some utility functions

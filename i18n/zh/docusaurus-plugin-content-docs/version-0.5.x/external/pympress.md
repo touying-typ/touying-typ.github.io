@@ -10,7 +10,7 @@ sidebar_position: 2
 ## 笔记支持
 
 ```typst
-#import "@preview/touying:0.6.0": *
+#import "@preview/touying:0.5.5": *
 #import themes.university: *
 
 #show: university-theme.with(

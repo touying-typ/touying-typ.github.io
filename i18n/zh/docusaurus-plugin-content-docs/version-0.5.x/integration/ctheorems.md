@@ -9,7 +9,7 @@ Touying 能够与 ctheorems 包一起正常工作，你可以直接使用 ctheor
 其中，你还可以使用 `#set heading(numbering: "1.1")` 为 sections 和 subsections 设置 numbering。
 
 ```typst
-#import "@preview/touying:0.6.0": *
+#import "@preview/touying:0.5.5": *
 #import themes.university: *
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/numbly:0.1.0": numbly
