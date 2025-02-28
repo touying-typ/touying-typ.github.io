@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# [Theorion](https://github.com/OrangeX4/typst-theorion)
+# Theorion
 
 Touying can work properly with the [Theorion](https://github.com/OrangeX4/typst-theorion) package, you can directly use the [theorion](https://github.com/OrangeX4/typst-theorion) package. Additionally, you can use `#set heading(numbering: "1.1")` to set numbering for sections and subsections.
 

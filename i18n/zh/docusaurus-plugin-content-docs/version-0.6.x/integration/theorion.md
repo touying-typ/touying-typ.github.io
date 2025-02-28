@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# [Theorion](https://github.com/OrangeX4/typst-theorion)
+# Theorion
 
 Touying 能够与 [Theorion](https://github.com/OrangeX4/typst-theorion) 包一起正常工作，你可以直接使用 [theorion](https://github.com/OrangeX4/typst-theorion) 包。其中，你还可以使用 `#set heading(numbering: "1.1")` 为 sections 和 subsections 设置 numbering。
 

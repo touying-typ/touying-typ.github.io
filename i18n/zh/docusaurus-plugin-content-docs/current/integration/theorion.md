@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Theorion
 
-Touying 能够与 theorion 包一起正常工作，你可以直接使用 theorion 包。其中，你还可以使用 `#set heading(numbering: "1.1")` 为 sections 和 subsections 设置 numbering。
+Touying 能够与 [Theorion](https://github.com/OrangeX4/typst-theorion) 包一起正常工作，你可以直接使用 [Theorion](https://github.com/OrangeX4/typst-theorion) 包。其中，你还可以使用 `#set heading(numbering: "1.1")` 为 sections 和 subsections 设置 numbering。
 
 **注意：为了让 `#pause` 等动画命令与 theorion 一起正常工作，你需要使用 `config-common(frozen-counters: (theorem-counter,))` 来绑定需要冻结的 counter。**
 
