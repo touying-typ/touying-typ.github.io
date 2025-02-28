@@ -9,7 +9,7 @@ sidebar_position: 1
 ## 简单示例
 
 ```typst
-#import "@preview/pinit:0.2.0": *
+#import "@preview/pinit:0.2.2": *
 
 #set text(size: 24pt)
 

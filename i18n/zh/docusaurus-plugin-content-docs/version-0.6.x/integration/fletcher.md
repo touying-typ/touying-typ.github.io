@@ -11,8 +11,8 @@ Touying 提供了 `touying-reducer`，它能为 fletcher 加入 `pause` 和 `mea
 ```typst
 #import "@preview/touying:0.6.1": *
 #import themes.metropolis: *
-#import "@preview/cetz:0.3.1"
-#import "@preview/fletcher:0.5.3" as fletcher: node, edge
+#import "@preview/cetz:0.3.2"
+#import "@preview/fletcher:0.5.4" as fletcher: node, edge
 
 // cetz and fletcher bindings for touying
 #let cetz-canvas = touying-reducer.with(reduce: cetz.canvas, cover: cetz.draw.hide.with(bounds: true))

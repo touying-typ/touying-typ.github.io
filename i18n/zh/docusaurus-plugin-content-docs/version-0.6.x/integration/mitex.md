@@ -9,7 +9,7 @@ sidebar_position: 2
 示例：
 
 ```typst
-#import "@preview/mitex:0.2.3": *
+#import "@preview/mitex:0.2.4": *
 
 Write inline equations like #mi("x") or #mi[y].
 
