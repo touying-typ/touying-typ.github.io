@@ -9,7 +9,7 @@ sidebar_position: 1
 ## 简单示例
 
 ```typst
-#import "@preview/pinit:0.2.0": *
+#import "@preview/pinit:0.2.2": *
 
 #set text(size: 24pt)
 
@@ -38,7 +38,7 @@ A simple #pin(1)highlighted text#pin(2).
 ```typst
 #import "@preview/touying:0.5.5": *
 #import themes.default: *
-#import "@preview/pinit:0.2.0": *
+#import "@preview/pinit:0.2.2": *
 
 #set text(size: 20pt, font: "Calibri", ligatures: false)
 #show heading: set text(weight: "regular")

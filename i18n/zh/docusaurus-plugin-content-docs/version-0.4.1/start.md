@@ -43,7 +43,7 @@ Hello, Typst!
 
 ```typst
 #import "@preview/touying:0.4.1": *
-#import "@preview/cetz:0.3.1"
+#import "@preview/cetz:0.3.2"
 #import "@preview/fletcher:0.4.4" as fletcher: node, edge
 #import "@preview/ctheorems:1.1.3": *
 

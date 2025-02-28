@@ -40,8 +40,8 @@ Touying offers many built-in themes to easily create beautiful slides. For examp
 ```typst
 #import "@preview/touying:0.5.5": *
 #import themes.university: *
-#import "@preview/cetz:0.3.1"
-#import "@preview/fletcher:0.5.3" as fletcher: node, edge
+#import "@preview/cetz:0.3.2"
+#import "@preview/fletcher:0.5.5" as fletcher: node, edge
 #import "@preview/ctheorems:1.1.3": *
 #import "@preview/numbly:0.1.0": numbly
 

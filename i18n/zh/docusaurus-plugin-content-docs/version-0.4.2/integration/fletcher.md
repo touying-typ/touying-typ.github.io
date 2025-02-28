@@ -10,7 +10,7 @@ Touying 提供了 `touying-reducer`，它能为 fletcher 加入 `pause` 和 `mea
 
 ```typst
 #import "@preview/touying:0.4.2": *
-#import "@preview/cetz:0.3.1"
+#import "@preview/cetz:0.3.2"
 #import "@preview/fletcher:0.4.4" as fletcher: node, edge
 
 // cetz and fletcher bindings for touying
