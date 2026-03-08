@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[1811],{7450:e=>{e.exports=JSON.parse('{"permalink":"/pr-preview/pr-4/zh/blog/tags/release","page":1,"postsPerPage":10,"totalPages":1,"totalCount":3,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
