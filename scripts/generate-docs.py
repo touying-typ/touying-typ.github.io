@@ -40,12 +40,13 @@ GITHUB_SRC_BASE = "https://github.com/touying-typ/touying/blob/main/src"
 
 # Source files to document, in order (name → display title)
 SOURCE_FILES = [
-    ("slides.typ", "Slides", "Core slide creation functions."),
-    ("components.typ", "Components", "Reusable UI components for slides."),
     ("configs.typ", "Configs", "Configuration functions for presentation settings."),
+    ("core.typ", "Core", "Core functions and definitions for Touying."),
+    ("components.typ", "Components", "Reusable UI components for slides."),
+    ("slides.typ", "Slides", "Core slide creation functions."),
     ("utils.typ", "Utils", "Utility functions used throughout Touying."),
     ("magic.typ", "Magic", "Show-rule helpers that enhance Typst behaviour."),
-    ("pdfpc.typ", "PDFPC", "Functions for generating pdfpc presenter metadata."),
+    ("pdfpc.typ", "Pdfpc", "Functions for generating pdfpc presenter metadata."),
 ]
 
 
