@@ -16,7 +16,7 @@
   It supports:
   - Multiple built-in themes
   - Dynamic slides with `#pause`
-  - Math equations: $E = mc^2$
+  - Math equations: $E = m c^2$
 ]
 
 == Features
