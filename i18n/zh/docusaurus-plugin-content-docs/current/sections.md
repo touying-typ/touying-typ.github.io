@@ -25,7 +25,7 @@ sidebar_position: 3
 Hello, Touying!
 ```
 
-![image](https://github.com/user-attachments/assets/34f5e293-29e3-4aa3-bb74-c2d4914560c6)
+![dewdrop sections example](/img/typst-generated/sections/dewdrop-sections.png)
 
 但是很多时候我们并不需要 subsection，因此也会使用 1 级和 2 级标题来分别对应 section 和 title，例如 university 主题。
 
@@ -42,7 +42,7 @@ Hello, Touying!
 Hello, Touying!
 ```
 
-![image](https://github.com/user-attachments/assets/eb38627c-58ef-4319-897e-846697576a6b)
+![university sections example](/img/typst-generated/sections/university-sections.png)
 
 实际上，我们可以通过 `config-common` 函数的 `slide-level` 参数来控制这里的行为。`slide-level` 代表着嵌套结构的复杂度，从 0 开始计算。例如 `#show: university-theme.with(config-common(slide-level: 2))` 等价于 `section` 和 `subsection` 都会创建新 slide；而 `#show: university-theme.with(config-common(slide-level: 3))` 等价于 `section`，`subsection` 和 `subsubsection` 都会创建新 slide。
 
@@ -79,7 +79,7 @@ Hello, Touying!
 #components.adaptive-columns(outline(indent: 1em))
 ```
 
-![image](https://github.com/user-attachments/assets/2674a632-e881-432f-a212-a55bcc7207c1)
+![table of contents example](/img/typst-generated/sections/toc.png)
 
 其中 `outline(indent: 1em)` 是 Typst 的原生目录函数。而 `#components.adaptive-columns()` 函数可以让目录尽可能只占据一个页面，即它会自适应分别设置 `#columns(1, body)` 或者 `#columns(2, body)`，以此类推。
 

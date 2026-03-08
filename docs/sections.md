@@ -25,7 +25,7 @@ Generally, first-level, second-level, and third-level headings correspond to sec
 Hello, Touying!
 ```
 
-![image](https://github.com/user-attachments/assets/34f5e293-29e3-4aa3-bb74-c2d4914560c6) 
+![dewdrop sections example](/img/typst-generated/sections/dewdrop-sections.png)
 
 However, there are many times when we do not need subsections, so we also use first-level and second-level headings to correspond to sections and titles, respectively, such as in the university theme.
 
@@ -42,7 +42,7 @@ However, there are many times when we do not need subsections, so we also use fi
 Hello, Touying!
 ```
 
-![image](https://github.com/user-attachments/assets/eb38627c-58ef-4319-897e-846697576a6b) 
+![university sections example](/img/typst-generated/sections/university-sections.png)
 
 In fact, we can control this behavior through the `slide-level` parameter of the `config-common` function. `slide-level` represents the complexity of the nesting structure, starting from 0. For example, `#show: university-theme.with(config-common(slide-level: 2))` is equivalent to both `section` and `subsection` creating new slides; while `#show: university-theme.with(config-common(slide-level: 3))` is equivalent to `section`, `subsection`, and `subsubsection` all creating new slides.
 
@@ -77,7 +77,7 @@ Displaying a table of contents in Touying is straightforward:
 #components.adaptive-columns(outline(indent: 1em))
 ```
 
-![image](https://github.com/user-attachments/assets/2674a632-e881-432f-a212-a55bcc7207c1) 
+![table of contents example](/img/typst-generated/sections/toc.png)
 
 The `outline(indent: 1em)` is a native Typst function for the table of contents. The `#components.adaptive-columns()` function ensures that the table of contents occupies only one page, adapting by setting `#columns(1, body)` or `#columns(2, body)`, and so on.
 

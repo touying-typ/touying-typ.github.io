@@ -20,7 +20,7 @@ The purpose of `#pause` is straightforward – it separates the subsequent conte
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/a3bed1d3-e660-456d-8a54-a914436f43bf)
+![pause animation example](/img/typst-generated/dynamic/pause.png)
 
 This example will create three subslides, gradually revealing the content.
 
@@ -48,6 +48,6 @@ In some cases, you may need to display additional content simultaneously with `#
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/24ca19a3-b27c-4d31-ab75-09c37911e6ac)
+![meanwhile animation example](/img/typst-generated/dynamic/meanwhile.png)
 
 This example will create only two subslides, with "First" and "Third" displayed simultaneously, and "Second" and "Fourth" displayed simultaneously.

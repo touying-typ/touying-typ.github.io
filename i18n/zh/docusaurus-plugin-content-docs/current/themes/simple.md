@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Simple 主题
 
-![image](https://github.com/touying-typ/touying/assets/34951714/83d5295e-f961-4ffd-bc56-a7049848d408)
+![Simple Theme Preview](/img/typst-generated/themes/simple.png)
 
 这个主题来源于 [Polylux](https://polylux.dev/book/themes/gallery/simple.html)，作者是 Andreas Kröpelin。
 

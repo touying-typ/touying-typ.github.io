@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # University 主题
 
-![image](https://github.com/touying-typ/touying/assets/34951714/4095163c-0c16-4760-b370-8adc1cdd7e6c)
+![University Theme Preview](/img/typst-generated/themes/university.png)
 
 这个美观的主题来自 [Pol Dellaiera](https://github.com/drupol)。
 

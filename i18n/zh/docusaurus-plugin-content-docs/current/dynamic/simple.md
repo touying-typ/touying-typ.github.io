@@ -20,7 +20,7 @@ Touying 为简单的动画效果提供了两个标记：`#pause` 和 `#meanwhile
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/a3bed1d3-e660-456d-8a54-a914436f43bf)
+![pause animation example](/img/typst-generated/dynamic/pause.png)
 
 这个例子将会创建三张 subslides，逐渐地将内容展示出来。
 
@@ -49,6 +49,6 @@ Touying 为简单的动画效果提供了两个标记：`#pause` 和 `#meanwhile
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/24ca19a3-b27c-4d31-ab75-09c37911e6ac)
+![meanwhile animation example](/img/typst-generated/dynamic/meanwhile.png)
 
 这个例子只会创建两张 subslides，并且 "First" 和 "Third" 同时显示，"Second" 和 "Fourth" 同时显示。

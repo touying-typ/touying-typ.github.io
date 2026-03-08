@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Stargazer 主题
 
-![image](https://github.com/user-attachments/assets/4950008f-ac64-47ab-a7ca-cdf15361ba0f)
+![Stargazer Theme Preview](/img/typst-generated/themes/stargazer.png)
 
 这个主题原本来自 [Coekjan](https://github.com/Coekjan/) 创作的 [touying-buaa](https://github.com/Coekjan/touying-buaa) 主题，美观大方，很适合日常使用。
 

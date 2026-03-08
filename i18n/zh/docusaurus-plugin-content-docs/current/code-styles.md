@@ -25,7 +25,7 @@ Hello, Touying!
 Hello, Typst!
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/f5bdbf8f-7bf9-45fd-9923-0fa5d66450b2)
+![simple style example](/img/typst-generated/code-styles/simple-style.png)
 
 并且你可以使用空标题 `== <touying:hidden>` 创建一个新页，这个技巧也有助于清除上一个标题的继续应用。
 
@@ -48,7 +48,7 @@ Hello, Touying!
 Hello, Typst!
 ```
 
-![image](https://github.com/user-attachments/assets/42f4de99-3be4-4764-a2b6-f26201295ed1)
+![page break example](/img/typst-generated/code-styles/page-break.png)
 
 ## 块风格
 
@@ -111,7 +111,7 @@ Hello, Touying!
 Hello, Typst!
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/17a89a59-9491-4e1f-95c0-09a22105ab35)
+![no section slide example](/img/typst-generated/code-styles/no-section-slide.png)
 
 如你所见，这样就只会剩下两页，而默认的 section slide 就会消失了。
 
@@ -148,4 +148,4 @@ Hello, Touying!
 Hello, Typst!
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/5305efda-0cd4-42eb-9f2e-89abc30b6ca2)
+![custom section slide example](/img/typst-generated/code-styles/custom-section-slide.png)

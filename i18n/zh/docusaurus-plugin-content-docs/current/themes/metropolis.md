@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Metropolis 主题
 
-![image](https://github.com/touying-typ/touying/assets/34951714/383ceb22-f696-4450-83a6-c0f17e4597e1)
+![Metropolis Theme Preview](/img/typst-generated/themes/metropolis.png)
 
 
 这个主题的灵感来自 Matthias Vogelgesang 创作的 [Metropolis beamer](https://github.com/matze/mtheme) 主题，由 [Enivex](https://github.com/Enivex) 改造而来。

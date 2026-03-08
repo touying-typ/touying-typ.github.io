@@ -65,7 +65,7 @@ An example:
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/9ba71f54-2a5d-4144-996c-4a42833cc5cc)
+![cetz and fletcher animation](/img/typst-generated/integration/cetz-fletcher.png)
 
 
 ## only and uncover

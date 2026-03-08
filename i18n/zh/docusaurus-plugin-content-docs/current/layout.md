@@ -31,7 +31,7 @@ sidebar_position: 5
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/70d48053-c777-4253-a9ca-ada360b5a987)
+![Typst page model example](/img/typst-generated/layout/page-model.png)
 
 我们需要区分以下概念：
 
@@ -81,7 +81,7 @@ sidebar_position: 5
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/d74896f4-90e7-4b36-a5a9-9c44307eb192)
+![negative padding example](/img/typst-generated/layout/negative-padding.png)
 
 ## 页面管理
 
@@ -128,7 +128,7 @@ config-page(footer: [Custom Footer])
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/a39f88a2-f1ba-4420-8f78-6a0fc644704e)
+![two column default layout](/img/typst-generated/layout/columns-default.png)
 
 如果你需要更改分栏的方式，可以修改 `slide` 的 `composer` 参数，其中默认的参数是 `components.side-by-side.with(columns: auto, gutter: 1em)`，如果我们要让左边那一栏占据剩余宽度，可以使用
 
@@ -140,5 +140,5 @@ config-page(footer: [Custom Footer])
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/aa84192a-4082-495d-9773-b06df32ab8dc)
+![custom column layout](/img/typst-generated/layout/columns-custom.png)
 
