@@ -24,6 +24,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          submodules: recursive
 
       - uses: actions/setup-node@v4
         with:
@@ -43,6 +44,9 @@ jobs:
 
       - name: Generate slide preview images
         run: npm run generate-images
+
+      - name: Generate API reference documentation
+        run: npm run generate-docs
 
       - name: Build website
         run: npm run build

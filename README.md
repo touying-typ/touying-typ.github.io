@@ -73,3 +73,11 @@ Contributions are welcome! Please open an issue or pull request on
 
 Pull requests automatically get a **preview deployment** — look for the
 bot comment on your PR with a link to the live preview.
+
+## Acknowledgements
+
+The reference documentation style, Typst syntax-highlighting theme, and overall
+design of this site are inspired by and adapted from the
+[lilaq](https://lilaq.org/) project documentation
+([lilaq-project/lilaq-project.github.io](https://github.com/lilaq-project/lilaq-project.github.io)).
+Many thanks to the lilaq contributors for their excellent work.
