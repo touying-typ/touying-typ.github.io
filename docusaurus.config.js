@@ -16,7 +16,8 @@ const config = {
   url: 'https://touying-typ.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  // DOCUSAURUS_BASE_URL can be set by CI for PR previews (e.g. /pr-preview/pr-3/)
+  baseUrl: process.env.DOCUSAURUS_BASE_URL ?? '/',
 
   // GitHub pages deployment config.
   organizationName: 'touying-typ',
