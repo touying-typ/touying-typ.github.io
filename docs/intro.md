@@ -31,16 +31,6 @@ npm run docusaurus docs:version 0.y.x
 
 Touying is free, open-source, and community-driven. If you're interested, you can visit [GitHub](https://github.com/touying-typ/touying) anytime and raise issues or submit pull requests. We also welcome you to join the [touying-typ](https://github.com/touying-typ) organization.
 
-## 🥤A cup of coffee
-
-If you feel that this project has helped you in your work, you can donate to Touying's development work in the following ways to keep the project going.
-
-Sponsor: https://afdian.com/a/orangex4
-
-QR Code:
-
-![image](https://github.com/user-attachments/assets/41adbf0b-663e-4693-8408-859cac3edaa1)
-
 
 ## Gallery
 

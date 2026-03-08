@@ -99,6 +99,18 @@ const config = {
             'aria-label': 'GitHub repository',
           },
           {
+            href: 'https://deepwiki.com/touying-typ/touying',
+            position: 'right',
+            className: 'navbar--deepwiki-link',
+            'aria-label': 'Ask DeepWiki',
+          },
+          {
+            href: 'https://zread.ai/touying-typ/touying',
+            position: 'right',
+            className: 'navbar--zread-link',
+            'aria-label': 'Ask Zread',
+          },
+          {
             type: 'search',
             position: 'right',
           },

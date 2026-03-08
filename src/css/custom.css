@@ -57,6 +57,28 @@
     no-repeat;
 }
 
+.navbar--deepwiki-link::before {
+  content: '';
+  display: flex;
+  width: 24px;
+  height: 24px;
+  background: url("https://deepwiki.com/favicon.ico") no-repeat;
+  background-size: contain;
+}
+
+.navbar--zread-link::before {
+  content: '';
+  display: flex;
+  width: 24px;
+  height: 24px;
+  background: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.96156 1.6001H2.24156C1.8881 1.6001 1.60156 1.88664 1.60156 2.2401V4.9601C1.60156 5.31356 1.8881 5.6001 2.24156 5.6001H4.96156C5.31502 5.6001 5.60156 5.31356 5.60156 4.9601V2.2401C5.60156 1.88664 5.31502 1.6001 4.96156 1.6001Z' fill='%233d5a80' transform='translate(4,4)'/%3E%3Cpath d='M4.96156 10.3999H2.24156C1.8881 10.3999 1.60156 10.6864 1.60156 11.0399V13.7599C1.60156 14.1134 1.8881 14.3999 2.24156 14.3999H4.96156C5.31502 14.3999 5.60156 14.1134 5.60156 13.7599V11.0399C5.60156 10.6864 5.31502 10.3999 4.96156 10.3999Z' fill='%233d5a80' transform='translate(4,4)'/%3E%3Cpath d='M13.7584 1.6001H11.0384C10.685 1.6001 10.3984 1.88664 10.3984 2.2401V4.9601C10.3984 5.31356 10.685 5.6001 11.0384 5.6001H13.7584C14.1119 5.6001 14.3984 5.31356 14.3984 4.9601V2.2401C14.3984 1.88664 14.1119 1.6001 13.7584 1.6001Z' fill='%233d5a80' transform='translate(4,4)'/%3E%3Cpath d='M4 12L12 4' stroke='%233d5a80' stroke-width='1.5' stroke-linecap='round' transform='translate(4,4)'/%3E%3C/svg%3E") no-repeat;
+  background-size: contain;
+}
+
+[data-theme='dark'] .navbar--zread-link::before {
+  background: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.96156 1.6001H2.24156C1.8881 1.6001 1.60156 1.88664 1.60156 2.2401V4.9601C1.60156 5.31356 1.8881 5.6001 2.24156 5.6001H4.96156C5.31502 5.6001 5.60156 5.31356 5.60156 4.9601V2.2401C5.60156 1.88664 5.31502 1.6001 4.96156 1.6001Z' fill='white' transform='translate(4,4)'/%3E%3Cpath d='M4.96156 10.3999H2.24156C1.8881 10.3999 1.60156 10.6864 1.60156 11.0399V13.7599C1.60156 14.1134 1.8881 14.3999 2.24156 14.3999H4.96156C5.31502 14.3999 5.60156 14.1134 5.60156 13.7599V11.0399C5.60156 10.6864 5.31502 10.3999 4.96156 10.3999Z' fill='white' transform='translate(4,4)'/%3E%3Cpath d='M13.7584 1.6001H11.0384C10.685 1.6001 10.3984 1.88664 10.3984 2.2401V4.9601C10.3984 5.31356 10.685 5.6001 11.0384 5.6001H13.7584C14.1119 5.6001 14.3984 5.31356 14.3984 4.9601V2.2401C14.3984 1.88664 14.1119 1.6001 13.7584 1.6001Z' fill='white' transform='translate(4,4)'/%3E%3Cpath d='M4 12L12 4' stroke='white' stroke-width='1.5' stroke-linecap='round' transform='translate(4,4)'/%3E%3C/svg%3E") no-repeat;
+}
+
 /* ── Hero banner ─────────────────────────────────────────────────────────── */
 
 .hero--primary {

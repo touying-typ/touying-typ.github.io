@@ -20,9 +20,9 @@ function HomepageHeader() {
             alt="Touying Logo"
             className={styles.heroLogo}
           />
-          <Heading as="h1" className={styles.heroTitle}>
+          {/* <Heading as="h1" className={styles.heroTitle}>
             {siteConfig.title}
-          </Heading>
+          </Heading> */}
           <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
           <div className={styles.heroButtons}>
             <Link
