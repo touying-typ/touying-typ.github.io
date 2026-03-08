@@ -49,7 +49,7 @@ const FeatureList = [
         custom drawings with no extra tooling.
       </>
     ),
-    link: '/docs/dynamic/simple',
+    link: '/docs/tutorials/dynamic/simple',
     linkLabel: 'Learn more',
   },
   {
