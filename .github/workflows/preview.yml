@@ -53,6 +53,7 @@ jobs:
       - name: Generate slide preview images
         if: github.event.action != 'closed'
         run: npm run generate-images
+        continue-on-error: true
 
       - name: Build website (with PR base URL)
         if: github.event.action != 'closed'

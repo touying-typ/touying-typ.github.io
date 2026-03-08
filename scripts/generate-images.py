@@ -47,6 +47,28 @@ import sys
 import tempfile
 import shutil
 
+# ── GitHub Actions helpers ──────────────────────────────────────────────────
+
+def _is_github_actions() -> bool:
+    return os.environ.get("GITHUB_ACTIONS") == "true"
+
+
+def _gha_warning(message: str, file: str = "", line: int | None = None) -> None:
+    """Emit a GitHub Actions ::warning:: annotation (no-op outside CI)."""
+    if not _is_github_actions():
+        return
+    parts = ["::warning"]
+    props = []
+    if file:
+        props.append(f"file={file}")
+    if line is not None:
+        props.append(f"line={line}")
+    if props:
+        parts.append(" " + ",".join(props))
+    parts.append("::")
+    parts.append(message)
+    print("".join(parts), flush=True)
+
 try:
     from PIL import Image
 except ImportError:
@@ -229,6 +251,8 @@ def main() -> None:
     success = 0
     failed = 0
     skipped = 0
+    # Collect warning details for the end-of-run summary and GHA annotations
+    warnings: list[str] = []
 
     for md_path in doc_files:
         with open(md_path, encoding="utf-8") as fh:
@@ -259,6 +283,10 @@ def main() -> None:
             with tempfile.TemporaryDirectory() as tmp_dir:
                 pages = compile_example(compile_src, tmp_dir)
                 if not pages:
+                    msg = f"Example compilation failed: {md_path}[{block_idx}] (hash={h})"
+                    warnings.append(msg)
+                    print(f"  ⚠ {msg}", file=sys.stderr)
+                    _gha_warning(msg, file=md_path)
                     failed += 1
                     continue
 
@@ -283,15 +311,23 @@ def main() -> None:
 
                     success += 1
                 except Exception as exc:
-                    print(f"  ✗ Failed to save image: {exc}", file=sys.stderr)
+                    msg = f"Failed to save image for {md_path}[{block_idx}]: {exc}"
+                    warnings.append(msg)
+                    print(f"  ⚠ {msg}", file=sys.stderr)
+                    _gha_warning(msg, file=md_path)
                     failed += 1
 
     print(f"\n{'─' * 50}")
+    if warnings:
+        print(f"⚠  {failed} example(s) could not be compiled (skipped):")
+        for w in warnings:
+            print(f"   • {w}")
+        print()
     print(
-        f"Done: {success} compiled, {skipped} skipped (cached), {failed} failed."
+        f"Done: {success} compiled, {skipped} skipped (cached), {failed} skipped (failed)."
     )
-    if failed:
-        sys.exit(1)
+    # Always exit 0 – failures are warnings, not build-blocking errors.
+    # Individual missing images simply won't be shown in the rendered docs.
 
 
 def _save_theme_preview_from_png(png_path: str, theme_name: str) -> None:

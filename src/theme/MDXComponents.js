@@ -11,6 +11,7 @@ import {
   SourceLink,
   TypeLink,
 } from '@site/src/components/Docs/FunctionDocumentation.js';
+import PreviewedCode from '@site/src/components/PreviewedCode/index.js';
 
 export default {
   ...MDXComponents,
@@ -23,4 +24,5 @@ export default {
   SourceLink,
   Default,
   TypeLink,
+  PreviewedCode,
 };

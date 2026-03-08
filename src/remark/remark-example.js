@@ -117,8 +117,16 @@ const plugin = () => {
         });
       }
 
-      // Replace the single ``example`` node with one or two nodes
-      parent.children.splice(index, 1, ...newNodes);
+      // Wrap in PreviewedCode so code and image render side-by-side
+      const previewedCodeNode = {
+        type: "mdxJsxFlowElement",
+        name: "PreviewedCode",
+        attributes: [],
+        children: newNodes,
+      };
+
+      // Replace the single ``example`` node with the wrapped component
+      parent.children.splice(index, 1, previewedCodeNode);
     }
   };
 
