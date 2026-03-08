@@ -3,8 +3,9 @@
 Generate preview images for Touying slide themes.
 
 For each .typ file in src/typst/, compile it with Typst to produce per-page PNG
-images, then stitch all pages together side-by-side (2 columns) with a light-grey
-background and gutters.  The combined image is written to:
+images.  If only one page is produced, save it directly (no composite).  If
+multiple pages are produced, stitch them together side-by-side (2 columns) with a
+light-grey background and gutters.  The output is written to:
 
     static/img/typst-generated/<relative-path>.png
 
@@ -151,12 +152,19 @@ def main() -> None:
             print(f"  ✓ Compiled {len(pages)} page(s)")
 
             try:
-                composite = stitch_pages(pages)
-                composite.save(out_path)
-                print(f"  ✓ Saved composite image ({composite.width}×{composite.height})")
+                if len(pages) == 1:
+                    # Single page: copy directly without composite background
+                    import shutil
+                    shutil.copy2(pages[0], out_path)
+                    img = Image.open(out_path)
+                    print(f"  ✓ Saved single-page image ({img.width}×{img.height})")
+                else:
+                    composite = stitch_pages(pages)
+                    composite.save(out_path)
+                    print(f"  ✓ Saved composite image ({composite.width}×{composite.height})")
                 success += 1
             except Exception as exc:
-                print(f"  ✗ Failed to stitch pages: {exc}", file=sys.stderr)
+                print(f"  ✗ Failed to save image: {exc}", file=sys.stderr)
                 failed += 1
 
     print(f"\n{'─'*50}")

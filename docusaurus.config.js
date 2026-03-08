@@ -59,6 +59,7 @@ const config = {
         },
         blog: {
           showReadingTime: true,
+          blogSidebarTitle: 'Recent News',
           editUrl: 'https://github.com/touying-typ/touying-typ.github.io/tree/main/',
         },
         theme: {
@@ -85,7 +86,8 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/themes', label: 'Themes', position: 'left'},
+          {to: '/blog', label: 'News', position: 'left'},
           {
             type: 'localeDropdown',
             position: 'right',
@@ -129,7 +131,8 @@ const config = {
           {
             title: 'More',
             items: [
-              { label: 'Blog',      to: '/blog' },
+              { label: 'News',      to: '/blog' },
+              { label: 'Themes',    to: '/themes' },
               { label: 'GitHub',    href: 'https://github.com/touying-typ/touying' },
               { label: 'Changelog', to: '/docs/changelog' },
             ],
