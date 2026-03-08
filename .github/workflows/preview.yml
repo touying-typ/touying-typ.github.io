@@ -42,13 +42,17 @@ jobs:
         if: github.event.action != 'closed'
         run: npm ci
 
-      - name: Generate slide preview images
+      - name: Copy docs from touying submodule
         if: github.event.action != 'closed'
-        run: npm run generate-images
+        run: npm run copy-docs
 
       - name: Generate API reference documentation
         if: github.event.action != 'closed'
         run: npm run generate-docs
+
+      - name: Generate slide preview images
+        if: github.event.action != 'closed'
+        run: npm run generate-images
 
       - name: Build website (with PR base URL)
         if: github.event.action != 'closed'
