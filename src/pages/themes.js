@@ -11,7 +11,7 @@ const THEMES = [
     name: 'Simple',
     description:
       "A clean, minimal theme originating from Polylux. Great for any presentation where you want the content to shine.",
-    image: '/img/typst-generated/themes/simple.png',
+    image: '/img/themes/simple.png',
     docLink: '/docs/themes/simple',
   },
   {
@@ -19,7 +19,7 @@ const THEMES = [
     name: 'Metropolis',
     description:
       "Inspired by Matthias Vogelgesang's Metropolis Beamer theme. Elegant and suitable for everyday academic use.",
-    image: '/img/typst-generated/themes/metropolis.png',
+    image: '/img/themes/metropolis.png',
     docLink: '/docs/themes/metropolis',
   },
   {
@@ -27,7 +27,7 @@ const THEMES = [
     name: 'Dewdrop',
     description:
       "Features elegant navigation with two modes: sidebar and mini-slides. Inspired by the BeamerTheme project.",
-    image: '/img/typst-generated/themes/dewdrop.png',
+    image: '/img/themes/dewdrop.png',
     docLink: '/docs/themes/dewdrop',
   },
   {
@@ -35,7 +35,7 @@ const THEMES = [
     name: 'University',
     description:
       'An aesthetically pleasing theme courtesy of Pol Dellaiera. Well-suited for academic or institutional presentations.',
-    image: '/img/typst-generated/themes/university.png',
+    image: '/img/themes/university.png',
     docLink: '/docs/themes/university',
   },
   {
@@ -43,7 +43,7 @@ const THEMES = [
     name: 'Aqua',
     description:
       "Created by @pride7, featuring beautiful backgrounds made with Typst's built-in visualization capabilities.",
-    image: '/img/typst-generated/themes/aqua.png',
+    image: '/img/themes/aqua.png',
     docLink: '/docs/themes/aqua',
   },
   {
@@ -51,7 +51,7 @@ const THEMES = [
     name: 'Stargazer',
     description:
       'Originally created by Coekjan for the touying-buaa project. Versatile and visually striking.',
-    image: '/img/typst-generated/themes/stargazer.png',
+    image: '/img/themes/stargazer.png',
     docLink: '/docs/themes/stargazer',
   },
 ];

@@ -8,8 +8,8 @@
 .docusaurus
 .cache-loader
 
-# Typst-generated images (regenerated in CI)
-/static/img/typst-generated
+# Typst-generated images (regenerated in CI; pre-generated copies are committed as fallback)
+# /static/img/typst-generated
 
 # Misc
 .DS_Store

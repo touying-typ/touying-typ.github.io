@@ -9,6 +9,9 @@ light-grey background and gutters.  The output is written to:
 
     static/img/typst-generated/<relative-path>.png
 
+Theme preview images (src/typst/themes/*.typ) are additionally saved as single
+first-page previews to static/img/themes/<name>.png for use on the Themes page.
+
 Usage:
     python scripts/generate-images.py
 
@@ -22,6 +25,7 @@ import glob
 import subprocess
 import sys
 import tempfile
+import shutil
 
 try:
     from PIL import Image
@@ -31,13 +35,14 @@ except ImportError:
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-SOURCE_DIR   = "src/typst"
-DEST_DIR     = "static/img/typst-generated"
-COLUMNS      = 2          # pages per row in the composite image
-GUTTER       = 24         # px gap between pages and around the border
-BACKGROUND   = (240, 240, 240)  # light-grey background colour (RGB)
-PAGE_SCALE   = 2          # typst --ppi factor (144 ppi = 2× the default 72)
-PPI          = 144        # dots per inch passed to typst
+SOURCE_DIR        = "src/typst"
+DEST_DIR          = "static/img/typst-generated"
+THEMES_PREVIEW_DIR = "static/img/themes"  # committed theme preview images
+COLUMNS           = 2          # pages per row in the composite image
+GUTTER            = 24         # px gap between pages and around the border
+BACKGROUND        = (240, 240, 240)  # light-grey background colour (RGB)
+PAGE_SCALE        = 2          # typst --ppi factor (144 ppi = 2× the default 72)
+PPI               = 144        # dots per inch passed to typst
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -154,7 +159,6 @@ def main() -> None:
             try:
                 if len(pages) == 1:
                     # Single page: copy directly without composite background
-                    import shutil
                     shutil.copy2(pages[0], out_path)
                     img = Image.open(out_path)
                     print(f"  ✓ Saved single-page image ({img.width}×{img.height})")
@@ -162,6 +166,16 @@ def main() -> None:
                     composite = stitch_pages(pages)
                     composite.save(out_path)
                     print(f"  ✓ Saved composite image ({composite.width}×{composite.height})")
+
+                # Theme files: also save first-page preview to the committed directory
+                themes_source = os.path.join(SOURCE_DIR, "themes")
+                if os.path.abspath(os.path.dirname(typ_file)) == os.path.abspath(themes_source):
+                    os.makedirs(THEMES_PREVIEW_DIR, exist_ok=True)
+                    theme_name = os.path.splitext(os.path.basename(typ_file))[0]
+                    theme_preview = os.path.join(THEMES_PREVIEW_DIR, f"{theme_name}.png")
+                    shutil.copy2(pages[0], theme_preview)
+                    print(f"  ✓ Saved theme preview → {theme_preview}")
+
                 success += 1
             except Exception as exc:
                 print(f"  ✗ Failed to save image: {exc}", file=sys.stderr)

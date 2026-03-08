@@ -14,7 +14,7 @@ function HomepageHeader() {
       <div className="container">
         <div className={styles.heroInner}>
           <img
-            src="/img/logo.png"
+            src="/img/logo-hero.png"
             alt="Touying Logo"
             className={styles.heroLogo}
           />
