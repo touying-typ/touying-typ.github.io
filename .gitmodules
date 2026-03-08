@@ -1,0 +1,3 @@
+[submodule "touying"]
+	path = touying
+	url = https://github.com/touying-typ/touying

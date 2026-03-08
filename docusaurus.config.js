@@ -88,6 +88,7 @@ const config = {
           },
           {to: '/blog', label: 'News', position: 'left'},
           {to: '/themes', label: 'Themes', position: 'left'},
+          {to: '/docs/reference', label: 'Reference', position: 'left'},
           {
             type: 'localeDropdown',
             position: 'right',
