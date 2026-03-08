@@ -69,6 +69,33 @@ def _gha_warning(message: str, file: str = "", line: int | None = None) -> None:
     parts.append(message)
     print("".join(parts), flush=True)
 
+
+def _gha_write_step_summary(warnings: list[tuple[str, str]]) -> None:
+    """
+    Write a Markdown warning block to the GitHub Actions step summary.
+    This creates a visible "PR merge risk" notice in the workflow run page
+    and in the PR checks panel.
+    """
+    summary_file = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not summary_file:
+        return
+    try:
+        with open(summary_file, "a", encoding="utf-8") as fh:
+            fh.write("\n## ⚠️ Image Generation Warnings\n\n")
+            fh.write(
+                "> [!WARNING]\n"
+                "> Some Typst example blocks could not be compiled.  "
+                "The corresponding preview images are missing from the documentation.  "
+                "**Review these failures before merging.**\n\n"
+            )
+            fh.write("| File | Details |\n")
+            fh.write("| ---- | ------- |\n")
+            for file_, detail in warnings:
+                fh.write(f"| `{file_}` | {detail} |\n")
+            fh.write("\n")
+    except Exception as exc:
+        print(f"  ⚠ Could not write step summary: {exc}", file=sys.stderr)
+
 try:
     from PIL import Image
 except ImportError:
@@ -283,10 +310,11 @@ def main() -> None:
             with tempfile.TemporaryDirectory() as tmp_dir:
                 pages = compile_example(compile_src, tmp_dir)
                 if not pages:
-                    msg = f"Example compilation failed: {md_path}[{block_idx}] (hash={h})"
-                    warnings.append(msg)
-                    print(f"  ⚠ {msg}", file=sys.stderr)
-                    _gha_warning(msg, file=md_path)
+                    detail = f"block [{block_idx}] (hash={h}) — typst compilation failed"
+                    msg = f"{md_path}[{block_idx}] (hash={h})"
+                    warnings.append((md_path, detail))
+                    print(f"  ⚠ Example compilation failed: {msg}", file=sys.stderr)
+                    _gha_warning(f"Example compilation failed: {msg}", file=md_path)
                     failed += 1
                     continue
 
@@ -311,18 +339,21 @@ def main() -> None:
 
                     success += 1
                 except Exception as exc:
-                    msg = f"Failed to save image for {md_path}[{block_idx}]: {exc}"
-                    warnings.append(msg)
-                    print(f"  ⚠ {msg}", file=sys.stderr)
-                    _gha_warning(msg, file=md_path)
+                    detail = f"block [{block_idx}] (hash={h}) — failed to save image: {exc}"
+                    msg = f"{md_path}[{block_idx}]: {exc}"
+                    warnings.append((md_path, detail))
+                    print(f"  ⚠ Failed to save image for {msg}", file=sys.stderr)
+                    _gha_warning(f"Failed to save image: {msg}", file=md_path)
                     failed += 1
 
     print(f"\n{'─' * 50}")
     if warnings:
         print(f"⚠  {failed} example(s) could not be compiled (skipped):")
-        for w in warnings:
-            print(f"   • {w}")
+        for file_, detail in warnings:
+            print(f"   • {file_}: {detail}")
         print()
+        # Emit a step summary so the warning is visible in PR checks
+        _gha_write_step_summary(warnings)
     print(
         f"Done: {success} compiled, {skipped} skipped (cached), {failed} skipped (failed)."
     )
