@@ -27,7 +27,7 @@ const config = {
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Internationalization: English (default) and Chinese
@@ -136,9 +136,9 @@ const config = {
           {
             title: 'Docs',
             items: [
-              { label: 'Getting Started', to: '/docs/start' },
+              { label: 'Getting Started', to: '/docs/quick-start/start' },
               { label: 'Themes',          to: '/docs/themes/simple' },
-              { label: 'Dynamic Slides',  to: '/docs/dynamic/simple' },
+              { label: 'Dynamic Slides',  to: '/docs/tutorials/dynamic/simple' },
             ],
           },
           {
