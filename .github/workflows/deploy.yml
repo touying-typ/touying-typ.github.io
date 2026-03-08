@@ -42,11 +42,15 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
-      - name: Generate slide preview images
-        run: npm run generate-images
+      - name: Copy docs from touying submodule
+        run: npm run copy-docs
 
       - name: Generate API reference documentation
         run: npm run generate-docs
+
+      - name: Generate slide preview images
+        run: npm run generate-images
+        continue-on-error: true
 
       - name: Build website
         run: npm run build

@@ -83,4 +83,27 @@
 .typeLink {
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.85em;
+  display: inline-block;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  background: var(--ifm-code-background);
+  padding: 0.05em 0.35em;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.typeLink:global(a) {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.typeLink:global(a):hover {
+  text-decoration: underline;
+}
+
+.typeLink code {
+  font-size: inherit;
+  padding: 0;
+  border: none;
+  background: none;
 }

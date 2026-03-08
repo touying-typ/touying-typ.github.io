@@ -57,7 +57,7 @@ export const TypeLink = ({ type }) => {
       </a>
     );
   }
-  return <code>{type}</code>;
+  return <span className={styles.typeLink}><code>{type}</code></span>;
 };
 
 export const Signature = ({ children }) => (

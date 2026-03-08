@@ -6,6 +6,7 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 import { light as typstLight, dark as typstDark } from './src/theme/typst.js';
+import remarkExample from './src/remark/remark-example.js';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -53,10 +54,21 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/touying-typ/touying-typ.github.io/tree/main/',
+          // Docs are sourced from the touying submodule (touying/docs/{en,zh}/).
+          // Reference pages (docs/reference/**) are auto-generated from the
+          // submodule source and have no corresponding editable file here.
+          editUrl: ({ locale, docPath }) => {
+            if (docPath.startsWith('reference/')) {
+              // Auto-generated – no "Edit this page" link
+              return undefined;
+            }
+            const lang = locale === 'zh' ? 'zh' : 'en';
+            return `https://github.com/touying-typ/touying/tree/main/docs/${lang}/${docPath}`;
+          },
           // Single version – no versioning drop-down
           disableVersioning: true,
           includeCurrentVersion: true,
+          beforeDefaultRemarkPlugins: [remarkExample],
         },
         blog: {
           showReadingTime: true,

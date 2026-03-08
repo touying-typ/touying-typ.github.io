@@ -35,8 +35,10 @@ import sys
 # ── Configuration ─────────────────────────────────────────────────────────────
 
 TOUYING_SRC = "touying/src"
+TOUYING_THEMES = "touying/themes"
 OUTPUT_DIR = "docs/reference"
 GITHUB_SRC_BASE = "https://github.com/touying-typ/touying/blob/main/src"
+GITHUB_THEMES_BASE = "https://github.com/touying-typ/touying/blob/main/themes"
 
 # Source files to document, in order (name → display title)
 SOURCE_FILES = [
@@ -47,6 +49,16 @@ SOURCE_FILES = [
     ("utils.typ", "Utils", "Utility functions used throughout Touying."),
     ("magic.typ", "Magic", "Show-rule helpers that enhance Typst behaviour."),
     ("pdfpc.typ", "Pdfpc", "Functions for generating pdfpc presenter metadata."),
+]
+
+# Theme files to document, in order (file → display title → description)
+THEME_FILES = [
+    ("aqua.typ", "Aqua", "Clean blue-toned presentation theme."),
+    ("dewdrop.typ", "Dewdrop", "A fresh, minimal theme inspired by morning dewdrops."),
+    ("metropolis.typ", "Metropolis", "A minimal, modern theme inspired by the Metropolis Beamer theme."),
+    ("simple.typ", "Simple", "A simple, no-frills presentation theme."),
+    ("stargazer.typ", "Stargazer", "A dark, star-themed presentation theme."),
+    ("university.typ", "University", "A clean, professional university-style theme."),
 ]
 
 
@@ -617,7 +629,7 @@ def _build_signature_components(
     return "\n".join(lines)
 
 
-def definition_to_mdx(defn: dict, source_file: str) -> str:
+def definition_to_mdx(defn: dict, source_file: str, github_base: str = GITHUB_SRC_BASE) -> str:
     """Convert a parsed definition dict to MDX content (without front matter)."""
     name = defn["name"]
     description = typ_to_md(defn["description"]) if defn["description"] else ""
@@ -627,7 +639,7 @@ def definition_to_mdx(defn: dict, source_file: str) -> str:
     is_function = defn["is_function"]
     line = defn["line"]
 
-    src_url = f"{GITHUB_SRC_BASE}/{source_file}#L{line}"
+    src_url = f"{github_base}/{source_file}#L{line}"
 
     # For the signature, skip _default sentinel values
     clean_sig_params = []
@@ -722,6 +734,7 @@ def generate_function_page(
     defn: dict,
     source_file: str,
     sidebar_position: int,
+    github_base: str = GITHUB_SRC_BASE,
 ) -> str:
     """Generate a full MDX page for a single function definition."""
     name = defn["name"]
@@ -739,7 +752,7 @@ def generate_function_page(
     lines.append("")
 
     # ── Page body ────────────────────────────────────────────────────────────
-    lines.append(definition_to_mdx(defn, source_file))
+    lines.append(definition_to_mdx(defn, source_file, github_base=github_base))
 
     return "\n".join(lines)
 
@@ -796,13 +809,21 @@ def main() -> None:
         "This section contains the auto-generated API reference for Touying, "
         "derived from the doc comments in the Typst source files.",
         "",
+        "## Core Modules",
+        "",
     ]
     for _, title, description in SOURCE_FILES:
+        index_lines.append(f"- **{title}** – {description}")
+    index_lines.append("")
+    index_lines.append("## Themes")
+    index_lines.append("")
+    for _, title, description in THEME_FILES:
         index_lines.append(f"- **{title}** – {description}")
     index_lines.append("")
     with open(os.path.join(OUTPUT_DIR, "index.md"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(index_lines))
 
+    # ── Core source modules ───────────────────────────────────────────────────
     for pos, (source_file, title, description) in enumerate(SOURCE_FILES, start=1):
         src_path = os.path.join(TOUYING_SRC, source_file)
         if not os.path.isfile(src_path):
@@ -846,7 +867,70 @@ def main() -> None:
 
         print(f"  → Written {len(definitions)} page(s) to '{module_dir}/'")
 
-    print(f"\nDone. Reference pages written to '{OUTPUT_DIR}/'.")
+    # ── Theme files ───────────────────────────────────────────────────────────
+    # Create an umbrella themes/ category under docs/reference/themes/
+    themes_ref_dir = os.path.join(OUTPUT_DIR, "themes")
+    os.makedirs(themes_ref_dir, exist_ok=True)
+
+    themes_cat_path = os.path.join(themes_ref_dir, "_category_.json")
+    themes_start_pos = len(SOURCE_FILES) + 1
+    with open(themes_cat_path, "w", encoding="utf-8") as fh:
+        fh.write(
+            '{\n'
+            '  "label": "Themes",\n'
+            f'  "position": {themes_start_pos},\n'
+            '  "link": {\n'
+            '    "type": "generated-index",\n'
+            '    "description": "API reference for Touying built-in themes."\n'
+            '  }\n'
+            '}\n'
+        )
+
+    for th_pos, (theme_file, title, description) in enumerate(THEME_FILES, start=1):
+        src_path = os.path.join(TOUYING_THEMES, theme_file)
+        if not os.path.isfile(src_path):
+            print(f"Warning: '{src_path}' not found, skipping.", file=sys.stderr)
+            continue
+
+        print(f"Processing {theme_file} …", end="  ")
+        definitions = parse_file(src_path)
+        print(f"{len(definitions)} documented function(s) found.")
+
+        # Subdirectory per theme: docs/reference/themes/<theme>/
+        theme_id = os.path.splitext(theme_file)[0]  # e.g. "aqua"
+        theme_dir = os.path.join(themes_ref_dir, theme_id)
+        os.makedirs(theme_dir, exist_ok=True)
+
+        # Write the theme's _category_.json
+        cat_json_path = os.path.join(theme_dir, "_category_.json")
+        with open(cat_json_path, "w", encoding="utf-8") as fh:
+            fh.write(
+                '{\n'
+                f'  "label": "{title}",\n'
+                f'  "position": {th_pos},\n'
+                '  "link": {\n'
+                '    "type": "generated-index",\n'
+                f'    "description": "{description}"\n'
+                '  }\n'
+                '}\n'
+            )
+
+        # Write one .mdx file per function
+        for fn_pos, defn in enumerate(definitions, start=1):
+            fn_name = defn["name"]
+            page_content = generate_function_page(
+                defn=defn,
+                source_file=theme_file,
+                sidebar_position=fn_pos,
+                github_base=GITHUB_THEMES_BASE,
+            )
+            out_path = os.path.join(theme_dir, fn_name + ".mdx")
+            with open(out_path, "w", encoding="utf-8") as fh:
+                fh.write(page_content)
+
+        print(f"  → Written {len(definitions)} page(s) to '{theme_dir}/'")
+
+    print(f"\nDone. Reference pages written to '{OUTPUT_DIR}'.")
 
 
 if __name__ == "__main__":
