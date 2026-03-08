@@ -12,16 +12,43 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Touying Tutorial - 10min ⏱️
-          </Link>
+        <div className={styles.heroInner}>
+          <img
+            src="/img/logo.png"
+            alt="Touying Logo"
+            className={styles.heroLogo}
+          />
+          <Heading as="h1" className={styles.heroTitle}>
+            {siteConfig.title}
+          </Heading>
+          <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
+          <div className={styles.heroButtons}>
+            <Link
+              className="button button--secondary button--lg"
+              to="/docs/start">
+              Get Started →
+            </Link>
+            <Link
+              className={clsx('button button--outline button--lg', styles.heroButtonOutline)}
+              to="https://github.com/touying-typ/touying">
+              View on GitHub
+            </Link>
+          </div>
+          <p className={styles.heroBadges}>
+            <a href="https://typst.app/universe/package/touying">
+              <img
+                src="https://img.shields.io/badge/typst-universe-239dad?logo=typst&logoColor=white"
+                alt="Typst Universe"
+              />
+            </a>
+            {' '}
+            <a href="https://github.com/touying-typ/touying/stargazers">
+              <img
+                src="https://img.shields.io/github/stars/touying-typ/touying?style=flat&logo=github"
+                alt="GitHub Stars"
+              />
+            </a>
+          </p>
         </div>
       </div>
     </header>
@@ -32,8 +59,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title} in Typst`}
-      description="Touying in Typst">
+      title={siteConfig.title}
+      description="Touying – powerful slide creation in Typst">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

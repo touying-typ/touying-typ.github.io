@@ -9,34 +9,40 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Touying',
-  tagline: 'Creating slides in Typst',
+  tagline: 'Powerful Slides in Typst',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://touying-typ.github.io/',
+  url: 'https://touying-typ.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'touying-typ', // Usually your GitHub org/user name.
-  projectName: 'touying', // Usually your repo name.
+  organizationName: 'touying-typ',
+  projectName: 'touying-typ.github.io',
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // Internationalization: English (default) and Chinese
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'zh'],
+    localeConfigs: {
+      en: { label: 'English' },
+      zh: { label: '中文' },
+    },
   },
 
-  plugins: [[ require.resolve('docusaurus-lunr-search'), {
-    languages: ['en', 'zh'] // language codes
-  }]],
+  plugins: [
+    [
+      require.resolve('docusaurus-lunr-search'),
+      { languages: ['en', 'zh'] },
+    ],
+  ],
 
   presets: [
     [
@@ -45,17 +51,14 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/touying-typ/touying/tree/main/docs/',
+          editUrl: 'https://github.com/touying-typ/touying-typ.github.io/tree/main/',
+          // Single version – no versioning drop-down
+          disableVersioning: true,
+          includeCurrentVersion: true,
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/touying-typ/touying/tree/main/docs/',
+          editUrl: 'https://github.com/touying-typ/touying-typ.github.io/tree/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -67,7 +70,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: 'Touying',
@@ -80,22 +82,18 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            type: 'docsVersionDropdown',
-            position: 'right',
-            dropdownActiveClassDisabled: true,
-          },
           {
             type: 'localeDropdown',
             position: 'right',
           },
           {
             href: 'https://github.com/touying-typ/touying',
-            label: 'GitHub',
             position: 'right',
+            className: 'navbar--github-link',
+            'aria-label': 'GitHub repository',
           },
           {
             type: 'search',
@@ -103,9 +101,48 @@ const config = {
           },
         ],
       },
+      footer: {
+        style: 'dark',
+        links: [
+          {
+            title: 'Docs',
+            items: [
+              { label: 'Getting Started', to: '/docs/start' },
+              { label: 'Themes',          to: '/docs/themes/simple' },
+              { label: 'Dynamic Slides',  to: '/docs/dynamic/simple' },
+            ],
+          },
+          {
+            title: 'Community',
+            items: [
+              {
+                label: 'GitHub Discussions',
+                href: 'https://github.com/touying-typ/touying/discussions',
+              },
+              {
+                label: 'Typst Universe',
+                href: 'https://typst.app/universe/package/touying',
+              },
+            ],
+          },
+          {
+            title: 'More',
+            items: [
+              { label: 'Blog',      to: '/blog' },
+              { label: 'GitHub',    href: 'https://github.com/touying-typ/touying' },
+              { label: 'Changelog', to: '/docs/changelog' },
+            ],
+          },
+        ],
+        copyright: `© ${new Date().getFullYear()} Touying Contributors`,
+      },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['bash', 'diff'],
+      },
+      colorMode: {
+        respectPrefersColorScheme: true,
       },
     }),
 };
