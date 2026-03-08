@@ -13,8 +13,8 @@ An example:
 ```typst
 #import "@preview/touying:0.6.1": *
 #import themes.metropolis: *
-#import "@preview/cetz:0.3.2"
-#import "@preview/fletcher:0.5.5" as fletcher: node, edge
+#import "@preview/cetz:0.4.2"
+#import "@preview/fletcher:0.5.8" as fletcher: node, edge
 
 // cetz and fletcher bindings for touying
 #let cetz-canvas = touying-reducer.with(reduce: cetz.canvas, cover: cetz.draw.hide.with(bounds: true))
@@ -73,15 +73,18 @@ An example:
 In fact, we can also use `only` and `uncover` within CeTZ, but it requires a bit of technique:
 
 ```typst
+#import "@preview/touying:0.6.1": *
+#import "@preview/cetz:0.4.2"
+#show: themes.simple.simple-theme.with(aspect-ratio: "16-9")
+
 #slide(repeat: 3, self => [
-  #let (uncover, only) = utils.methods(self)
 
   Cetz in Touying in subslide #self.subslide:
 
   #cetz.canvas({
     import cetz.draw: *
-    let self = (self.methods.update-cover)(self: self, hide.with(bounds: true))
-    let (uncover,) = utils.methods(self)
+    let self = utils.merge-dicts(self, config-methods(cover: utils.method-wrapper(hide.with(bounds: true))))
+    let (uncover, only, alternatives) = utils.methods(self)
     
     rect((0,0), (5,5))
 
