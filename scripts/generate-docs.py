@@ -536,9 +536,34 @@ def _sanitize_mdx_content(text: str) -> str:
 
 def _safe_description_for_frontmatter(description: str) -> str:
     """Return the first sentence of a description, safe for use in YAML."""
-    first_sentence = description.split(".")[0].strip() + "."
-    # Remove inline code backticks so the YAML value is plain text
-    plain = re.sub(r"`([^`]*)`", r"\1", first_sentence)
+    # Find the first ". " or ".\n" that is outside backtick spans.
+    # This avoids cutting inside URLs (e.g. https://foo.bar) or code spans.
+    parts = description.split("`")
+    pos = 0
+    first_sentence = None
+    for i, chunk in enumerate(parts):
+        if i % 2 == 0:  # outside a backtick span
+            # Look for ". " (period + space) or ".\n" (period + newline)
+            m = re.search(r"\.([ \n])", chunk)
+            if m:
+                first_sentence = description[: pos + m.start() + 1]
+                break
+        pos += len(chunk) + 1  # +1 for the backtick
+
+    if first_sentence is None:
+        # No sentence boundary found – use the full description (stripped)
+        first_sentence = description
+
+    # Strip markdown formatting for the plain YAML value:
+    # - Remove inline code backticks: `foo` → foo
+    # - Remove markdown links: [text](url) → text
+    plain = re.sub(r"`([^`]*)`", r"\1", first_sentence).strip()
+    plain = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", plain)
+    # Remove any newlines / extra whitespace
+    plain = re.sub(r"\s+", " ", plain).strip()
+    # Truncate if still too long
+    if len(plain) > 120:
+        plain = plain[:117] + "..."
     # Escape double quotes
     return plain.replace('"', "'")
 
