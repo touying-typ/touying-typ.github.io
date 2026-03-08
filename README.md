@@ -1,3 +1,75 @@
-# Touying Documentation
+# Touying
 
-Link: https://touying-typ.github.io/
+[![typst universe](https://img.shields.io/badge/typst-universe-239dad?logo=typst&logoColor=white)](https://typst.app/universe/package/touying)
+[![GitHub Stars](https://img.shields.io/github/stars/touying-typ/touying?style=flat&logo=github)](https://github.com/touying-typ/touying/stargazers)
+[![License](https://img.shields.io/github/license/touying-typ/touying)](https://github.com/touying-typ/touying/blob/main/LICENSE)
+
+This repository hosts the documentation of [Touying](https://github.com/touying-typ/touying) —
+a powerful slide-creation package for [Typst](https://typst.app/).
+
+🌐 **Website:** https://touying-typ.github.io/
+
+---
+
+## Dependencies
+
+- [Node.js](https://nodejs.org/) >= 18
+- [Python](https://www.python.org/) >= 3.8 with [Pillow](https://pypi.org/project/Pillow/) (`pip install Pillow`)
+- [Typst](https://github.com/typst/typst) (for generating slide preview images)
+
+## Local Development
+
+Clone the repository and install dependencies:
+
+```sh
+git clone https://github.com/touying-typ/touying-typ.github.io
+cd touying-typ.github.io
+npm install
+pip install Pillow
+```
+
+Generate the slide preview images (requires Typst on `$PATH`):
+
+```sh
+npm run generate-images
+```
+
+Start the local dev server:
+
+```sh
+npm run start
+```
+
+The site will be available at http://localhost:3000.
+For the Chinese locale, run:
+
+```sh
+npm run start -- --locale zh
+```
+
+## Build
+
+```sh
+npm run build
+```
+
+The static output will be in the `build/` directory.
+
+## Generating Slide Preview Images
+
+The script `scripts/generate-images.py` compiles every `.typ` file under
+`src/typst/` with Typst and stitches the resulting per-page PNG images into a
+single composite:
+
+- Pages are arranged **2 per row** with a light-grey background and gutters.
+- The composite is saved to `static/img/typst-generated/`.
+
+This is run automatically in CI before the build step.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or pull request on
+[GitHub](https://github.com/touying-typ/touying-typ.github.io).
+
+Pull requests automatically get a **preview deployment** — look for the
+bot comment on your PR with a link to the live preview.

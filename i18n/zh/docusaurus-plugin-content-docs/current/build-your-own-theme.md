@@ -288,7 +288,7 @@ config-methods(alert: utils.alert-with-primary-color)
 A slide with a title and an *important* information.
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/d33bcda7-c032-4b11-b392-5b939d9a0a47)
+![bamboo theme basic example](/img/typst-generated/build-your-own-theme/bamboo-basic.png)
 
 
 ## 自定义特殊 Slide
@@ -446,7 +446,7 @@ A slide with a title and an *important* information.
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/03c5ad02-8ff4-4068-9664-d9cfad79baaf)
+![bamboo theme complete example](/img/typst-generated/build-your-own-theme/bamboo-complete.png)
 
 
 ## 总结

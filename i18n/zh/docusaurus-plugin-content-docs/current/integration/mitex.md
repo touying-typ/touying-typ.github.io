@@ -23,7 +23,7 @@ Also block equations (this case is from #text(blue.lighten(20%), link("https://k
 `)
 ```
 
-![image](https://github.com/mitex-rs/mitex/assets/34951714/c425b2ae-b50b-46a8-a451-4d9e8e70626b)
+![MiTeX equation rendering](/img/typst-generated/integration/mitex.png)
 
 Touying 也提供了一个 `touying-mitex` 函数，用法如
 

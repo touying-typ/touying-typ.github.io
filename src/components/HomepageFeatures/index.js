@@ -1,48 +1,95 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    icon: '✍️',
+    title: 'Concise Syntax',
     description: (
       <>
-        Touying provides two different ways to compose slides, based on headings and based on slide blocks.
-        You can choose the style you prefer, simple yet powerful.
+        Write presentations in Typst's clean, expressive markup language.
+        Structure your slides with headings or <code>#slide[…]</code> blocks —
+        pick the style that suits you.
       </>
     ),
   },
   {
+    icon: '⚡',
+    title: 'Lightning Fast',
+    description: (
+      <>
+        Typst compiles in <strong>milliseconds</strong>. Live previews update
+        as you type, giving you the instant feedback that LaTeX Beamer
+        could never provide.
+      </>
+    ),
+  },
+  {
+    icon: '🎨',
+    title: 'Beautiful Themes',
+    description: (
+      <>
+        Choose from a growing collection of professionally designed themes —
+        Simple, University, Metropolis, Dewdrop, Aqua, Stargazer — or build
+        your own.
+      </>
+    ),
+    link: '/docs/themes/simple',
+    linkLabel: 'Browse themes',
+  },
+  {
+    icon: '🎬',
     title: 'Dynamic Slides',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Touying offers markers such as <code>#pause</code> and <code>#meanwhile</code>,
-        allowing you to easily compose dynamic slides, including but not limited to text, lists, and math equations.
+        Reveal content step-by-step with <code>#pause</code> and
+        {' '}<code>#meanwhile</code>. Animate text, lists, equations and
+        custom drawings with no extra tooling.
+      </>
+    ),
+    link: '/docs/dynamic/simple',
+    linkLabel: 'Learn more',
+  },
+  {
+    icon: '🔢',
+    title: 'First-class Math',
+    description: (
+      <>
+        Typst's built-in math mode renders beautiful equations natively.
+        No external packages, no compromises.
       </>
     ),
   },
   {
-    title: 'Powered by Typst',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    icon: '🔌',
+    title: 'Rich Ecosystem',
     description: (
       <>
-        Touying is powered by Typst, which is a new typesetting language with a concise syntax, powerful features, and extremely fast compilation speed.
+        Integrate with{' '}
+        <a href="/docs/integration/cetz">CeTZ</a>,{' '}
+        <a href="/docs/integration/fletcher">Fletcher</a>,{' '}
+        <a href="/docs/integration/pinit">Pinit</a>,{' '}
+        <a href="/docs/integration/codly">Codly</a> and more.
+        Touying plays nicely with the whole Typst package ecosystem.
       </>
     ),
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({ icon, title, description, link, linkLabel }) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+    <div className={clsx('col col--4', styles.featureCol)}>
+      <div className={clsx('feature-card', styles.featureCard)}>
+        <div className={styles.featureIcon}>{icon}</div>
+        <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
+        <p className={styles.featureDesc}>{description}</p>
+        {link && (
+          <Link className={styles.featureLink} to={link}>
+            {linkLabel} →
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ Let's illustrate Typst's default page model through a specific example.
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/70d48053-c777-4253-a9ca-ada360b5a987)
+![Typst page model example](/img/typst-generated/layout/page-model.png)
 
 We need to distinguish the following concepts:
 
@@ -81,7 +81,7 @@ However, we still need to address how the header occupies the entire page width.
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/d74896f4-90e7-4b36-a5a9-9c44307eb192)
+![negative padding example](/img/typst-generated/layout/negative-padding.png)
 
 ## Page Management
 
@@ -129,7 +129,7 @@ If you need to divide a page into two or three columns, you can use the `compose
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/a39f88a2-f1ba-4420-8f78-6a0fc644704e)
+![two column default layout](/img/typst-generated/layout/columns-default.png)
 
 If you need to change the way columns are divided, you can modify the `composer` parameter of `slide`, where the default parameter is `components.side-by-side.with(columns: auto, gutter: 1em)`. If we want the left column to take up the remaining width, we can use:
 
@@ -141,4 +141,4 @@ If you need to change the way columns are divided, you can modify the `composer`
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/aa84192a-4082-495d-9773-b06df32ab8dc)
+![custom column layout](/img/typst-generated/layout/columns-custom.png)

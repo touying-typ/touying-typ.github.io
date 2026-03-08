@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Stargazer Theme
 
-![image](https://github.com/user-attachments/assets/4950008f-ac64-47ab-a7ca-cdf15361ba0f)
+![Stargazer Theme Preview](/img/typst-generated/themes/stargazer.png)
 
 The Stargazer theme, originally created by [Coekjan](https://github.com/Coekjan/) for the [touying-buaa](https://github.com/Coekjan/touying-buaa) project, is an aesthetically pleasing and versatile theme suitable for everyday use.
 

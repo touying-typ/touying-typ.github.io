@@ -34,4 +34,4 @@ sidebar_position: 5
 }`.text)
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/0be2fbaf-cc03-4776-932f-259503d5e23a)
+![codly syntax highlighting](/img/typst-generated/integration/codly.png)

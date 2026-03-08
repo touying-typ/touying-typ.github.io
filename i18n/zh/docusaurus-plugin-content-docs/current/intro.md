@@ -37,17 +37,6 @@ npm run start -- --locale zh
 
 Touying 是免费、开源且社区驱动的。如果你感兴趣，你可以随时访问 [GitHub](https://github.com/touying-typ/touying) 并提出 issue 或 PR，我们也同样欢迎你加入 [touying-typ](https://github.com/touying-typ) 组织。
 
-## 🥤一杯咖啡
-
-如果您认为本项目对你的工作起到了帮助，可以通过以下方式捐助 Touying 的开发工作，使本项目持续发展下去。
-
-爱发电: https://afdian.com/a/orangex4
-
-二维码:
-
-![image](https://github.com/user-attachments/assets/41adbf0b-663e-4693-8408-859cac3edaa1)
-
-
 
 ## 画廊
 

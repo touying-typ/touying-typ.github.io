@@ -20,7 +20,7 @@ A simple #pin(1)highlighted text#pin(2).
 #pinit-point-from(2)[It is simple.]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/b17f9b80-5a8b-4943-a222-bcb0eb38611d)
+![pinit simple example](/img/typst-generated/integration/pinit-simple.png)
 
 另一个 [示例](https://github.com/OrangeX4/typst-pinit/blob/main/examples/equation-desc.typ)：
 
@@ -30,7 +30,7 @@ A simple #pin(1)highlighted text#pin(2).
 
 ## 复杂示例
 
-![image](https://github.com/touying-typ/touying/assets/34951714/7fb0095a-fd86-49ec-af95-15bc81a341c2)
+![pinit complex example](/img/typst-generated/integration/pinit-complex.png)
 
 
 一个与 Touying 共同使用的示例：
@@ -115,4 +115,4 @@ A simple #pin(1)highlighted text#pin(2).
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/f36a026f-491c-4290-90d5-0aa3c2086567)
+![pinit complex example output](/img/typst-generated/integration/pinit-complex.png)

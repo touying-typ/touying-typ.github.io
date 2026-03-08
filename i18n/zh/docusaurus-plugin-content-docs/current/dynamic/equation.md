@@ -25,7 +25,7 @@ Touying 还提供了一个独特且十分有用的功能，即数学公式动画
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/d176e61f-c0da-4c2a-a1bf-52621be5adb2)
+![equation simple animation](/img/typst-generated/dynamic/equation-simple.png)
 
 
 我们使用 `touying-equation` 函数来实现在数学公式文本内部使用 `pause` 和 `meanwhile`（事实上，你也能用 `#pause` 或者 `#pause;`）。
@@ -48,4 +48,4 @@ Touying 还提供了一个独特且十分有用的功能，即数学公式动画
 ])
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/f2df14a2-6424-4c53-81f7-1595aa330660)
+![equation complex animation](/img/typst-generated/dynamic/equation-complex.png)

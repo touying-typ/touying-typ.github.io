@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Metropolis Theme
 
-![image](https://github.com/touying-typ/touying/assets/34951714/383ceb22-f696-4450-83a6-c0f17e4597e1)
+![Metropolis Theme Preview](/img/typst-generated/themes/metropolis.png)
 
 This theme draws inspiration from Matthias Vogelgesang's [Metropolis beamer](https://github.com/matze/mtheme) theme and has been modified by [Enivex](https://github.com/Enivex).
 

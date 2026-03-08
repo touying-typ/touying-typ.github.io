@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Aqua 主题
 
-![image](https://github.com/touying-typ/touying/assets/34951714/5f9b3c99-a22a-4f3d-a266-93dd75997593)
+![Aqua Theme Preview](/img/typst-generated/themes/aqua.png)
 
 这个主题由 [@pride7](https://github.com/pride7) 制作，它的美丽背景为使用 Typst 的可视化功能制作的矢量图形。
 

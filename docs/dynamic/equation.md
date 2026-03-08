@@ -25,7 +25,7 @@ Let's start with an example:
 ]
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/d176e61f-c0da-4c2a-a1bf-52621be5adb2)
+![equation simple animation](/img/typst-generated/dynamic/equation-simple.png)
 
 We use the `touying-equation` function to incorporate `pause` and `meanwhile` within the text of math equations (in fact, you can also use `#pause` or `#pause;`).
 
@@ -46,4 +46,4 @@ In fact, we can also use `only`, `uncover`, and `alternatives`:
 ])
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/f2df14a2-6424-4c53-81f7-1595aa330660)
+![equation complex animation](/img/typst-generated/dynamic/equation-complex.png)

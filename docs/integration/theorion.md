@@ -70,4 +70,4 @@ Touying can work properly with the [Theorion](https://github.com/OrangeX4/typst-
 ]
 ```
 
-![image](https://github.com/user-attachments/assets/f54dd873-aa20-4703-b83e-8748658b569a)
+![theorion theorem example](/img/typst-generated/integration/theorion.png)

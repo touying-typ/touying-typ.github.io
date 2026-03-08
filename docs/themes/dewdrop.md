@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Dewdrop Theme
 
-![image](https://github.com/touying-typ/touying/assets/34951714/0b5b2bb2-c6ec-45c0-9cea-0af2ed896bba)
+![Dewdrop Theme Preview](/img/typst-generated/themes/dewdrop.png)
 
 This theme takes inspiration from Zhibo Wang's [BeamerTheme](https://github.com/zbowang/BeamerTheme) and has been modified by [OrangeX4](https://github.com/OrangeX4).
 

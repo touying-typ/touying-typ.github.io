@@ -25,7 +25,7 @@ Hello, Touying!
 Hello, Typst!
 ```
 
-![image](https://github.com/touying-typ/touying/assets/34951714/f5bdbf8f-7bf9-45fd-9923-0fa5d66450b2)
+![Hello Touying example output](/img/typst-generated/start/hello-touying.png)
 
 It's that simple! You've created your first Touying slides. Congratulations! 🎉
 
@@ -251,6 +251,6 @@ Fletcher Animation in Touying:
 Please pay attention to the current slide number.
 ```
 
-![image](https://github.com/user-attachments/assets/b1dfc4d9-e263-46ff-8588-a0635870e370)
+![University theme complex example](/img/typst-generated/start/university-complex.png)
 
 For more detailed tutorials on themes, you can refer to the following sections.
