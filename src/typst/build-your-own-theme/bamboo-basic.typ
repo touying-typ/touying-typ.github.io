@@ -3,17 +3,25 @@
 // ---- bamboo.typ (inlined) ----
 
 #let slide(title: auto, ..args) = touying-slide-wrapper(self => {
-  let header = {
+  if title != auto {
+    self.store.title = title
+  }
+  // set page
+  let header(self) = {
     set align(top)
-    show: pad.with(.4em)
-    set text(fill: self.colors.neutral-lightest)
-    if title != auto {
-      title
-    } else {
+    show: components.cell.with(fill: self.colors.primary, inset: 1em)
+    set align(horizon)
+    set text(fill: self.colors.neutral-lightest, size: .7em)
+    utils.display-current-heading(level: 1)
+    linebreak()
+    set text(size: 1.5em)
+    if self.store.title != none {
       utils.call-or-display(self, self.store.title)
+    } else {
+      utils.display-current-heading(level: 2)
     }
   }
-  let footer = {
+  let footer(self) = {
     set align(bottom)
     show: pad.with(.4em)
     set text(fill: self.colors.neutral-darkest, size: .8em)
@@ -43,7 +51,6 @@
     config-page(
       paper: "presentation-" + aspect-ratio,
       margin: (top: 4em, bottom: 1.5em, x: 2em),
-      fill: rgb("#5E8B65"),
     ),
     config-common(
       slide-fn: slide,
@@ -65,6 +72,7 @@
 
   body
 }
+
 
 // ---- main.typ ----
 
