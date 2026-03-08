@@ -3,49 +3,36 @@
 
 #show: simple-theme.with(
   aspect-ratio: "16-9",
-  footer: [Simple Theme],
+  footer: [Simple slides],
 )
 
-= Simple Theme
+#title-slide[
+  = Keep it simple!
+  #v(2em)
 
-== Introduction
+  Alpha #footnote[Uni Augsburg] #h(1em)
+  Bravo #footnote[Uni Bayreuth] #h(1em)
+  Charlie #footnote[Uni Chemnitz] #h(1em)
 
-#slide[
-  Touying is a _powerful_ slide creation package for Typst.
-
-  It supports:
-  - Multiple built-in themes
-  - Dynamic slides with `#pause`
-  - Math equations: $E = m c^2$
+  July 23
 ]
 
-== Features
+== First slide
 
-#slide[
-  #grid(
-    columns: 2,
-    gutter: 1em,
-    [
-      *Concise Syntax*
+#lorem(20)
 
-      Write slides with a clean, readable syntax inspired by Typst.
-    ],
-    [
-      *Fast Compilation*
+#focus-slide[
+  _Focus!_
 
-      Typst compiles in milliseconds, enabling instant previews.
-    ],
-  )
+  This is very important.
 ]
 
-= Advanced Usage
+= Let's start a new section!
 
-== Dynamic Content
+== Dynamic slide
 
-#slide[
-  Reveal content step by step:
+Did you know that...
 
-  + First item #pause
-  + Second item #pause
-  + Third item
-]
+#pause
+
+...you can see the current section at the top of the slide?

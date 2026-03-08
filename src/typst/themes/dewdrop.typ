@@ -1,59 +1,63 @@
 #import "@preview/touying:0.6.1": *
 #import themes.dewdrop: *
 
+#import "@preview/numbly:0.1.0": numbly
+
 #show: dewdrop-theme.with(
   aspect-ratio: "16-9",
+  footer: self => self.info.institution,
+  navigation: "mini-slides",
   config-info(
-    title: [Dewdrop Theme],
-    subtitle: [Fresh and clean design],
-    author: [Touying],
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
     date: datetime.today(),
+    institution: [Institution],
   ),
 )
 
+#set heading(numbering: numbly("{1}.", default: "1.1"))
+
 #title-slide()
 
-== Introduction
+#outline-slide()
 
-#slide[
-  *Dewdrop* theme features a fresh, nature-inspired aesthetic.
+= Section A
 
-  Characteristics:
-  - Soft color palette
-  - Elegant typography
-  - Navigation dots for slide progress
+== Subsection A.1
+
+$ x_(n+1) = (x_n + a/x_n) / 2 $
+
+== Subsection A.2
+
+A slide without a title but with *important* infos
+
+= Section B
+
+== Subsection B.1
+
+#lorem(80)
+
+#focus-slide[
+  Wake up!
 ]
 
-== Content Slide
+== Subsection B.2
 
-#slide[
-  Touying makes it easy to create structured content:
+We can use `#pause` to #pause display something later.
 
-  #grid(
-    columns: (1fr, 1fr),
-    gutter: 1.5em,
-    [
-      *Text Content*
+#pause
 
-      Write naturally in Typst syntax with full Unicode support.
-    ],
-    [
-      *Mathematical Content*
+Just like this.
 
-      $ cal(L)(theta) = -sum_i log p(y_i | x_i; theta) $
-    ],
-  )
-]
+#meanwhile
 
-== Summary
+Meanwhile, #pause we can also use `#meanwhile` to #pause display other content synchronously.
 
-#slide[
-  Touying is the modern way to create presentations in Typst.
+#show: appendix
 
-  Get started today:
+= Appendix
 
-  ```sh
-  # In your Typst file
-  #import "@preview/touying:0.6.1": *
-  ```
-]
+== Appendix
+
+Please pay attention to the current slide number.

@@ -1,56 +1,66 @@
 #import "@preview/touying:0.6.1": *
 #import themes.stargazer: *
 
+#import "@preview/numbly:0.1.0": numbly
+
 #show: stargazer-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Stargazer Theme],
-    subtitle: [Reach for the stars],
-    author: [Touying],
+    title: [Stargazer in Touying: Customize Your Slide Title Here],
+    subtitle: [Customize Your Slide Subtitle Here],
+    author: [Authors],
     date: datetime.today(),
+    institution: [Institution],
+    logo: emoji.school,
   ),
 )
 
+#set heading(numbering: numbly("{1}.", default: "1.1"))
+
 #title-slide()
 
-== Introduction
+#outline-slide()
 
-#slide[
-  *Stargazer* is a dark, elegant theme inspired by the night sky.
+= Section A
 
-  Perfect for:
-  - Technical presentations
-  - Conference talks
-  - Research showcases
+== Subsection A.1
+
+#tblock(title: [Theorem])[
+  A simple theorem.
+
+  $ x_(n+1) = (x_n + a / x_n) / 2 $
 ]
 
-== Features
+== Subsection A.2
 
-#slide[
-  === Why Stargazer?
+A slide without a title but with *important* information.
 
-  The dark background creates a dramatic visual impact while maintaining readability.
+= Section B
 
-  #grid(
-    columns: 2,
-    gutter: 1.5em,
-    [
-      *High Contrast*
+== Subsection B.1
 
-      Text stands out clearly against the dark background.
-    ],
-    [
-      *Professional*
+#lorem(80)
 
-      Suitable for formal academic and industry presentations.
-    ],
-  )
+#focus-slide[
+  Wake up!
 ]
 
-== Summary
+== Subsection B.2
 
-#slide[
-  Touying's *Stargazer* theme helps you shine at your next presentation.
+We can use `#pause` to #pause display something later.
 
-  $ "Touying" + "Typst" = "⭐ Great Slides" $
-]
+#pause
+
+Just like this.
+
+#meanwhile
+
+Meanwhile, #pause we can also use `#meanwhile` to #pause display other content synchronously.
+
+#show: appendix
+
+= Appendix
+
+== Appendix
+
+Please pay attention to the current slide number.

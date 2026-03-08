@@ -4,48 +4,33 @@
 #show: aqua-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [Aqua Theme],
-    subtitle: [Blue wave inspired design],
-    author: [Touying],
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
     date: datetime.today(),
+    institution: [Institution],
   ),
 )
 
 #title-slide()
 
-== Introduction
+#outline-slide()
 
-#slide[
-  The *Aqua* theme brings a calming, ocean-inspired aesthetic.
+= The Section
 
-  Features:
-  - Vibrant blue color scheme
-  - Clean slide structure
-  - Professional look for technical talks
+== Slide Title
+
+#lorem(40)
+
+#focus-slide[
+  Another variant with primary color in background...
 ]
 
-== Data & Figures
+== Summary
 
-#slide[
-  Touying integrates seamlessly with Typst's drawing packages.
-
-  #align(center)[
-    #grid(
-      columns: 3,
-      gutter: 2em,
-      rect(width: 3cm, height: 2cm, fill: blue.lighten(60%), stroke: blue)[*Slide 1*],
-      rect(width: 3cm, height: 2cm, fill: blue.lighten(60%), stroke: blue)[*Slide 2*],
-      rect(width: 3cm, height: 2cm, fill: blue.lighten(60%), stroke: blue)[*Slide 3*],
-    )
+#slide(self => [
+  #align(center + horizon)[
+    #set text(size: 3em, weight: "bold", fill: self.colors.primary)
+    THANKS FOR ALL
   ]
-]
-
-== Conclusion
-
-#slide[
-  *Touying* + *Typst* = Beautiful Presentations
-
-  Start creating your slides today at:
-
-  https://touying-typ.github.io/
-]
+])

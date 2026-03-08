@@ -1,55 +1,46 @@
 #import "@preview/touying:0.6.1": *
 #import themes.university: *
 
+#import "@preview/numbly:0.1.0": numbly
+
 #show: university-theme.with(
   aspect-ratio: "16-9",
   config-info(
-    title: [University Theme],
-    subtitle: [A professional academic presentation],
-    author: [Touying],
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
     date: datetime.today(),
-    institution: [Touying Project],
+    institution: [Institution],
+    logo: emoji.school,
   ),
 )
 
-#title-slide()
+#set heading(numbering: numbly("{1}.", default: "1.1"))
 
-== Introduction
+#title-slide(authors: ([Author A], [Author B]))
 
-#slide[
-  Touying provides a beautiful *university* theme for academic presentations.
+= The Section
 
-  Key features:
-  - Professional header with title and section
-  - Clean progress bar at the bottom
-  - Easy customization
+== Slide Title
+
+#lorem(40)
+
+#focus-slide[
+  Another variant with primary color in background...
 ]
 
-== Mathematical Content
-
-#slide[
-  Touying works seamlessly with Typst math:
-
-  $ sum_(k=1)^n k = (n(n+1))/2 $
-
-  $ integral_0^1 x^2 d x = 1/3 $
+#matrix-slide[
+  left
+][
+  middle
+][
+  right
 ]
 
-== Columns Layout
-
-#slide[
-  #grid(
-    columns: (1fr, 1fr),
-    gutter: 2em,
-    [
-      *Left column*
-
-      Typst's grid system makes it easy to create multi-column layouts.
-    ],
-    [
-      *Right column*
-
-      Content can be anything: text, images, code, formulas...
-    ],
-  )
+#matrix-slide(columns: 1)[
+  top
+][
+  bottom
 ]
+
+#matrix-slide(columns: (1fr, 2fr, 1fr), ..(lorem(8),) * 9)

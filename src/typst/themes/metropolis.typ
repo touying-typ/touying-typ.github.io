@@ -1,61 +1,68 @@
 #import "@preview/touying:0.6.1": *
 #import themes.metropolis: *
 
+#import "@preview/numbly:0.1.0": numbly
+
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
+  footer: self => self.info.institution,
   config-info(
-    title: [Metropolis Theme],
-    subtitle: [Modern minimalist design],
-    author: [Touying],
+    title: [Title],
+    subtitle: [Subtitle],
+    author: [Authors],
     date: datetime.today(),
+    institution: [Institution],
+    logo: emoji.city,
   ),
 )
 
+#set heading(numbering: numbly("{1}.", default: "1.1"))
+
 #title-slide()
 
-= Introduction
+= Outline <touying:hidden>
 
-== About Metropolis
+#outline(title: none, indent: 1em, depth: 1)
 
-#slide[
-  The *Metropolis* theme is inspired by the popular LaTeX Beamer theme.
+= First Section
 
-  - Clean, minimal design
-  - Clear visual hierarchy
-  - Excellent readability
+---
+
+A slide without a title but with some *important* information.
+
+== A long long long long long long long long long long long long long long long long long long long long long long long long Title
+
+=== sdfsdf
+
+A slide with equation:
+
+$ x_(n+1) = (x_n + a/x_n) / 2 $
+
+#lorem(200)
+
+= Second Section
+
+#focus-slide[
+  Wake up!
 ]
 
-== Code Example
+== Simple Animation
 
-#slide[
-  Touying supports beautifully formatted code:
+We can use `#pause` to #pause display something later.
 
-  ```typst
-  #import "@preview/touying:0.6.1": *
-  #import themes.metropolis: *
+#meanwhile
 
-  #show: metropolis-theme.with(
-    aspect-ratio: "16-9",
-  )
-  ```
+Meanwhile, #pause we can also use `#meanwhile` to display other content synchronously.
+
+#speaker-note[
+  + This is a speaker note.
+  + You won't see it unless you use `config-common(show-notes-on-second-screen: right)`
 ]
 
-= Features
+#show: appendix
 
-== Dynamic Slides
+= Appendix
 
-#slide[
-  Show content progressively:
+---
 
-  #pause
-
-  Step 1: Import Touying
-
-  #pause
-
-  Step 2: Choose a theme
-
-  #pause
-
-  Step 3: Write your slides!
-]
+Please pay attention to the current slide number.
