@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import styles from './themes.module.css';
@@ -57,11 +58,12 @@ const THEMES = [
 ];
 
 function ThemeCard({ name, description, image, docLink }) {
+  const imageSrc = useBaseUrl(image);
   return (
     <div className={clsx('col col--6', styles.themeCol)}>
       <div className={styles.themeCard}>
         <div className={styles.themeImageWrap}>
-          <img src={image} alt={`${name} theme preview`} className={styles.themeImage} loading="lazy" />
+          <img src={imageSrc} alt={`${name} theme preview`} className={styles.themeImage} loading="lazy" />
         </div>
         <div className={styles.themeBody}>
           <Heading as="h3" className={styles.themeName}>{name}</Heading>
