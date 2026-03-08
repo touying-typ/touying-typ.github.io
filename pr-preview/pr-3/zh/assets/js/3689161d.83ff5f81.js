@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[909],{2572:e=>{e.exports=JSON.parse('[{"label":"release","permalink":"/pr-preview/pr-3/zh/blog/tags/release","count":3},{"label":"development","permalink":"/pr-preview/pr-3/zh/blog/tags/development","count":1}]')}}]);
