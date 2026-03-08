@@ -1,0 +1,30 @@
+---
+sidebar_position: 16
+description: "Extract all method functions from self and bind self as their first named argument."
+---
+
+# methods
+
+<Signature>
+  <code><SignatureName>methods</SignatureName>(<SignatureParam>[self](#self)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L320" /></code>
+</Signature>
+
+Extract all method functions from `self` and bind `self` as their first named argument.
+
+Returns a dictionary of ready-to-call functions where the `self` argument has already been applied. Use destructuring to get individual methods.
+
+Example: `#let (uncover, only) = utils.methods(self)` to get `uncover` and `only` methods.
+
+<Parameters>
+
+#### <ParamName>self</ParamName> : `dictionary` {#self}
+
+<Param>
+
+The presentation context (must have a `methods` key containing a dictionary of functions).
+
+</Param>
+
+</Parameters>
+
+**Returns:** `dictionary`

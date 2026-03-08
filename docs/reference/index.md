@@ -7,28 +7,9 @@ description: "API reference for Touying."
 
 This section contains the auto-generated API reference for Touying, derived from the doc comments in the Typst source files.
 
-## Modules
-
-### [Slides](./slides.md)
-
-Core slide creation functions.
-
-### [Components](./components.md)
-
-Reusable UI components for slides.
-
-### [Configs](./configs.md)
-
-Configuration functions for presentation settings.
-
-### [Utils](./utils.md)
-
-Utility functions used throughout Touying.
-
-### [Magic](./magic.md)
-
-Show-rule helpers that enhance Typst behaviour.
-
-### [PDFPC](./pdfpc.md)
-
-Functions for generating pdfpc presenter metadata.
+- **Slides** – Core slide creation functions.
+- **Components** – Reusable UI components for slides.
+- **Configs** – Configuration functions for presentation settings.
+- **Utils** – Utility functions used throughout Touying.
+- **Magic** – Show-rule helpers that enhance Typst behaviour.
+- **PDFPC** – Functions for generating pdfpc presenter metadata.

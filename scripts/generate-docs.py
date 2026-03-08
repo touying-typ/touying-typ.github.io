@@ -524,37 +524,75 @@ def parse_file(path: str) -> list[dict]:
     return definitions
 
 
-# ── Markdown generator ────────────────────────────────────────────────────────
+# ── MDX generator ────────────────────────────────────────────────────────────
 
-def _escape_md(text: str) -> str:
-    """Escape characters that would break Markdown table cells."""
-    return text.replace("|", "\\|")
-
-
-def _format_types(types: list[str]) -> str:
-    """Format a list of types as inline code joined with ' | '."""
-    if not types:
-        return ""
-    return " \\| ".join(f"`{t}`" for t in types)
+def _sanitize_mdx_content(text: str) -> str:
+    """
+    Sanitize text for use as plain content inside MDX JSX elements.
+    Escapes angle brackets outside code spans to prevent MDX parse errors.
+    """
+    return _escape_angle_brackets_outside_code(text)
 
 
-def _build_signature(name: str, sig_params: list[dict], is_function: bool) -> str:
-    """Build a human-readable function signature string."""
-    if not is_function:
-        return name
-    parts = []
-    for p in sig_params:
-        if p.get("is_rest"):
-            parts.append(f"..{p['name']}")
-        elif p.get("default") is not None and p.get("default") != "_default":
-            parts.append(f"{p['name']}: {p['default']}")
-        else:
-            parts.append(p["name"])
-    return f"{name}({', '.join(parts)})"
+def _safe_description_for_frontmatter(description: str) -> str:
+    """Return the first sentence of a description, safe for use in YAML."""
+    first_sentence = description.split(".")[0].strip() + "."
+    # Remove inline code backticks so the YAML value is plain text
+    plain = re.sub(r"`([^`]*)`", r"\1", first_sentence)
+    # Escape double quotes
+    return plain.replace('"', "'")
 
 
-def definition_to_md(defn: dict, source_file: str) -> str:
-    """Convert a parsed definition dict to a Markdown string."""
+def _is_simple_default(default: str) -> bool:
+    """Return True if a default value is simple enough to show inline in the signature."""
+    if default is None:
+        return False
+    # Skip complex defaults that would break MDX or are too long
+    return (
+        "{" not in default
+        and "}" not in default
+        and len(default) < 40
+    )
+
+
+def _build_signature_components(
+    name: str, sig_params: list[dict], is_function: bool, src_url: str
+) -> str:
+    """
+    Build the <Signature> JSX block for a function or variable definition.
+    Returns the MDX string for the signature block.
+    """
+    lines = ["<Signature>"]
+    code_parts = []
+
+    if is_function:
+        code_parts.append(f"<SignatureName>{name}</SignatureName>(")
+        n = len(sig_params)
+        for i, sp in enumerate(sig_params):
+            if sp.get("is_rest"):
+                param_text = f"..{sp['name']}"
+            elif sp.get("default") is not None and _is_simple_default(sp["default"]):
+                param_text = f"{sp['name']}: {sp['default']}"
+            else:
+                param_text = sp["name"]
+            pname_anchor = sp["name"].lstrip(".")
+            comma = ", " if i < n - 1 else ""
+            code_parts.append(
+                f"<SignatureParam>[{param_text}](#{pname_anchor}){comma}</SignatureParam>"
+            )
+        code_parts.append(")")
+    else:
+        code_parts.append(f"<SignatureName>{name}</SignatureName>")
+
+    code_parts.append(f'<SourceLink href="{src_url}" />')
+
+    lines.append("  <code>" + "".join(code_parts) + "</code>")
+    lines.append("</Signature>")
+    return "\n".join(lines)
+
+
+def definition_to_mdx(defn: dict, source_file: str) -> str:
+    """Convert a parsed definition dict to MDX content (without front matter)."""
     name = defn["name"]
     description = typ_to_md(defn["description"]) if defn["description"] else ""
     params = defn["params"]
@@ -565,22 +603,29 @@ def definition_to_md(defn: dict, source_file: str) -> str:
 
     src_url = f"{GITHUB_SRC_BASE}/{source_file}#L{line}"
 
-    lines = []
-
-    # ── Heading ─────────────────────────────────────────────────────────────
-    lines.append(f"## `{name}`")
-    lines.append("")
-
-    # ── Signature ───────────────────────────────────────────────────────────
-    # For the signature, skip _default sentinel values to keep it clean
+    # For the signature, skip _default sentinel values
     clean_sig_params = []
     for sp in sig_params:
         sp_copy = dict(sp)
         if sp_copy.get("default") == "_default":
             sp_copy["default"] = None
         clean_sig_params.append(sp_copy)
-    sig = _build_signature(name, clean_sig_params, is_function)
-    lines.append(f"**Signature:** `{sig}`")
+
+    # Build default lookup from sig_params
+    sig_defaults: dict[str, str | None] = {}
+    sig_rest: dict[str, bool] = {}
+    for sp in sig_params:
+        sig_defaults[sp["name"]] = sp.get("default")
+        sig_rest[sp["name"]] = sp.get("is_rest", False)
+
+    lines = []
+
+    # ── Page heading ─────────────────────────────────────────────────────────
+    lines.append(f"# {name}")
+    lines.append("")
+
+    # ── Signature block ──────────────────────────────────────────────────────
+    lines.append(_build_signature_components(name, clean_sig_params, is_function, src_url))
     lines.append("")
 
     # ── Description ─────────────────────────────────────────────────────────
@@ -588,127 +633,104 @@ def definition_to_md(defn: dict, source_file: str) -> str:
         lines.append(description)
         lines.append("")
 
-    # ── Parameters table ────────────────────────────────────────────────────
-    # Merge doc params with sig_params for default values
-    sig_defaults: dict[str, str | None] = {}
-    sig_rest: dict[str, bool] = {}
-    for sp in sig_params:
-        sig_defaults[sp["name"]] = sp.get("default")
-        sig_rest[sp["name"]] = sp.get("is_rest", False)
-
+    # ── Parameters section ───────────────────────────────────────────────────
     if params:
-        lines.append("**Parameters:**")
+        lines.append("<Parameters>")
         lines.append("")
-        lines.append("| Name | Type | Description |")
-        lines.append("|------|------|-------------|")
         for p in params:
             pname = p["name"]
-            ptypes = _format_types(p["types"])
-            # Escape table-breaking and MDX-breaking characters in the description
-            pdesc = _escape_md(p["description"])
-            pdesc = _escape_angle_brackets_outside_code(pdesc)
-            # Append default value info if available (skip _default sentinel)
-            default = sig_defaults.get(pname)
-            if default is not None and default != "_default":
-                pdesc += f" Default: `{_escape_md(default)}`."
+            ptypes = p.get("types", [])
+            pdesc_raw = p.get("description", "")
             is_rest = sig_rest.get(pname, False)
-            display_name = f"`..{pname}`" if is_rest else f"`{pname}`"
-            lines.append(f"| {display_name} | {ptypes} | {pdesc} |")
+            default = sig_defaults.get(pname)
+            # Skip _default sentinel
+            if default == "_default":
+                default = None
+
+            display_name = f"..{pname}" if is_rest else pname
+            anchor_id = pname.lstrip(".")
+
+            # Build type string
+            if ptypes:
+                type_str = " | ".join(f"`{t}`" for t in ptypes)
+                type_part = f" : {type_str}"
+            else:
+                type_part = ""
+
+            # Build default string (only show simple defaults inline)
+            if default is not None and _is_simple_default(default):
+                default_part = f' <Default>`{default}`</Default>'
+            else:
+                default_part = ""
+
+            lines.append(
+                f"#### <ParamName>{display_name}</ParamName>{type_part}"
+                f"{default_part} {{#{anchor_id}}}"
+            )
+            lines.append("")
+
+            # Process and sanitize the parameter description
+            pdesc = typ_to_md(pdesc_raw) if pdesc_raw else ""
+            pdesc = _sanitize_mdx_content(pdesc)
+            lines.append("<Param>")
+            lines.append("")
+            if pdesc:
+                lines.append(pdesc)
+                lines.append("")
+            lines.append("</Param>")
+            lines.append("")
+
+        lines.append("</Parameters>")
         lines.append("")
 
     # ── Return type ─────────────────────────────────────────────────────────
     if return_types:
-        lines.append(f"**Returns:** {_format_types(return_types)}")
+        ret_str = " | ".join(f"`{t}`" for t in return_types)
+        lines.append(f"**Returns:** {ret_str}")
         lines.append("")
-
-    # ── Source link ─────────────────────────────────────────────────────────
-    lines.append(f"**Source:** [`{source_file}`]({src_url})")
-    lines.append("")
-    lines.append("---")
-    lines.append("")
 
     return "\n".join(lines)
 
 
-def generate_module_page(
+def generate_function_page(
+    defn: dict,
     source_file: str,
-    title: str,
-    description: str,
-    definitions: list[dict],
     sidebar_position: int,
 ) -> str:
-    """Generate a full Markdown page for one Touying source module."""
-    page_id = os.path.splitext(source_file)[0]  # e.g. "utils"
+    """Generate a full MDX page for a single function definition."""
+    name = defn["name"]
+    description = defn.get("description", "")
 
     lines = []
 
     # ── Front matter ─────────────────────────────────────────────────────────
     lines.append("---")
     lines.append(f"sidebar_position: {sidebar_position}")
-    lines.append(f"description: >-")
-    lines.append(f"  {description}")
+    if description:
+        safe_desc = _safe_description_for_frontmatter(description)
+        lines.append(f'description: "{safe_desc}"')
     lines.append("---")
     lines.append("")
 
-    # ── Page heading ─────────────────────────────────────────────────────────
-    lines.append(f"# {title}")
-    lines.append("")
-    lines.append(description)
-    lines.append("")
+    # ── Page body ────────────────────────────────────────────────────────────
+    lines.append(definition_to_mdx(defn, source_file))
 
-    if not definitions:
-        lines.append("*No public documented functions found in this module.*")
-        lines.append("")
-        return "\n".join(lines)
-
-    # ── Table of contents (function list) ────────────────────────────────────
-    lines.append("## Function Index")
-    lines.append("")
-    for defn in definitions:
-        name = defn["name"]
-        anchor = name.lower().replace("-", "-")
-        lines.append(f"- [`{name}`](#{anchor})")
-    lines.append("")
-    lines.append("---")
-    lines.append("")
-
-    # ── Each function ─────────────────────────────────────────────────────────
-    for defn in definitions:
-        lines.append(definition_to_md(defn, source_file))
-
-    return "\n".join(lines)
-
-
-def generate_index_page(modules: list[tuple[str, str, str]]) -> str:
-    """
-    Generate the index page for the reference section.
-
-    modules: list of (page_id, title, description)
-    """
-    lines = []
-    lines.append("---")
-    lines.append("sidebar_position: 0")
-    lines.append('description: "API reference for Touying."')
-    lines.append("---")
-    lines.append("")
-    lines.append("# API Reference")
-    lines.append("")
-    lines.append(
-        "This section contains the auto-generated API reference for Touying, "
-        "derived from the doc comments in the Typst source files."
-    )
-    lines.append("")
-    lines.append("## Modules")
-    lines.append("")
-    for page_id, title, description in modules:
-        lines.append(f"### [{title}](./{page_id}.md)")
-        lines.append("")
-        lines.append(description)
-        lines.append("")
     return "\n".join(lines)
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
+
+def _remove_old_module_files() -> None:
+    """Remove the old flat module .md files that were replaced by per-function pages."""
+    old_files = [
+        os.path.join(OUTPUT_DIR, os.path.splitext(sf)[0] + ".md")
+        for sf, _, _ in SOURCE_FILES
+    ]
+    for path in old_files:
+        if os.path.isfile(path):
+            os.remove(path)
+            print(f"  Removed old file: {path}")
+
 
 def main() -> None:
     if not os.path.isdir(TOUYING_SRC):
@@ -722,12 +744,38 @@ def main() -> None:
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    # Write the _category_.json so Docusaurus knows about this section
+    # Remove old flat module files
+    _remove_old_module_files()
+
+    # Write the top-level _category_.json (without generated-index link
+    # since we provide a proper index.md below)
     category_path = os.path.join(OUTPUT_DIR, "_category_.json")
     with open(category_path, "w", encoding="utf-8") as fh:
-        fh.write('{\n  "label": "Reference",\n  "position": 99,\n  "link": {\n    "type": "generated-index"\n  }\n}\n')
+        fh.write(
+            '{\n'
+            '  "label": "Reference",\n'
+            '  "position": 99\n'
+            '}\n'
+        )
 
-    module_index: list[tuple[str, str, str]] = []
+    # Write a top-level index.md for the /docs/reference URL
+    index_lines = [
+        "---",
+        "sidebar_position: 0",
+        'description: "API reference for Touying."',
+        "---",
+        "",
+        "# API Reference",
+        "",
+        "This section contains the auto-generated API reference for Touying, "
+        "derived from the doc comments in the Typst source files.",
+        "",
+    ]
+    for _, title, description in SOURCE_FILES:
+        index_lines.append(f"- **{title}** – {description}")
+    index_lines.append("")
+    with open(os.path.join(OUTPUT_DIR, "index.md"), "w", encoding="utf-8") as fh:
+        fh.write("\n".join(index_lines))
 
     for pos, (source_file, title, description) in enumerate(SOURCE_FILES, start=1):
         src_path = os.path.join(TOUYING_SRC, source_file)
@@ -739,24 +787,38 @@ def main() -> None:
         definitions = parse_file(src_path)
         print(f"{len(definitions)} documented function(s) found.")
 
-        page_id = os.path.splitext(source_file)[0]
-        page_content = generate_module_page(
-            source_file=source_file,
-            title=title,
-            description=description,
-            definitions=definitions,
-            sidebar_position=pos,
-        )
-        out_path = os.path.join(OUTPUT_DIR, page_id + ".md")
-        with open(out_path, "w", encoding="utf-8") as fh:
-            fh.write(page_content)
+        # Create a subdirectory for this module
+        module_id = os.path.splitext(source_file)[0]  # e.g. "components"
+        module_dir = os.path.join(OUTPUT_DIR, module_id)
+        os.makedirs(module_dir, exist_ok=True)
 
-        module_index.append((page_id, title, description))
+        # Write the module's _category_.json
+        cat_json_path = os.path.join(module_dir, "_category_.json")
+        with open(cat_json_path, "w", encoding="utf-8") as fh:
+            fh.write(
+                '{\n'
+                f'  "label": "{title}",\n'
+                f'  "position": {pos},\n'
+                '  "link": {\n'
+                '    "type": "generated-index",\n'
+                f'    "description": "{description}"\n'
+                '  }\n'
+                '}\n'
+            )
 
-    # Write the index page
-    index_content = generate_index_page(module_index)
-    with open(os.path.join(OUTPUT_DIR, "index.md"), "w", encoding="utf-8") as fh:
-        fh.write(index_content)
+        # Write one .mdx file per function
+        for fn_pos, defn in enumerate(definitions, start=1):
+            fn_name = defn["name"]
+            page_content = generate_function_page(
+                defn=defn,
+                source_file=source_file,
+                sidebar_position=fn_pos,
+            )
+            out_path = os.path.join(module_dir, fn_name + ".mdx")
+            with open(out_path, "w", encoding="utf-8") as fh:
+                fh.write(page_content)
+
+        print(f"  → Written {len(definitions)} page(s) to '{module_dir}/'")
 
     print(f"\nDone. Reference pages written to '{OUTPUT_DIR}/'.")
 

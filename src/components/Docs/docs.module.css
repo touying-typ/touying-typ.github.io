@@ -1,0 +1,81 @@
+.signature {
+  margin: 1em 0;
+}
+
+.signature code {
+  display: block;
+  padding: 1em;
+  padding-left: 3em;
+  text-indent: -2em;
+  overflow-x: auto;
+  color: var(--ifm-color-content-secondary);
+  background: var(--ifm-code-background);
+  border-radius: var(--ifm-code-border-radius);
+}
+
+.signatureName {
+  color: var(--ifm-color-primary-dark);
+  font-weight: bold;
+}
+
+.signatureParam {
+  word-break: normal;
+}
+
+.sourceLink {
+  float: right;
+  color: var(--ifm-color-content-secondary);
+  text-indent: initial;
+  opacity: 0.6;
+  font-weight: normal;
+}
+
+.sourceLink:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.parametersHeader {
+  font-size: 1.3rem;
+  font-weight: var(--ifm-heading-font-weight);
+  margin-bottom: calc(var(--ifm-heading-vertical-rhythm-bottom) * var(--ifm-leading));
+  margin-top: calc(var(--ifm-h2-vertical-rhythm-top) * var(--ifm-leading));
+  line-height: var(--ifm-heading-line-height);
+}
+
+.parameters {
+  padding: 0 2em;
+}
+
+.param {
+  padding: 0.2em 0 0.5em 1em;
+  border-radius: 0 0 0.5rem 0.5rem;
+  margin: 0 0 1em 1em;
+}
+
+.paramName {
+  font-weight: bold;
+}
+
+.defaultValue {
+  color: var(--ifm-color-content-secondary);
+  float: right;
+}
+
+@media screen and (max-width: 530px) {
+  .parameters {
+    padding: 0;
+  }
+
+  .param {
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .signature {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

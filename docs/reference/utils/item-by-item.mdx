@@ -1,0 +1,49 @@
+---
+sidebar_position: 44
+description: "Display list, enum, or terms items one by one with animation."
+---
+
+# item-by-item
+
+<Signature>
+  <code><SignatureName>item-by-item</SignatureName>(<SignatureParam>[self: none](#self), </SignatureParam><SignatureParam>[start](#start), </SignatureParam><SignatureParam>[cont](#cont)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L1483" /></code>
+</Signature>
+
+Display list, enum, or terms items one by one with animation.
+
+Each item is revealed on a successive subslide. Items before `start` appear immediately;
+from subslide `start`, one additional item is revealed per subslide.
+
+**Example:**
+
+```typst
+#show: simple-theme.with(aspect-ratio: "16-9")
+= Slide
+#item-by-item[
+- first
+- second
+- third
+]
+```
+
+<Parameters>
+
+#### <ParamName>start</ParamName> : `int` {#start}
+
+<Param>
+
+The subslide on which the first item appears. Default is `1`.
+
+</Param>
+
+#### <ParamName>cont</ParamName> : `content` {#cont}
+
+<Param>
+
+The content containing a list, enum, or terms element.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

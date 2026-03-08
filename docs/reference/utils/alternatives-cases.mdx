@@ -1,0 +1,59 @@
+---
+sidebar_position: 43
+description: "You can use this function if you want to have one piece of content that changes only slightly depending of what 'case' of subslides you are in."
+---
+
+# alternatives-cases
+
+<Signature>
+  <code><SignatureName>alternatives-cases</SignatureName>(<SignatureParam>[self: none](#self), </SignatureParam><SignatureParam>[cases](#cases), </SignatureParam><SignatureParam>[fn](#fn), </SignatureParam><SignatureParam>[..kwargs](#kwargs)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L1447" /></code>
+</Signature>
+
+You can use this function if you want to have one piece of content that changes only slightly depending of what "case" of subslides you are in.
+
+Example:
+
+```typst
+#alternatives-cases(("1, 3", "2"), case => [
+  #set text(fill: teal) if case == 1
+  Some text
+])
+```
+
+<Parameters>
+
+#### <ParamName>cases</ParamName> : `array` {#cases}
+
+<Param>
+
+An array of strings that specify the subslides for each case.
+
+</Param>
+
+#### <ParamName>fn</ParamName> : `function` {#fn}
+
+<Param>
+
+A function that maps the case to content. The argument `case` is the index of the cases array you input.
+
+</Param>
+
+#### <ParamName>position</ParamName> : `alignment` {#position}
+
+<Param>
+
+The alignment of alternatives within the reserved space. Default is `bottom + left`.
+
+</Param>
+
+#### <ParamName>stretch</ParamName> : `bool` {#stretch}
+
+<Param>
+
+Whether to stretch all alternatives to the maximum width and height. Default is `false`. Important: If you use a zero-length content like a context expression, you should set `stretch: false`.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

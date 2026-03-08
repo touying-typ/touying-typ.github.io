@@ -1,0 +1,33 @@
+---
+sidebar_position: 39
+description: "Display content only in handout mode."
+---
+
+# handout-only
+
+<Signature>
+  <code><SignatureName>handout-only</SignatureName>(<SignatureParam>[self: none](#self), </SignatureParam><SignatureParam>[cont](#cont)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L1287" /></code>
+</Signature>
+
+Display content only in handout mode.
+Don't reserve space when hidden, content is completely not existing there.
+
+Example:
+
+```typst
+#handout-only[This content is only visible in handout mode.]
+```
+
+<Parameters>
+
+#### <ParamName>cont</ParamName> : `content` {#cont}
+
+<Param>
+
+The content to display in handout mode.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

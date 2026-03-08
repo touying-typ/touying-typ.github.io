@@ -1,0 +1,28 @@
+---
+sidebar_position: 9
+description: "Determine if a content is styled (i."
+---
+
+# is-styled
+
+<Signature>
+  <code><SignatureName>is-styled</SignatureName>(<SignatureParam>[it](#it)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L227" /></code>
+</Signature>
+
+Determine if a content is styled (i.e. wrapped by Typst's internal styled element when `set` or `show` rules are applied).
+
+Example: `is-styled(text(fill: red)[Red])` returns `true`
+
+<Parameters>
+
+#### <ParamName>it</ParamName> : `content` {#it}
+
+<Param>
+
+The content to check.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `bool`

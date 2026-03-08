@@ -1,0 +1,60 @@
+---
+sidebar_position: 2
+description: "Adaptive columns layout that automatically chooses the number of columns based on content height."
+---
+
+# adaptive-columns
+
+<Signature>
+  <code><SignatureName>adaptive-columns</SignatureName>(<SignatureParam>[gutter: 4%](#gutter), </SignatureParam><SignatureParam>[max-count: 3](#max-count), </SignatureParam><SignatureParam>[start: none](#start), </SignatureParam><SignatureParam>[end: none](#end), </SignatureParam><SignatureParam>[body](#body)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/components.typ#L54" /></code>
+</Signature>
+
+Adaptive columns layout that automatically chooses the number of columns based on content height.
+
+Example: `components.adaptive-columns(outline())`
+
+<Parameters>
+
+#### <ParamName>gutter</ParamName> : `length` <Default>`4%`</Default> {#gutter}
+
+<Param>
+
+The space between columns. Default is `4%`.
+
+</Param>
+
+#### <ParamName>max-count</ParamName> : `int` <Default>`3`</Default> {#max-count}
+
+<Param>
+
+The maximum number of columns. Default is `3`.
+
+</Param>
+
+#### <ParamName>start</ParamName> : `content` | `none` <Default>`none`</Default> {#start}
+
+<Param>
+
+The content to place before the columns. Default is `none`.
+
+</Param>
+
+#### <ParamName>end</ParamName> : `content` | `none` <Default>`none`</Default> {#end}
+
+<Param>
+
+The content to place after the columns. Default is `none`.
+
+</Param>
+
+#### <ParamName>body</ParamName> : `content` {#body}
+
+<Param>
+
+The content to place in the columns.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

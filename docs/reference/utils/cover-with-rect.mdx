@@ -1,0 +1,52 @@
+---
+sidebar_position: 28
+description: "Cover content with a rectangle of a specified color."
+---
+
+# cover-with-rect
+
+<Signature>
+  <code><SignatureName>cover-with-rect</SignatureName>(<SignatureParam>[..cover-args](#cover-args), </SignatureParam><SignatureParam>[fill: auto](#fill), </SignatureParam><SignatureParam>[inline: true](#inline), </SignatureParam><SignatureParam>[body](#body)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L869" /></code>
+</Signature>
+
+Cover content with a rectangle of a specified color. If you set the fill to the background color of the page, you can use this to create a semi-transparent overlay.
+
+Example: `#utils.cover-with-rect(fill: "red")[Hidden]`
+
+<Parameters>
+
+#### <ParamName>..cover-args</ParamName> : `args` {#cover-args}
+
+<Param>
+
+The arguments to pass to the rectangle.
+
+</Param>
+
+#### <ParamName>fill</ParamName> : `color` <Default>`auto`</Default> {#fill}
+
+<Param>
+
+The color to fill the rectangle with.
+
+</Param>
+
+#### <ParamName>inline</ParamName> : `bool` <Default>`true`</Default> {#inline}
+
+<Param>
+
+Indicates whether the content should be displayed inline. Default is `true`.
+
+</Param>
+
+#### <ParamName>body</ParamName> : `content` {#body}
+
+<Param>
+
+The content to cover.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

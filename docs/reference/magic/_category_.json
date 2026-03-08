@@ -1,0 +1,8 @@
+{
+  "label": "Magic",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Show-rule helpers that enhance Typst behaviour."
+  }
+}

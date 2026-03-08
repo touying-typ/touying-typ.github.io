@@ -1,0 +1,156 @@
+---
+sidebar_position: 7
+description: "A fully-featured progressive outline that renders headings from multiple levels with per-level styling."
+---
+
+# custom-progressive-outline
+
+<Signature>
+  <code><SignatureName>custom-progressive-outline</SignatureName>(<SignatureParam>[self: none](#self), </SignatureParam><SignatureParam>[alpha: 60%](#alpha), </SignatureParam><SignatureParam>[level: auto](#level), </SignatureParam><SignatureParam>[numbered: (false,)](#numbered), </SignatureParam><SignatureParam>[filled: (false,)](#filled), </SignatureParam><SignatureParam>[paged: (false,)](#paged), </SignatureParam><SignatureParam>[numbering: ()](#numbering), </SignatureParam><SignatureParam>[text-fill: none](#text-fill), </SignatureParam><SignatureParam>[text-size: none](#text-size), </SignatureParam><SignatureParam>[text-weight: none](#text-weight), </SignatureParam><SignatureParam>[vspace: none](#vspace), </SignatureParam><SignatureParam>[title: none](#title), </SignatureParam><SignatureParam>[indent: (0em,)](#indent), </SignatureParam><SignatureParam>[fill: (repeat[.],)](#fill), </SignatureParam><SignatureParam>[short-heading: true](#short-heading), </SignatureParam><SignatureParam>[uncover-fn: body => body](#uncover-fn), </SignatureParam><SignatureParam>[..args](#args)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/components.typ#L301" /></code>
+</Signature>
+
+A fully-featured progressive outline that renders headings from multiple levels with per-level styling.
+
+Uses arrays indexed by heading level (first element = level 1, second = level 2, etc.) to apply different styling to each level. Unlike `progressive-outline` (a thin wrapper around Typst's built-in `outline`), this function renders each heading manually, giving full control over numbering, indentation, fills, and typography.
+
+<Parameters>
+
+#### <ParamName>self</ParamName> : `none` <Default>`none`</Default> {#self}
+
+<Param>
+
+The self context.
+
+</Param>
+
+#### <ParamName>alpha</ParamName> : `ratio` <Default>`60%`</Default> {#alpha}
+
+<Param>
+
+The transparency of the other headings. Default is `60%`.
+
+</Param>
+
+#### <ParamName>level</ParamName> : `auto` | `int` <Default>`auto`</Default> {#level}
+
+<Param>
+
+The outline level. When `auto`, all levels up to `slide-level` are shown. Default is `auto`.
+
+</Param>
+
+#### <ParamName>numbered</ParamName> : `array` <Default>`(false,)`</Default> {#numbered}
+
+<Param>
+
+Per-level booleans indicating whether headings are numbered. Default is `(false,)`.
+
+</Param>
+
+#### <ParamName>filled</ParamName> : `array` <Default>`(false,)`</Default> {#filled}
+
+<Param>
+
+Per-level booleans indicating whether to show a fill between the heading and the page number. Default is `(false,)`.
+
+</Param>
+
+#### <ParamName>paged</ParamName> : `array` <Default>`(false,)`</Default> {#paged}
+
+<Param>
+
+Per-level booleans indicating whether to show the page number. Default is `(false,)`.
+
+</Param>
+
+#### <ParamName>numbering</ParamName> : `array` <Default>`()`</Default> {#numbering}
+
+<Param>
+
+Per-level numbering strings or `none` overrides. Default is `()`.
+
+</Param>
+
+#### <ParamName>text-fill</ParamName> : `array` | `none` <Default>`none`</Default> {#text-fill}
+
+<Param>
+
+Per-level text fill colors. Default is `none` (inherits current text color).
+
+</Param>
+
+#### <ParamName>text-size</ParamName> : `array` | `none` <Default>`none`</Default> {#text-size}
+
+<Param>
+
+Per-level text sizes. Default is `none` (inherits current text size).
+
+</Param>
+
+#### <ParamName>text-weight</ParamName> : `array` | `none` <Default>`none`</Default> {#text-weight}
+
+<Param>
+
+Per-level text weights. Default is `none` (inherits current text weight).
+
+</Param>
+
+#### <ParamName>vspace</ParamName> : `array` | `none` <Default>`none`</Default> {#vspace}
+
+<Param>
+
+Per-level vertical space above each heading. Default is `none`.
+
+</Param>
+
+#### <ParamName>title</ParamName> : `str` | `none` <Default>`none`</Default> {#title}
+
+<Param>
+
+The title of the outline section. Default is `none`.
+
+</Param>
+
+#### <ParamName>indent</ParamName> : `array` <Default>`(0em,)`</Default> {#indent}
+
+<Param>
+
+Per-level left indentation. Default is `(0em,)`.
+
+</Param>
+
+#### <ParamName>fill</ParamName> : `array` <Default>`(repeat[.],)`</Default> {#fill}
+
+<Param>
+
+Per-level fill content between heading and page number. Default is `(repeat[.],)`.
+
+</Param>
+
+#### <ParamName>short-heading</ParamName> : `bool` <Default>`true`</Default> {#short-heading}
+
+<Param>
+
+Whether to shorten headings that have labels using `utils.short-heading`. Default is `true`.
+
+</Param>
+
+#### <ParamName>uncover-fn</ParamName> : `function` <Default>`body => body`</Default> {#uncover-fn}
+
+<Param>
+
+A function `body => body` applied to currently-active (non-covered) headings. Default is the identity function.
+
+</Param>
+
+#### <ParamName>..args</ParamName> : `arguments` {#args}
+
+<Param>
+
+Additional arguments forwarded to the underlying `progressive-outline` call.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

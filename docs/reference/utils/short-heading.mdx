@@ -1,0 +1,29 @@
+---
+sidebar_position: 19
+description: "Convert a heading with label to a short display form."
+---
+
+# short-heading
+
+<Signature>
+  <code><SignatureName>short-heading</SignatureName>(<SignatureParam>[self: none](#self), </SignatureParam><SignatureParam>[it](#it)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L378" /></code>
+</Signature>
+
+Convert a heading with label to a short display form.
+
+If the heading has a special Touying label (e.g. `touying:hidden`), returns the heading body as-is.
+If the heading has a user label (e.g. `section:my-section`), strips the namespace prefix and applies title case via `convert-label-to-short-heading`.
+
+<Parameters>
+
+#### <ParamName>it</ParamName> : `content` {#it}
+
+<Param>
+
+The heading content element.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

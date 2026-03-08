@@ -1,0 +1,68 @@
+---
+sidebar_position: 26
+description: "Fit content to specified height."
+---
+
+# fit-to-height
+
+<Signature>
+  <code><SignatureName>fit-to-height</SignatureName>(<SignatureParam>[width: none](#width), </SignatureParam><SignatureParam>[prescale-width: none](#prescale-width), </SignatureParam><SignatureParam>[grow: true](#grow), </SignatureParam><SignatureParam>[shrink: true](#shrink), </SignatureParam><SignatureParam>[height](#height), </SignatureParam><SignatureParam>[body](#body)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L764" /></code>
+</Signature>
+
+Fit content to specified height.
+
+Example: `#utils.fit-to-height(100%)[BIG]`
+
+<Parameters>
+
+#### <ParamName>width</ParamName> : `length` | `fraction` | `relative` <Default>`none`</Default> {#width}
+
+<Param>
+
+Will determine the width of the content after scaling. So, if you want the scaled content to fill half of the slide width, you can use `width: 50%`.
+
+</Param>
+
+#### <ParamName>prescale-width</ParamName> : `length` | `fraction` | `relative` <Default>`none`</Default> {#prescale-width}
+
+<Param>
+
+Allows you to make Typst's layout assume that the given content is to be laid out in a container of a certain width before scaling. For example, you can use `prescale-width: 200%` assuming the slide's width is twice the original.
+
+</Param>
+
+#### <ParamName>grow</ParamName> : `bool` <Default>`true`</Default> {#grow}
+
+<Param>
+
+Indicates whether the content should be scaled up if it is smaller than the available height. Default is `true`.
+
+</Param>
+
+#### <ParamName>shrink</ParamName> : `bool` <Default>`true`</Default> {#shrink}
+
+<Param>
+
+Indicates whether the content should be scaled down if it is larger than the available height. Default is `true`.
+
+</Param>
+
+#### <ParamName>height</ParamName> : `length` {#height}
+
+<Param>
+
+The height to fit the content to.
+
+</Param>
+
+#### <ParamName>body</ParamName> : `content` {#body}
+
+<Param>
+
+The content to fit.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

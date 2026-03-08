@@ -1,0 +1,14 @@
+---
+sidebar_position: 1
+description: "Generate pdfpc metadata for the presentation."
+---
+
+# pdfpc-file
+
+<Signature>
+  <code><SignatureName>pdfpc-file</SignatureName>(<SignatureParam>[loc](#loc)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/pdfpc.typ#L7" /></code>
+</Signature>
+
+Generate pdfpc metadata for the presentation. Called internally in the preamble when `enable-pdfpc` is `true`. Query the result with `typst query --root . ./example.typ --field value --one "<pdfpc-file>" > ./example.pdfpc`.
+
+**Returns:** `content`

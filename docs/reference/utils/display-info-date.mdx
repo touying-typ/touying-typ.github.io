@@ -1,0 +1,28 @@
+---
+sidebar_position: 24
+description: "Display the date from `self."
+---
+
+# display-info-date
+
+<Signature>
+  <code><SignatureName>display-info-date</SignatureName>(<SignatureParam>[self](#self)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L611" /></code>
+</Signature>
+
+Display the date from `self.info.date` formatted with `self.datetime-format`.
+
+Returns the date as a formatted string when `self.info.date` is a `datetime`, or returns it as-is when it is already `content`.
+
+<Parameters>
+
+#### <ParamName>self</ParamName> : `dictionary` {#self}
+
+<Param>
+
+The presentation context (must have `self.info.date`).
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content` | `str`

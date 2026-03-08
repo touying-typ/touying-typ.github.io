@@ -1,0 +1,50 @@
+---
+sidebar_position: 6
+description: "Show progressive outline."
+---
+
+# progressive-outline
+
+<Signature>
+  <code><SignatureName>progressive-outline</SignatureName>(<SignatureParam>[alpha: 60%](#alpha), </SignatureParam><SignatureParam>[level: 1](#level), </SignatureParam><SignatureParam>[transform](#transform), </SignatureParam><SignatureParam>[..args](#args)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/components.typ#L215" /></code>
+</Signature>
+
+Show progressive outline. It will make other sections except the current section to be semi-transparent.
+
+<Parameters>
+
+#### <ParamName>alpha</ParamName> : `ratio` <Default>`60%`</Default> {#alpha}
+
+<Param>
+
+The transparency of the other sections. Default is `60%`.
+
+</Param>
+
+#### <ParamName>level</ParamName> : `int` <Default>`1`</Default> {#level}
+
+<Param>
+
+The level of the outline. Default is `1`.
+
+</Param>
+
+#### <ParamName>transform</ParamName> : `function` {#transform}
+
+<Param>
+
+A function applied to each outline entry. It receives `(cover: bool, level: int, alpha: ratio, ..args, it)` where `cover` is `true` when the entry should be visually de-emphasized, `it` is the outline entry element, and `alpha` is the transparency value.
+
+</Param>
+
+#### <ParamName>..args</ParamName> : `arguments` {#args}
+
+<Param>
+
+Additional arguments forwarded to the inner `outline()` call.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

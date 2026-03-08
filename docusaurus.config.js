@@ -5,6 +5,7 @@
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
 import {themes as prismThemes} from 'prism-react-renderer';
+import { light as typstLight, dark as typstDark } from './src/theme/typst.js';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -162,8 +163,8 @@ const config = {
         copyright: `© ${new Date().getFullYear()} Touying Contributors`,
       },
       prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
+        theme: typstLight,
+        darkTheme: typstDark,
         additionalLanguages: ['bash', 'diff'],
       },
       colorMode: {

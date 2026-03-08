@@ -1,0 +1,60 @@
+---
+sidebar_position: 42
+description: "You can have very fine-grained control over the content depending on the current subslide by using #alternatives-fn."
+---
+
+# alternatives-fn
+
+<Signature>
+  <code><SignatureName>alternatives-fn</SignatureName>(<SignatureParam>[self: none](#self), </SignatureParam><SignatureParam>[start: 1](#start), </SignatureParam><SignatureParam>[end: none](#end), </SignatureParam><SignatureParam>[count: none](#count), </SignatureParam><SignatureParam>[..kwargs](#kwargs), </SignatureParam><SignatureParam>[fn](#fn)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L1401" /></code>
+</Signature>
+
+You can have very fine-grained control over the content depending on the current subslide by using #alternatives-fn. It accepts a function (hence the name) that maps the current subslide index to some content.
+
+Example: `#alternatives-fn(start: 2, count: 7, subslide => { numbering("(i)", subslide) })`
+
+<Parameters>
+
+#### <ParamName>start</ParamName> : `int` <Default>`1`</Default> {#start}
+
+<Param>
+
+The starting subslide number. Default is `1`.
+
+</Param>
+
+#### <ParamName>end</ParamName> : `int` | `none` <Default>`none`</Default> {#end}
+
+<Param>
+
+The ending subslide number. Default is `none`.
+
+</Param>
+
+#### <ParamName>count</ParamName> : `int` | `none` <Default>`none`</Default> {#count}
+
+<Param>
+
+The number of subslides. Default is `none`.
+
+</Param>
+
+#### <ParamName>position</ParamName> : `alignment` {#position}
+
+<Param>
+
+The alignment of alternatives within the reserved space. Default is `bottom + left`.
+
+</Param>
+
+#### <ParamName>stretch</ParamName> : `bool` {#stretch}
+
+<Param>
+
+Whether to stretch all alternatives to the maximum width and height. Default is `false`. Important: If you use a zero-length content like a context expression, you should set `stretch: false`.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

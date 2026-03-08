@@ -1,0 +1,37 @@
+---
+sidebar_position: 1
+description: "Store theme-specific private data in the presentation context."
+---
+
+# config-store
+
+<Signature>
+  <code><SignatureName>config-store</SignatureName>(<SignatureParam>[..args](#args)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/configs.typ#L34" /></code>
+</Signature>
+
+Store theme-specific private data in the presentation context.
+
+Use this in your theme's `#show: my-theme.with(...)` to pass arbitrary key-value pairs that your theme needs internally. The stored values are accessible via `self.store.<key>` inside any theme function.
+
+Example:
+
+```typst
+config-store(
+  header-height: 2em,
+  show-logo: true,
+)
+```
+
+<Parameters>
+
+#### <ParamName>..args</ParamName> : `arguments` {#args}
+
+<Param>
+
+Named key-value pairs to store in `self.store`.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `dictionary`

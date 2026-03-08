@@ -117,8 +117,5 @@
 }
 
 /* ── Typst code blocks ───────────────────────────────────────────────────── */
-
-.language-typst .token.comment  { color: #6a9153; font-style: italic; }
-.language-typst .token.keyword  { color: #0000ff; }
-.language-typst .token.string   { color: #a31515; }
-.language-typst .token.function { color: #795e26; }
+/* Syntax colours are handled by the Prism theme in src/theme/typst.js.     */
+/* The rules below keep compatibility for any fallback CSS rendering.        */

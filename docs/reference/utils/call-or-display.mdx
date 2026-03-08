@@ -1,0 +1,34 @@
+---
+sidebar_position: 14
+description: "Call a `self => {."
+---
+
+# call-or-display
+
+<Signature>
+  <code><SignatureName>call-or-display</SignatureName>(<SignatureParam>[self](#self), </SignatureParam><SignatureParam>[it](#it)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L291" /></code>
+</Signature>
+
+Call a `self => {..}` function and return the result, or wrap plain content in `[]`.
+
+<Parameters>
+
+#### <ParamName>self</ParamName> : `dictionary` {#self}
+
+<Param>
+
+The presentation context.
+
+</Param>
+
+#### <ParamName>it</ParamName> : `content` | `function` {#it}
+
+<Param>
+
+The content to display, or a callback `self => content`.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

@@ -1,0 +1,69 @@
+---
+sidebar_position: 5
+description: "Create a slide where the provided content blocks are displayed in a grid with a checkerboard color pattern."
+---
+
+# checkerboard
+
+<Signature>
+  <code><SignatureName>checkerboard</SignatureName>(<SignatureParam>[columns: none](#columns), </SignatureParam><SignatureParam>[rows: none](#rows), </SignatureParam><SignatureParam>[alignment: center + horizon](#alignment), </SignatureParam><SignatureParam>[primary: white](#primary), </SignatureParam><SignatureParam>[secondary: silver](#secondary), </SignatureParam><SignatureParam>[..bodies](#bodies)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/components.typ#L139" /></code>
+</Signature>
+
+Create a slide where the provided content blocks are displayed in a grid with a checkerboard color pattern.
+
+You can configure the grid using the `rows` and `columns` keyword arguments (both default to `none`):
+
+- If `columns` is an integer, create that many columns of width `1fr`.
+- If `columns` is `none`, create as many columns of width `1fr` as there are content blocks.
+- Otherwise assume that `columns` is an array of widths already, use that.
+- If `rows` is an integer, create that many rows of height `1fr`.
+- If `rows` is `none`, create as many rows of height `1fr` as needed given the number of content blocks and columns.
+- Otherwise assume that `rows` is an array of heights already, use that.
+
+That means that `#checkerboard[...][...]` stacks horizontally and `#checkerboard(columns: 1)[...][...]` stacks vertically.
+
+<Parameters>
+
+#### <ParamName>columns</ParamName> : `int` | `array` | `none` <Default>`none`</Default> {#columns}
+
+<Param>
+
+The column specification. Default is `none`.
+
+</Param>
+
+#### <ParamName>rows</ParamName> : `int` | `array` | `none` <Default>`none`</Default> {#rows}
+
+<Param>
+
+The row specification. Default is `none`.
+
+</Param>
+
+#### <ParamName>alignment</ParamName> : `alignment` <Default>`center + horizon`</Default> {#alignment}
+
+<Param>
+
+The alignment applied to the contents of each checkerboard cell. Default is `center + horizon`.
+
+</Param>
+
+#### <ParamName>primary</ParamName> : `color` <Default>`white`</Default> {#primary}
+
+<Param>
+
+The background color of odd cells. Default is `white`.
+
+</Param>
+
+#### <ParamName>secondary</ParamName> : `color` <Default>`silver`</Default> {#secondary}
+
+<Param>
+
+The background color of even cells. Default is `silver`.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

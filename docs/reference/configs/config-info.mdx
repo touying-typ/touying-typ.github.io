@@ -1,0 +1,94 @@
+---
+sidebar_position: 4
+description: "The configuration of important information of the presentation."
+---
+
+# config-info
+
+<Signature>
+  <code><SignatureName>config-info</SignatureName>(<SignatureParam>[title](#title), </SignatureParam><SignatureParam>[short-title](#short-title), </SignatureParam><SignatureParam>[subtitle](#subtitle), </SignatureParam><SignatureParam>[short-subtitle](#short-subtitle), </SignatureParam><SignatureParam>[author](#author), </SignatureParam><SignatureParam>[date](#date), </SignatureParam><SignatureParam>[institution](#institution), </SignatureParam><SignatureParam>[logo](#logo), </SignatureParam><SignatureParam>[..args](#args)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/configs.typ#L507" /></code>
+</Signature>
+
+The configuration of important information of the presentation.
+
+Example:
+
+```typst
+config-info(
+  title: "Title",
+  subtitle: "Subtitle",
+  author: "Author",
+  date: datetime.today(),
+  institution: "Institution",
+)
+```
+
+<Parameters>
+
+#### <ParamName>title</ParamName> : `content` {#title}
+
+<Param>
+
+The title of the presentation, which will be displayed in the title slide.
+
+</Param>
+
+#### <ParamName>short-title</ParamName> : `content` | `auto` {#short-title}
+
+<Param>
+
+The short title of the presentation, which will usually be displayed in the footer of the slides. If you set it to `auto`, it will be the same as the title.
+
+</Param>
+
+#### <ParamName>subtitle</ParamName> : `content` {#subtitle}
+
+<Param>
+
+The subtitle of the presentation.
+
+</Param>
+
+#### <ParamName>short-subtitle</ParamName> : `content` | `auto` {#short-subtitle}
+
+<Param>
+
+The short subtitle of the presentation, which will usually be displayed in the footer of the slides. If you set it to `auto`, it will be the same as the subtitle.
+
+</Param>
+
+#### <ParamName>author</ParamName> : `content` {#author}
+
+<Param>
+
+The author of the presentation.
+
+</Param>
+
+#### <ParamName>date</ParamName> : `datetime` | `content` {#date}
+
+<Param>
+
+The date of the presentation. You can use `datetime.today()` to get the current date.
+
+</Param>
+
+#### <ParamName>institution</ParamName> : `content` {#institution}
+
+<Param>
+
+The institution of the presentation.
+
+</Param>
+
+#### <ParamName>logo</ParamName> : `content` {#logo}
+
+<Param>
+
+The logo of the institution.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `dictionary`

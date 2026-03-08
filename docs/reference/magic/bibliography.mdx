@@ -1,0 +1,28 @@
+---
+sidebar_position: 8
+description: "Display the collected bibliography entries."
+---
+
+# bibliography
+
+<Signature>
+  <code><SignatureName>bibliography</SignatureName>(<SignatureParam>[title: auto](#title)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/magic.typ#L203" /></code>
+</Signature>
+
+Display the collected bibliography entries. Avoids the "multiple bibliographies are not yet supported" error by rendering entries gathered by `bibliography-as-footnote`.
+
+Usage: `#magic.bibliography()`
+
+<Parameters>
+
+#### <ParamName>title</ParamName> : `str` | `auto` | `none` <Default>`auto`</Default> {#title}
+
+<Param>
+
+The heading for the bibliography section. When `auto`, uses a language-appropriate title. When `none`, no heading is shown. Default is `auto`.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `content`

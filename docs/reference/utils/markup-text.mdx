@@ -1,0 +1,44 @@
+---
+sidebar_position: 25
+description: "Convert content to markup text, partly from
+[typst-examples-book](https://sitandr."
+---
+
+# markup-text
+
+<Signature>
+  <code><SignatureName>markup-text</SignatureName>(<SignatureParam>[it](#it), </SignatureParam><SignatureParam>[mode: "typ"](#mode), </SignatureParam><SignatureParam>[indent: 0](#indent)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L631" /></code>
+</Signature>
+
+Convert content to markup text, partly from
+[typst-examples-book](https://sitandr.github.io/typst-examples-book/book/typstonomicon/extract_markup_text.html).
+
+<Parameters>
+
+#### <ParamName>it</ParamName> : `content` | `str` {#it}
+
+<Param>
+
+The content to convert.
+
+</Param>
+
+#### <ParamName>mode</ParamName> : `str` <Default>`"typ"`</Default> {#mode}
+
+<Param>
+
+The output mode: `"typ"` for Typst markup or `"md"` for Markdown.
+
+</Param>
+
+#### <ParamName>indent</ParamName> : `int` <Default>`0`</Default> {#indent}
+
+<Param>
+
+The number of spaces to indent. Default is `0`.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `str`

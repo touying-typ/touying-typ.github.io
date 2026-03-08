@@ -1,0 +1,30 @@
+---
+sidebar_position: 15
+description: "Wrap a function with a self parameter to make it callable as a method."
+---
+
+# method-wrapper
+
+<Signature>
+  <code><SignatureName>method-wrapper</SignatureName>(<SignatureParam>[fn](#fn)</SignatureParam>)<SourceLink href="https://github.com/touying-typ/touying/blob/main/src/utils.typ#L308" /></code>
+</Signature>
+
+Wrap a function with a `self` parameter to make it callable as a method.
+
+Returns a new function of the form `(self: none, ..args) => fn(..args)`.
+
+Example: `#let hide = method-wrapper(hide)` to get a `hide` method.
+
+<Parameters>
+
+#### <ParamName>fn</ParamName> : `function` {#fn}
+
+<Param>
+
+The function to wrap.
+
+</Param>
+
+</Parameters>
+
+**Returns:** `function`
