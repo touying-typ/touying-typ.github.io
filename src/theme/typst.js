@@ -1,35 +1,39 @@
 // Prism theme for Typst code blocks.
-// Adapted from https://github.com/lilaq-project/lilaq-project.github.io
+// Colors match the lilaq project's theme: https://github.com/lilaq-project/lilaq-project.github.io
 
 export const light = {
   plain: {},
   styles: [
     {
       types: ['comment'],
-      style: { color: '#6a9153', fontStyle: 'italic' },
+      style: { color: '#8a8a8a' },
     },
     {
       types: ['keyword', 'boolean'],
-      style: { color: '#0000ff' },
+      style: { color: '#d73a49' },
     },
     {
       types: ['function'],
-      style: { color: '#795e26' },
+      style: { color: '#4b69c6' },
     },
     {
       types: ['number'],
-      style: { color: '#098658' },
+      style: { color: '#b60157' },
     },
     {
-      types: ['string', 'raw'],
-      style: { color: '#a31515' },
+      types: ['string'],
+      style: { color: '#298e0d' },
+    },
+    {
+      types: ['raw'],
+      style: { color: '#818181' },
     },
     {
       types: ['symbol'],
       style: { color: '#8b41b1' },
     },
     {
-      types: ['label', 'reference', 'operator'],
+      types: ['label', 'reference', 'escaped', 'operator'],
       style: { color: '#1d6c76' },
     },
     {
@@ -52,11 +56,11 @@ export const dark = {
   styles: [
     {
       types: ['comment'],
-      style: { color: '#b0b3c2', fontStyle: 'italic' },
+      style: { color: '#b0b3c2' },
     },
     {
       types: ['keyword', 'boolean'],
-      style: { color: '#7dcfff' },
+      style: { color: '#ffa49d' },
     },
     {
       types: ['function'],
@@ -67,15 +71,19 @@ export const dark = {
       style: { color: '#ff7d79' },
     },
     {
-      types: ['string', 'raw'],
+      types: ['string'],
       style: { color: '#80f4b6' },
+    },
+    {
+      types: ['raw'],
+      style: { color: '#caccd6' },
     },
     {
       types: ['symbol'],
       style: { color: '#caa8ff' },
     },
     {
-      types: ['label', 'reference', 'operator'],
+      types: ['label', 'reference', 'escaped', 'operator'],
       style: { color: '#d9f8f4' },
     },
     {

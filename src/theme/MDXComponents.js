@@ -9,6 +9,7 @@ import {
   SignatureName,
   SignatureParam,
   SourceLink,
+  TypeLink,
 } from '@site/src/components/Docs/FunctionDocumentation.js';
 
 export default {
@@ -21,4 +22,5 @@ export default {
   SignatureParam,
   SourceLink,
   Default,
+  TypeLink,
 };

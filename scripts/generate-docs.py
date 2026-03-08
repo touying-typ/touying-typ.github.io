@@ -675,9 +675,9 @@ def definition_to_mdx(defn: dict, source_file: str) -> str:
             display_name = f"..{pname}" if is_rest else pname
             anchor_id = pname.lstrip(".")
 
-            # Build type string
+            # Build type string using TypeLink components
             if ptypes:
-                type_str = " | ".join(f"`{t}`" for t in ptypes)
+                type_str = " | ".join(f'<TypeLink type="{t}" />' for t in ptypes)
                 type_part = f" : {type_str}"
             else:
                 type_part = ""
@@ -710,7 +710,7 @@ def definition_to_mdx(defn: dict, source_file: str) -> str:
 
     # ── Return type ─────────────────────────────────────────────────────────
     if return_types:
-        ret_str = " | ".join(f"`{t}`" for t in return_types)
+        ret_str = " | ".join(f'<TypeLink type="{t}" />' for t in return_types)
         lines.append(f"**Returns:** {ret_str}")
         lines.append("")
 
