@@ -33,9 +33,8 @@
 .heroTitle {
   font-size: 3rem;
   font-weight: 800;
-  color: #fff;
+  color: var(--ifm-color-primary);
   margin: 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 996px) {
@@ -46,7 +45,7 @@
 
 .heroSubtitle {
   font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--ifm-color-content-secondary);
   margin: 0;
   max-width: 520px;
 }
@@ -61,18 +60,18 @@
 }
 
 .heroButtonOutline {
-  color: #fff !important;
-  border-color: rgba(255, 255, 255, 0.7) !important;
+  color: var(--ifm-color-primary) !important;
+  border-color: var(--ifm-color-primary) !important;
 }
 
 .heroButtonOutline:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border-color: #fff !important;
+  background: var(--ifm-color-primary-lightest) !important;
+  border-color: var(--ifm-color-primary) !important;
 }
 
 .heroBadges {
   margin: 0;
-  opacity: 0.85;
+  opacity: 1;
   display: flex;
   gap: 0.5rem;
   align-items: center;

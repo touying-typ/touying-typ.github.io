@@ -46,7 +46,7 @@ const FeatureList = [
       <>
         Reveal content step-by-step with <code>#pause</code> and
         {' '}<code>#meanwhile</code>. Animate text, lists, equations and
-        custom drawings without any JavaScript.
+        custom drawings with no extra tooling.
       </>
     ),
     link: '/docs/dynamic/simple',
@@ -58,7 +58,7 @@ const FeatureList = [
     description: (
       <>
         Typst's built-in math mode renders beautiful equations natively.
-        No external packages, no MathJax, no compromises.
+        No external packages, no compromises.
       </>
     ),
   },
