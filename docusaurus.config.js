@@ -101,6 +101,7 @@ const config = {
           },
           {to: '/blog', label: 'News', position: 'left'},
           {to: '/themes', label: 'Themes', position: 'left'},
+          {href: 'https://typst.app/universe/search/?q=touying', label: 'Universe', position: 'left'},
           {to: '/docs/reference', label: 'Reference', position: 'left'},
           {
             type: 'localeDropdown',
@@ -150,7 +151,7 @@ const config = {
               },
               {
                 label: 'Typst Universe',
-                href: 'https://typst.app/universe/package/touying',
+                href: 'https://typst.app/universe/search/?q=touying',
               },
               {
                 label: 'Ask DeepWiki (AI)',
@@ -167,6 +168,7 @@ const config = {
             items: [
               { label: 'News',      to: '/blog' },
               { label: 'Themes',    to: '/themes' },
+              { label: 'Universe',  href: 'https://typst.app/universe/search/?q=touying' },
               { label: 'GitHub',    href: 'https://github.com/touying-typ/touying' },
               { label: 'Changelog', to: '/docs/changelog' },
             ],

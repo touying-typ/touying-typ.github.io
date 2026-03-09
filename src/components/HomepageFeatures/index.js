@@ -38,6 +38,8 @@ const FeatureList = [
     ),
     link: '/themes',
     linkLabel: 'Browse themes',
+    secondaryLink: 'https://typst.app/universe/search/?q=touying',
+    secondaryLinkLabel: 'Browse universe',
   },
   {
     icon: '🎬',
@@ -78,7 +80,7 @@ const FeatureList = [
   },
 ];
 
-function Feature({ icon, title, description, link, linkLabel }) {
+function Feature({ icon, title, description, link, linkLabel, secondaryLink, secondaryLinkLabel }) {
   return (
     <div className={clsx('col col--4', styles.featureCol)}>
       <div className={clsx('feature-card', styles.featureCard)}>
@@ -88,6 +90,11 @@ function Feature({ icon, title, description, link, linkLabel }) {
         {link && (
           <Link className={styles.featureLink} to={link}>
             {linkLabel} →
+          </Link>
+        )}
+        {secondaryLink && (
+          <Link className={styles.featureLink} to={secondaryLink}>
+            {secondaryLinkLabel} →
           </Link>
         )}
       </div>
