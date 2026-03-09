@@ -38,6 +38,12 @@
 
 /* ── Navbar ──────────────────────────────────────────────────────────────── */
 
+/* Hide the external-link icon on the Universe navbar item */
+.navbar--universe-link svg {
+  display: none;
+}
+
+
 .navbar__logo img {
   height: 28px;
   width: auto;

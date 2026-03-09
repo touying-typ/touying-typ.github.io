@@ -87,15 +87,19 @@ function Feature({ icon, title, description, link, linkLabel, secondaryLink, sec
         <div className={styles.featureIcon}>{icon}</div>
         <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
         <p className={styles.featureDesc}>{description}</p>
-        {link && (
-          <Link className={styles.featureLink} to={link}>
-            {linkLabel} →
-          </Link>
-        )}
-        {secondaryLink && (
-          <Link className={styles.featureLink} to={secondaryLink}>
-            {secondaryLinkLabel} →
-          </Link>
+        {(link || secondaryLink) && (
+          <div className={styles.featureLinks}>
+            {link && (
+              <Link className={styles.featureLink} to={link}>
+                {linkLabel} →
+              </Link>
+            )}
+            {secondaryLink && (
+              <Link className={styles.featureLink} to={secondaryLink}>
+                {secondaryLinkLabel} →
+              </Link>
+            )}
+          </div>
         )}
       </div>
     </div>

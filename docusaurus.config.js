@@ -101,7 +101,7 @@ const config = {
           },
           {to: '/blog', label: 'News', position: 'left'},
           {to: '/themes', label: 'Themes', position: 'left'},
-          {href: 'https://typst.app/universe/search/?q=touying', label: 'Universe', position: 'left'},
+          {href: 'https://typst.app/universe/search/?q=touying', label: 'Universe', position: 'left', className: 'navbar--universe-link'},
           {to: '/docs/reference', label: 'Reference', position: 'left'},
           {
             type: 'localeDropdown',
