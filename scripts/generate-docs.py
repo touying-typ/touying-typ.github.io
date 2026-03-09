@@ -702,7 +702,7 @@ def definition_to_mdx(defn: dict, source_file: str, github_base: str = GITHUB_SR
                 default_part = ""
 
             lines.append(
-                f"#### {display_name}{type_part}"
+                f"### {display_name}{type_part}"
                 f"{default_part} {{#{anchor_id}}}"
             )
             lines.append("")
@@ -748,6 +748,8 @@ def generate_function_page(
     if description:
         safe_desc = _safe_description_for_frontmatter(description)
         lines.append(f'description: "{safe_desc}"')
+    # Prevent parameter h3 headings from appearing in the page TOC
+    lines.append("toc_max_heading_level: 2")
     lines.append("---")
     lines.append("")
 

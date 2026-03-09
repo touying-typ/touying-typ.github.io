@@ -83,7 +83,7 @@ export const SourceLink = ({ href }) => (
 );
 
 export const Parameters = ({ children }) => (
-  <div>
+  <div data-search-children={true}>
     <div className={styles.parametersHeader}>
       Parameters
     </div>
