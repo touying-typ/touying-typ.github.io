@@ -702,7 +702,7 @@ def definition_to_mdx(defn: dict, source_file: str, github_base: str = GITHUB_SR
                 default_part = ""
 
             lines.append(
-                f"#### <ParamName>{display_name}</ParamName>{type_part}"
+                f"#### {display_name}{type_part}"
                 f"{default_part} {{#{anchor_id}}}"
             )
             lines.append("")
