@@ -88,7 +88,7 @@ export default function ThemesPage() {
             <Heading as="h1">Themes</Heading>
             <p className={styles.themesSubtitle}>
               Choose from six professionally designed themes — or{' '}
-              <Link to="/docs/build-your-own-theme">build your own</Link>.
+              <Link to="/docs/tutorials/build-your-own-theme">build your own</Link>.
             </p>
           </div>
         </div>
