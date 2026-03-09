@@ -136,7 +136,7 @@ const config = {
           {
             title: 'Docs',
             items: [
-              { label: 'Getting Started', to: '/docs/quick-start/start' },
+              { label: 'Getting Started', to: '/docs/start' },
               { label: 'Themes',          to: '/docs/themes/simple' },
               { label: 'Dynamic Slides',  to: '/docs/tutorials/dynamic/simple' },
             ],

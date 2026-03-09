@@ -13,9 +13,9 @@ a powerful slide-creation package for [Typst](https://typst.app/).
 
 ## Dependencies
 
-- [Node.js](https://nodejs.org/) >= 18
-- [Python](https://www.python.org/) >= 3.8 with [Pillow](https://pypi.org/project/Pillow/) (`pip install Pillow`)
-- [Typst](https://github.com/typst/typst) (for generating slide preview images)
+- [Node.js](https://nodejs.org/) >= 20
+- [Python](https://www.python.org/) >= 3.8 with [Pillow](https://pypi.org/project/Pillow/)
+- [Typst](https://github.com/typst/typst) (optional, for generating slide preview images; CI uses `typst-community/setup-typst`)
 
 ## Local Development
 
@@ -24,8 +24,17 @@ Clone the repository and install dependencies:
 ```sh
 git clone https://github.com/touying-typ/touying-typ.github.io
 cd touying-typ.github.io
-npm install
+# init touying submodule
+git submodule update --init --recursive
+npm ci
 pip install Pillow
+```
+
+Copy docs from the touying submodule and generate API reference documentation:
+
+```sh
+npm run copy-docs
+npm run generate-docs
 ```
 
 Generate the slide preview images (requires Typst on `$PATH`):

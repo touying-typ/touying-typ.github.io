@@ -36,7 +36,7 @@ const FeatureList = [
         your own.
       </>
     ),
-    link: '/docs/themes/simple',
+    link: '/themes',
     linkLabel: 'Browse themes',
   },
   {
