@@ -64,17 +64,6 @@ npm run build
 
 The static output will be in the `build/` directory.
 
-## Generating Slide Preview Images
-
-The script `scripts/generate-images.py` compiles every `.typ` file under
-`src/typst/` with Typst and stitches the resulting per-page PNG images into a
-single composite:
-
-- Pages are arranged **2 per row** with a light-grey background and gutters.
-- The composite is saved to `static/img/typst-generated/`.
-
-This is run automatically in CI before the build step.
-
 ## Contributing
 
 Contributions are welcome! Please open an issue or pull request on
