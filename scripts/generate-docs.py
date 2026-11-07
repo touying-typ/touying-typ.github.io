@@ -144,6 +144,7 @@ def typ_to_md(text: str) -> str:
     lines = text.split("\n")
     result = []
     in_code_block = False
+    in_inline_code = False
     for line in lines:
         if line.strip().startswith("```"):
             in_code_block = not in_code_block
@@ -151,6 +152,15 @@ def typ_to_md(text: str) -> str:
             continue
         if in_code_block:
             result.append(line)
+            continue
+
+        # A code span can run over several lines. The lines of it after the first
+        # are code and are not escaped.
+        in_span = in_inline_code
+        in_inline_code ^= line.count("`") % 2 == 1
+        if in_span:
+            head, tick, tail = line.partition("`")
+            result.append(head + tick + _escape_angle_brackets_outside_code(tail) if tick else head)
             continue
 
         # Convert Typst heading syntax (= Heading) to Markdown (## Heading)
