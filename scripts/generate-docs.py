@@ -43,9 +43,18 @@ GITHUB_THEMES_BASE = "https://github.com/touying-typ/touying/blob/main/themes"
 # Source files to document, in order (name → display title)
 SOURCE_FILES = [
     ("configs.typ", "Configs", "Configuration functions for presentation settings."),
+    ("entrypoint.typ", "Entrypoint", "The entry point that sets Touying up for a document."),
+    # Touying 0.8.0 split core.typ and slides.typ into src/core/. A file that is
+    # missing is skipped, so both layouts are listed and each version of the
+    # submodule documents the files it has.
     ("core.typ", "Core", "Core functions and definitions for Touying."),
-    ("components.typ", "Components", "Reusable UI components for slides."),
     ("slides.typ", "Slides", "Core slide creation functions."),
+    ("core/animation.typ", "Animation", "Animation functions: pause, uncover, only, animate and friends."),
+    ("core/blocks.typ", "Blocks", "Content blocks with their own animation behaviour."),
+    ("core/waypoints.typ", "Waypoints", "Named positions in a slide's animation timeline."),
+    ("core/slides.typ", "Slides", "Core slide creation functions."),
+    ("core/article.typ", "Article", "Article mode functions."),
+    ("components.typ", "Components", "Reusable UI components for slides."),
     ("utils.typ", "Utils", "Utility functions used throughout Touying."),
     ("magic.typ", "Magic", "Show-rule helpers that enhance Typst behaviour."),
     ("pdfpc.typ", "Pdfpc", "Functions for generating pdfpc presenter metadata."),
@@ -135,6 +144,7 @@ def typ_to_md(text: str) -> str:
     lines = text.split("\n")
     result = []
     in_code_block = False
+    in_inline_code = False
     for line in lines:
         if line.strip().startswith("```"):
             in_code_block = not in_code_block
@@ -142,6 +152,15 @@ def typ_to_md(text: str) -> str:
             continue
         if in_code_block:
             result.append(line)
+            continue
+
+        # A code span can run over several lines. The lines of it after the first
+        # are code and are not escaped.
+        in_span = in_inline_code
+        in_inline_code ^= line.count("`") % 2 == 1
+        if in_span:
+            head, tick, tail = line.partition("`")
+            result.append(head + tick + _escape_angle_brackets_outside_code(tail) if tick else head)
             continue
 
         # Convert Typst heading syntax (= Heading) to Markdown (## Heading)
@@ -283,17 +302,20 @@ def parse_doc_comment(raw_lines: list[str]) -> dict:
 
         # ── Continuation / description ─────────────────────────────────────
         if state == "param" and current_param is not None:
-            # A line with 2+ leading spaces is a continuation of the current param
+            # Keep the line structure of the description: paragraphs, nested
+            # lists and code stay Markdown. The two spaces that indent a
+            # continuation under `- name (type):` are removed.
             if line.startswith("  ") and line.strip():
-                current_param["description"] += " " + line.strip()
+                current_param["description"] += "\n" + line[2:]
                 continue
-            # An empty line is just a blank separator inside the param block
+            # A blank line separates paragraphs inside the param block
             if line == "":
+                current_param["description"] += "\n"
                 continue
             # Any other non-empty non-indented line inside a param block:
             # treat as continuation too (rare edge case)
             if line.strip() and not line.startswith("-"):
-                current_param["description"] += " " + line.strip()
+                current_param["description"] += "\n" + line.strip()
                 continue
 
         if state == "desc":
@@ -302,6 +324,8 @@ def parse_doc_comment(raw_lines: list[str]) -> dict:
     # Flush last param
     if current_param is not None:
         params.append(current_param)
+    for param in params:
+        param["description"] = param["description"].strip()
 
     description = "\n".join(description_parts).strip()
     return {
@@ -837,7 +861,7 @@ def main() -> None:
         print(f"{len(definitions)} documented function(s) found.")
 
         # Create a subdirectory for this module
-        module_id = os.path.splitext(source_file)[0]  # e.g. "components"
+        module_id = os.path.splitext(os.path.basename(source_file))[0]  # e.g. "components"
         module_dir = os.path.join(OUTPUT_DIR, module_id)
         os.makedirs(module_dir, exist_ok=True)
 
